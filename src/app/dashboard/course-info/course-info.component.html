@@ -1,0 +1,307 @@
+<ng-container *ngIf='loading'>
+
+    <div class="spinner-control">
+        <div class="spinnern">
+            <div class="lds-ring" *ngIf='loading'>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+    </div>
+
+</ng-container>
+
+<ng-container *ngIf='network'>
+    <div class="spinner-control">
+        <div class="spinnern">
+            <span class="error-network">Error occurred loading page</span>
+            <button class="btn btn-danger" style="border-radius: 8rem; margin-left: 40px;" (click)='onReload()'>Reload
+                Page</button>
+        </div>
+    </div>
+
+</ng-container>
+
+
+<ng-container *ngIf='success'>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="section3125" style="background-color: blue; padding: 1.0rem;">
+                <div class="row justify-content-center">
+                    <div class="col-xl-4 col-lg-5 col-md-6">
+                        <div class="preview_video">
+                            <a class="fcrse_img">
+                                <img src="../../../assets/extra/images/courses/{{data?.courseinfo?.course_image}}"
+                                    alt="">
+                                <div class="course-overlay">
+                                    <!-- <div class="badge_seller">Bestseller</div> -->
+
+                                    <ng-container *ngIf='data?.user_course_status'>
+                                        <span class="play_btn1" routerLink='/dashboard/course/{{getParam}}/all'><i
+                                                class="uil uil-play"></i></span>
+                                    </ng-container>
+                                    <!-- <span class="_215b02">Preview this course</span> -->
+                                </div>
+                            </a>
+                        </div>
+                        <div class="_215b10">
+                            <a href="#" class="_215b11">
+                                <span><i class='uil uil-heart-alt'></i></span>Wishlist
+                            </a>
+                            <a href="#" class="_215b12">
+                                <span><i class="uil uil-windsock"></i></span>Report abuse
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-xl-8 col-lg-7 col-md-6">
+                        <div class="_215b03">
+                            <h2>{{data?.courseinfo?.course_name}}</h2>
+                            <span class="_215b04">{{data?.courseinfo?.tag}}</span>
+                        </div>
+                        <div class="_215b05">
+                            <div class="crse_reviews mr-2">
+                                <i class="uil uil-star"></i>{{data?.courseinfo?.rating}}
+                            </div>
+                            <!-- (81,665 ratings) -->
+                        </div>
+                        <div class="_215b05">
+                            {{data?.courseinfo?.total_views}} students enrolled
+                        </div>
+                        <div class="_215b06">
+                            <div class="_215b07">
+                                <span><i class='uil uil-comment'></i></span>
+                                English
+                            </div>
+
+                        </div>
+                        <div class="_215b05">
+                            Last updated {{data?.courseinfo?.updated_at | date : 'medium'}}
+                        </div>
+                        <ul class="_215b31" *ngIf='data?.user_course_status'>
+                            <li><button class="btn_adcart">Continue Class</button></li>
+                        </ul>
+                        <ul class="_215b31" *ngIf='!data?.user_course_status'>
+                            <li><button class="btn_adcart"
+                                    routerLink='/dashboard/enroll-now/{{data?.courseinfo?.cid}}'>Enrol Now</button></li>
+                        </ul>
+                        <div class="_215fgt1">
+                            30-Day Money-Back Guarantee
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="_215b15 _byt1458">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="user_dt5">
+                        <div class="user_dt_left">
+                            <div class="live_user_dt">
+                                <!-- <div class="user_img5">
+                                    <a routerLink='/dashboard/tutor/{{data?.courseinfo?.created_by?.tid}}'>
+                                        <img src="../../../assets/extra/images/left-imgs/{{data?.courseinfo?.created_by?.avater}}"
+                                            alt=""></a>
+                                </div> -->
+                                <!-- <div class="user_cntnt">
+                                    <a routerLink='/dashboard/tutor/{{data?.courseinfo?.created_by?.tid}}'
+                                        class="_df7852">
+                                        {{data?.courseinfo?.created_by?.name}}
+                                    </a>
+                                    <button class="subscribe-btn">Subscribe</button>
+                                </div> -->
+                            </div>
+                        </div>
+                        <!-- <div class="user_dt_right">
+                            <ul>
+                                <li>
+                                    <a href="course_detail_view.html#" class="lkcm152"><i
+                                            class="uil uil-eye"></i><span>1452</span></a>
+                                </li>
+                                <li>
+                                    <a href="course_detail_view.html#" class="lkcm152"><i
+                                            class="uil uil-thumbs-up"></i><span>100</span></a>
+                                </li>
+                                <li>
+                                    <a href="course_detail_view.html#" class="lkcm152"><i
+                                            class="uil uil-thumbs-down"></i><span>20</span></a>
+                                </li>
+                                <li>
+                                    <a href="course_detail_view.html#" class="lkcm152"><i
+                                            class="uil uil-share-alt"></i><span>9</span></a>
+                                </li>
+                            </ul>
+                        </div> -->
+                    </div>
+                    <div class="course_tabs">
+                        <nav>
+                            <div class="nav nav-tabs tab_crse justify-content-center" id="nav-tab" role="tablist">
+                                <a class="nav-item nav-link active" id="nav-about-tab" data-toggle="tab"
+                                    href="#nav-about" role="tab" aria-selected="true">About</a>
+                                <a class="nav-item nav-link" id="nav-courses-tab" data-toggle="tab" href="#nav-courses"
+                                    role="tab" aria-selected="false">Courses
+                                    Content</a>
+                                <a class="nav-item nav-link" id="nav-reviews-tab" data-toggle="tab" href="#nav-reviews"
+                                    role="tab" aria-selected="false">Reviews</a>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="_215b17">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="course_tab_content">
+                        <div class="tab-content" id="nav-tabContent">
+                            <div class="tab-pane fade show active" id="nav-about" role="tabpanel">
+                                <div class="_htg451">
+                                    <div class="_htg452">
+                                        <h3>Requirements</h3>
+                                        <div [innerHTML]='data?.courseinfo?.requirement'></div>
+                                    </div>
+                                    <div class="_htg452 mt-35">
+                                        <h3>Description</h3>
+                                        <div [innerHTML]='data?.courseinfo?.description'></div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="nav-courses" role="tabpanel">
+                                <div class="crse_content">
+                                    <h3>Course content</h3>
+                                    <div class="_112456">
+                                        <ul class="accordion-expand-holder">
+                                            <li><span class="_fgr123"> {{data?.coursemodule.length}} lectures</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div id="accordion" class="ui-accordion ui-widget ui-helper-reset">
+
+                                        <div
+                                            class="ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom">
+
+                                            <div class="lecture-container" *ngFor='let c of data?.coursemodule'>
+                                                <div class="left-content">
+                                                    <i class='uil uil-play-circle icon_142'></i>
+                                                    <div class="top">
+                                                        <div class="title">{{c?.name}}?</div>
+                                                    </div>
+                                                </div>
+                                                <div class="details">
+                                                    <a routerLink='/dashboard/course/{{getParam}}/{{c?.cmid}}'
+                                                        class="preview-text"
+                                                        *ngIf='data?.user_course_status'>Preview</a>
+                                                    <span class="content-summary">{{c?.duration}}</span>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="nav-reviews" role="tabpanel">
+                                <div class="student_reviews">
+                                    <div class="row">
+                                        <div class="col-lg-5">
+                                            <div class="reviews_left">
+                                                <h3>Student Feedback</h3>
+                                                <div class="total_rating">
+                                                    <div class="_rate001">{{data?.courseinfo?.rating}}</div>
+                                                    <div style="margin-top: -.5rem;">
+                                                        <star-rating value="{{data?.courseinfo?.rating}}" totalstars="5"
+                                                            checkedcolor="red" uncheckedcolor="black" size="16px"
+                                                            readonly="true"></star-rating>
+                                                    </div>
+                                                    <div class="_rate002">Course Rating</div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-7">
+
+                                            <div class="review_all120">
+
+
+                                                <div class="review_item" *ngFor='let r of data?.reviews?.data'>
+                                                    <div class="review_usr_dt">
+                                                        <img src="../../../assets/extra/images/left-imgs/{{r?.user_info?.avater}}"
+                                                            alt="">
+                                                        <div class="rv1458">
+                                                            <h4 class="tutor_name1">John Doe</h4>
+                                                            <span class="time_145">2 hour ago</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="mt-20">
+                                                        <star-rating value="{{r?.rating}}" totalstars="5"
+                                                            checkedcolor="red" uncheckedcolor="black" size="16px"
+                                                            readonly="true"></star-rating>
+                                                    </div>
+                                                    <p class="rvds10">{{r?.comment}}.</p>
+
+                                                </div>
+
+                                                <ng-container *ngIf='loadMoreSuccess'>
+                                                    <div class="review_item" *ngIf='moreView' style="cursor: pointer;">
+                                                        <a (click)='onLoadMore()' class="more_reviews">See More
+                                                            Reviews</a>
+                                                    </div>
+                                                </ng-container>
+
+                                                <ng-container *ngIf='loadMore'>
+
+                                                    <div class="col-md-12">
+
+                                                        <div class="main-loader mt-50">
+
+                                                            <div class="spinner">
+                                                                <div class="bounce1"></div>
+                                                                <div class="bounce2"></div>
+                                                                <div class="bounce3"></div>
+                                                            </div>
+
+
+                                                        </div>
+
+                                                    </div>
+
+                                                </ng-container>
+
+                                                <ng-container *ngIf='retryLoadMore'>
+
+                                                    <div style="display: flex; justify-content: center; width: 100%;">
+
+                                                        <button class="btn btn-danger"
+                                                            style="border-radius: 8rem; margin-left: 40px;"
+                                                            (click)='onLoadMore()'>Reload
+                                                            Page
+                                                        </button>
+
+                                                    </div>
+
+                                                </ng-container>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</ng-container>

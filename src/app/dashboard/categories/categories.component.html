@@ -1,0 +1,121 @@
+<ng-container *ngIf='loading'>
+
+    <div class="spinner-control">
+        <div class="spinnern">
+            <div class="lds-ring" *ngIf='loading'>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+    </div>
+
+</ng-container>
+
+<ng-container *ngIf='network'>
+    <div class="spinner-control">
+        <div class="spinnern">
+            <span class="error-network">Error occurred loading page</span>
+            <button class="btn btn-danger" style="border-radius: 8rem; margin-left: 40px;" (click)='onReload()'>Reload
+                Page</button>
+        </div>
+    </div>
+
+</ng-container>
+
+<ng-container *ngIf='success'>
+
+    <div class="row">
+
+
+        <div class="section3125 mt-50" *ngFor='let s of data?.course?.data'>
+            <h4 class="item_title">{{s?.name}}</h4>
+            <a routerLink='/dashboard/category/{{s?.cid}}' class="see150">See all</a>
+            <div class="la5lo1">
+
+                <owl-carousel-o [options]="customOptions" class="featured_courses owl-theme">
+                    <ng-container *ngFor="let slide of s?.fetch_course">
+                        <ng-template carouselSlide [id]="slide.id">
+                            <div class="fcrse_1 mb-20">
+                                <a routerLink='/dashboard/course/{{slide?.cid}}' class="fcrse_img">
+                                    <img src="../../../assets/extra/images/courses/{{slide?.course_image}}" alt="">
+                                    <div class="course-overlay">
+                                        <div class="badge_seller">Bestseller</div>
+                                        <div class="crse_reviews">
+                                            <i class='uil uil-star'></i>{{slide?.rating}}
+                                        </div>
+                                        <span class="play_btn1"><i class="uil uil-play"></i></span>
+                                        <div class="crse_timer">
+                                            {{slide?.course_hr}} hours
+                                        </div>
+                                    </div>
+                                </a>
+                                <div class="fcrse_content">
+                                    <div class="eps_dots more_dropdown">
+                                        <a href="#"><i class='uil uil-ellipsis-v'></i></a>
+                                        <div class="dropdown-content">
+                                            <span><i class="uil uil-clock-three"></i>Save</span>
+                                            <span><i class='uil uil-ban'></i>Not Interested</span>
+                                            <span><i class="uil uil-windsock"></i>Report</span>
+                                        </div>
+                                    </div>
+                                    <div class="vdtodt">
+                                        <span class="vdt14">{{slide?.total_views}} views</span>
+                                        <span class="vdt14">2 days ago</span>
+                                    </div>
+                                    <a routerLink='/dashboard/course/{{slide?.cid}}' class="crse14s">
+                                        {{slide?.course_name}}
+                                    </a>
+                                    <a class="crse-cate">{{s?.name}} |
+                                        {{slide?.tag}}</a>
+                                    <div class="auth1lnkprce">
+                                        <p class="cr1fot">By <a routerLink='dashboard/tutor/{{slide?.created_by?.tid}}'>
+                                                {{slide?.created_by?.name}}
+                                            </a></p>
+                                        <div class="prce142">
+                                            {{slide?.amount | currency : 'NGN' : 'symbol-narrow'}}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-template>
+                    </ng-container>
+                </owl-carousel-o>
+
+
+                <ng-container *ngIf='loadMore'>
+
+                    <div class="col-md-12">
+                        <div class="main-loader mt-50">
+                            <div class="spinner">
+                                <div class="bounce1"></div>
+                                <div class="bounce2"></div>
+                                <div class="bounce3"></div>
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+                </ng-container>
+
+                <ng-container *ngIf='retryLoadMore'>
+
+                    <div style="display: flex; justify-content: center; width: 100%;">
+
+                        <button class="btn btn-danger" style="border-radius: 8rem; margin-left: 40px;"
+                            (click)='onLoadMore()'>Reload
+                            Page
+                        </button>
+
+                    </div>
+
+                </ng-container>
+
+            </div>
+        </div>
+
+    </div>
+
+</ng-container>

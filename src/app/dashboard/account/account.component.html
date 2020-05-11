@@ -1,0 +1,252 @@
+<ng-container *ngIf='loading'>
+
+    <div class="spinner-control">
+        <div class="spinnern">
+            <div class="lds-ring" *ngIf='loading'>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+    </div>
+
+</ng-container>
+
+
+<ng-container *ngIf='network'>
+    <div class="spinner-control">
+        <div class="spinnern">
+            <span class="error-network">Error occurred loading page</span>
+            <button class="btn btn-danger" style="border-radius: 8rem; margin-left: 40px;" (click)='onReload()'>Reload
+                Page</button>
+        </div>
+    </div>
+
+</ng-container>
+
+
+<ng-container *ngIf='success'>
+
+    <div class="row">
+
+        <div class="section3125 mt-50">
+            <h4 class="item_title">Featured Courses</h4>
+            <a routerLink='/dashboard/courses/featured' class="see150">See all</a>
+            <div class="la5lo1">
+
+                <owl-carousel-o [options]="customOptions" class="featured_courses owl-theme">
+                    <ng-container *ngFor="let slide of data?.featured_course">
+                        <ng-template carouselSlide [id]="slide.id">
+                            <div class="fcrse_1 mb-20">
+                                <a routerLink='/dashboard/course/{{slide?.course_details?.cid}}' class="fcrse_img">
+                                    <img src="../../../assets/extra/images/courses/{{slide?.course_details?.course_image}}"
+                                        alt="">
+                                    <div class="course-overlay">
+                                        <div class="badge_seller">Bestseller</div>
+                                        <div class="crse_reviews">
+                                            <i class='uil uil-star'></i>{{slide?.course_details?.rating}}
+                                        </div>
+                                        <span class="play_btn1"><i class="uil uil-play"></i></span>
+                                        <div class="crse_timer">
+                                            {{slide?.course_details?.course_hr}} hours
+                                        </div>
+                                    </div>
+                                </a>
+                                <div class="fcrse_content">
+                                    <div class="eps_dots more_dropdown">
+                                        <a href="#"><i class='uil uil-ellipsis-v'></i></a>
+                                        <div class="dropdown-content">
+                                            <span><i class="uil uil-clock-three"></i>Save</span>
+                                            <span><i class='uil uil-ban'></i>Not Interested</span>
+                                            <span><i class="uil uil-windsock"></i>Report</span>
+                                        </div>
+                                    </div>
+                                    <div class="vdtodt">
+                                        <span class="vdt14">{{slide?.course_details?.total_views}} views</span>
+                                        <span class="vdt14">2 days ago</span>
+                                    </div>
+                                    <a routerLink='/dashboard/course/{{slide?.course_details?.cid}}' class="crse14s">
+                                        {{slide?.course_details?.course_name}}
+                                    </a>
+                                    <a routerLink='dashboard/category/{{slide?.course_details?.category}}'
+                                        class="crse-cate">{{slide?.course_details?.category_info?.name}} |
+                                        {{slide?.course_details?.tag}}</a>
+                                    <div class="auth1lnkprce">
+                                        <p class="cr1fot">By <a
+                                                routerLink='dashboard/tutor/{{slide?.course_details?.created_by?.tid}}'>
+                                                {{slide?.course_details?.created_by?.name}}
+                                            </a></p>
+                                        <div class="prce142">
+                                            {{slide?.course_details?.amount | currency : 'NGN' : 'symbol-narrow'}}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-template>
+                    </ng-container>
+                </owl-carousel-o>
+
+            </div>
+        </div>
+
+        <div class="section3125 mt-50">
+            <h4 class="item_title">Newest Courses</h4>
+            <a routerLink='/dashboard/courses/newest-course' class="see150">See all</a>
+            <div class="la5lo1">
+                <owl-carousel-o [options]="customOptions" class="featured_courses owl-theme">
+                    <ng-container *ngFor="let slide of data?.new_courses">
+                        <ng-template carouselSlide [id]="slide.id">
+                            <div class="fcrse_1 mb-20">
+                                <a routerLink='/dashboard/course/{{slide?.cid}}' class="fcrse_img">
+                                    <img src="../../../assets/extra/images/courses/{{slide?.course_image}}" alt="">
+                                    <div class="course-overlay">
+                                        <div class="badge_seller">Bestseller</div>
+                                        <div class="crse_reviews">
+                                            <i class='uil uil-star'></i>{{slide?.rating}}
+                                        </div>
+                                        <span class="play_btn1"><i class="uil uil-play"></i></span>
+                                        <div class="crse_timer">
+                                            {{slide?.course_hr}} hours
+                                        </div>
+                                    </div>
+                                </a>
+                                <div class="fcrse_content">
+                                    <div class="eps_dots more_dropdown">
+                                        <a href="#"><i class='uil uil-ellipsis-v'></i></a>
+                                        <div class="dropdown-content">
+                                            <span><i class="uil uil-clock-three"></i>Save</span>
+                                            <span><i class='uil uil-ban'></i>Not Interested</span>
+                                            <span><i class="uil uil-windsock"></i>Report</span>
+                                        </div>
+                                    </div>
+                                    <div class="vdtodt">
+                                        <span class="vdt14">{{slide?.total_views}} views</span>
+                                        <span class="vdt14">2 days ago</span>
+                                    </div>
+                                    <a routerLink='/dashboard/course/{{slide?.cid}}' class="crse14s">
+                                        {{slide?.course_name}}
+                                    </a>
+                                    <a routerLink='dashboard/category/{{slide?.category}}'
+                                        class="crse-cate">{{slide?.category_info?.name}} |
+                                        {{slide?.tag}}</a>
+                                    <div class="auth1lnkprce">
+                                        <p class="cr1fot">By <a routerLink='dashboard/tutor/{{slide?.created_by?.tid}}'>
+                                                {{slide?.created_by?.name}}
+                                            </a></p>
+                                        <div class="prce142">
+                                            {{slide?.amount | currency : 'NGN' : 'symbol-narrow'}}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-template>
+                    </ng-container>
+                </owl-carousel-o>
+            </div>
+        </div>
+
+        <div class="col-xl-9 col-lg-8">
+
+            <div class="section3126">
+                <div class="row">
+                    <div class="col-xl-6 col-lg-12 col-md-6">
+                        <div class="value_props">
+                            <div class="value_icon">
+                                <i class='uil uil-history'></i>
+                            </div>
+                            <div class="value_content">
+                                <h4>Go at your own pace</h4>
+                                <p>Enjoy lifetime access to courses on Edututs+'s website</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-lg-12 col-md-6">
+                        <div class="value_props">
+                            <div class="value_icon">
+                                <i class='uil uil-user-check'></i>
+                            </div>
+                            <div class="value_content">
+                                <h4>Learn from industry experts</h4>
+                                <p>Select from top instructors around the world</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-lg-12 col-md-6">
+                        <div class="value_props">
+                            <div class="value_icon">
+                                <i class='uil uil-play-circle'></i>
+                            </div>
+                            <div class="value_content">
+                                <h4>Find video courses on almost any topic</h4>
+                                <p>Build your library for your career and personal growth</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-lg-12 col-md-6">
+                        <div class="value_props">
+                            <div class="value_icon">
+                                <i class='uil uil-presentation-play'></i>
+                            </div>
+                            <div class="value_content">
+                                <h4>100,000 online courses</h4>
+                                <p>Explore a variety of fresh topics</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-xl-3 col-lg-4">
+            <div class="right_side">
+
+                <div class="fcrse_3">
+                    <div class="cater_ttle">
+                        <h4>Top Categories</h4>
+                    </div>
+                    <ul class="allcate15">
+                        <li *ngFor='let c of data?.categories'><a routerLink='/dashboard/category/{{c?.cid}}'
+                                class="ct_item"><i class='{{c?.icon}}'></i>{{c?.name}}</a></li>
+
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+
+
+
+        <div class="col-xl-12 col-lg-12">
+            <div class="section3125 mt-30">
+                <h4 class="item_title">What Our Student Have To Say</h4>
+                <div class="la5lo1">
+
+                    <owl-carousel-o [options]="customOptions" class="featured_courses owl-theme">
+                        <ng-container *ngFor="let slide of data?.student_testimonies">
+                            <ng-template carouselSlide [id]="slide.id">
+
+                                <div class="fcrse_4 mb-20">
+                                    <div class="say_content">
+                                        <p>"{{slide?.message}}."</p>
+                                    </div>
+                                    <div class="st_group">
+                                        <div class="stud_img">
+                                            <img src="../../../assets/extra/images/left-imgs/{{slide?.created_by?.avater}}"
+                                                alt="">
+                                        </div>
+                                        <h4>{{slide?.created_by?.name}}</h4>
+                                    </div>
+                                </div>
+
+                            </ng-template>
+                        </ng-container>
+                    </owl-carousel-o>
+
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+</ng-container>

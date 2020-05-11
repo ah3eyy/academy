@@ -1,0 +1,340 @@
+<ng-container *ngIf='loading'>
+
+    <div class="spinner-control">
+        <div class="spinnern">
+            <div class="lds-ring" *ngIf='loading'>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+    </div>
+
+</ng-container>
+
+<ng-container *ngIf='network'>
+    <div class="spinner-control">
+        <div class="spinnern">
+            <span class="error-network">Error occurred loading page</span>
+            <button class="btn btn-danger" style="border-radius: 8rem; margin-left: 40px;" (click)='onReload()'>Reload
+                Page</button>
+        </div>
+    </div>
+
+</ng-container>
+
+<ng-container *ngIf='success'>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="membership_chk_bg">
+                    <div class="checkout_title">
+                        <h4>Billing Details</h4>
+                        <img src="../../../assets/extra/images/line.svg" alt="">
+                    </div>
+                    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="address1">
+                                <div class="panel-title">
+                                    <a class="collapsed" data-toggle="collapse" data-parent="#accordion"
+                                        href="#collapseaddress1" aria-expanded="false" aria-controls="collapseaddress1">
+                                        Edit Address
+                                    </a>
+                                </div>
+                            </div>
+                            <div id="collapseaddress1" class="panel-collapse collapse" role="tabpanel"
+                                aria-labelledby="address1">
+                                <div class="panel-body">
+                                    <form [formGroup]='updateProfile' (ngSubmit)='onUpdateProfile(updateProfile)'>
+
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <div class="ui search focus mt-30 lbel25">
+                                                    <label>First Name*</label>
+                                                    <div class="ui left icon input swdh11 swdh19">
+                                                        <input class="prompt srch_explore" type="text" name="name"
+                                                            value="Joginder" id="id_name" required="" maxlength="64"
+                                                            placeholder="First Name" formControlName='firstname'
+                                                            readonly>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="ui search focus mt-30 lbel25">
+                                                    <label>Last Name*</label>
+                                                    <div class="ui left icon input swdh11 swdh19">
+                                                        <input class="prompt srch_explore" type="text" name="surname"
+                                                            value="Singh" id="id_surname" required="" maxlength="64"
+                                                            placeholder="Last Name" formControlName='lastname' readonly>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="col-lg-6">
+                                                <div class="ui search focus mt-30 lbel25">
+                                                    <label>Email*</label>
+                                                    <div class="ui left icon input swdh11 swdh19">
+                                                        <input class="prompt srch_explore" type="text" name="email"
+                                                            id="id_city" required="" placeholder="Enter email address"
+                                                            formControlName='email' readonly>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-6">
+                                                <div class="ui search focus mt-30 lbel25">
+                                                    <label>Phone Number*</label>
+                                                    <div class="ui left icon input swdh11 swdh19">
+                                                        <input class="prompt srch_explore" type="text" name="phone"
+                                                            id="id_phone" required="" maxlength="12"
+                                                            placeholder="Phone Number" formControlName='phone' readonly>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-12">
+                                                <div class="ui search focus mt-30 lbel25">
+                                                    <div class="ui left icon input swdh11 swdh19">
+                                                        <label>Address*</label>
+                                                        <input class="prompt srch_explore" type="text"
+                                                            name="addressname" id="id_address1" required=""
+                                                            maxlength="300" placeholder="Enter Address"
+                                                            formControlName='address'>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-12">
+                                                <ng-container *ngIf='error'>
+                                                    <div class="alert alert-warning alert-dismissible fade show"
+                                                        role="alert" style="margin-top: 2.4rem;">
+                                                        <span class="alert-icon"><i class="ni ni-like-2"></i></span>
+                                                        <span class="alert-text" style="font-size: 15px;"><strong>Error
+                                                                occurred!</strong> {{message}}!</span>
+                                                        <button type="button" class="close" data-dismiss="alert"
+                                                            aria-label="Close" (click)='onClose()'>
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                </ng-container>
+                                            </div>
+
+                                            <div class="col-lg-6">
+
+                                                <ng-container *ngIf='!submit'>
+                                                    <button class="save_address_btn" type="submit">Save Changes</button>
+                                                </ng-container>
+
+                                                <ng-container *ngIf='submit'>
+                                                    <div class="lds-ring">
+                                                        <div></div>
+                                                        <div></div>
+                                                        <div></div>
+                                                        <div></div>
+                                                    </div>
+                                                </ng-container>
+
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="address_text">
+                        {{data?.info?.name}}<br>
+                        {{data?.info?.address}}<br>
+                        {{data?.info?.phone}}<br>
+                    </div>
+                </div>
+                <!-- <div class="membership_chk_bg">
+                    <div class="checkout_title">
+                        <h4>Select Payment Method</h4>
+                        <img src="../../../assets/extra/images/line.svg" alt="">
+                    </div>
+                    <div class="checkout-tabs">
+                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+                            <li class="nav-item">
+                                <a href="#credit-method-tab" id="credit-tab" class="nav-link active"
+                                    data-toggle="tab"><i class="uil uil-card-atm check_icon5"></i>Pay with Paystack</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#bank-method-tab" id="bank-tab" class="nav-link" data-toggle="tab"><i
+                                        class="uil uil-university check_icon5"></i>Bank Transfer</a>
+                            </li>
+
+                        </ul>
+                    </div>
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="credit-method-tab" role="tabpanel"
+                            aria-labelledby="credit-tab">
+                            <form>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="ui search focus mt-30 lbel25">
+                                            <label>Holder Name</label>
+                                            <div class="ui left icon input swdh11 swdh19">
+                                                <input class="prompt srch_explore" type="text" name="holder[name]"
+                                                    value="" id="id_holdername" required="" maxlength="64"
+                                                    placeholder="Enter Holder Name">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="ui search focus mt-30 lbel25">
+                                            <label>Card Number</label>
+                                            <div class="ui left icon input swdh11 swdh19">
+                                                <input class="prompt srch_explore" type="text" name="card[number]"
+                                                    maxlength="16" placeholder="Card #">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="lbel25 mt-30">
+                                            <label>Expiration Month</label>
+                                            <select class="ui hj145 dropdown cntry152 prompt srch_explore"
+                                                name="card[expire-month]">
+                                                <option value="">Month</option>
+                                                <option value="1">January</option>
+                                                <option value="2">February</option>
+                                                <option value="3">March</option>
+                                                <option value="4">April</option>
+                                                <option value="5">May</option>
+                                                <option value="6">June</option>
+                                                <option value="7">July</option>
+                                                <option value="8">August</option>
+                                                <option value="9">September</option>
+                                                <option value="10">October</option>
+                                                <option value="11">November</option>
+                                                <option value="12">December</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="ui search focus mt-30 lbel25">
+                                            <label>Expiration Year</label>
+                                            <div class="ui left icon input swdh11 swdh19">
+                                                <input class="prompt srch_explore" type="text" name="card[expire-year]"
+                                                    maxlength="4" placeholder="Year">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="ui search focus mt-30 lbel25">
+                                            <label>Expiration Year</label>
+                                            <div class="ui left icon input swdh11 swdh19">
+                                                <input class="prompt srch_explore" type="text" name="card[cvc]"
+                                                    maxlength="3" placeholder="CVC">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="tab-pane fade" id="bank-method-tab" role="tabpanel" aria-labelledby="bank-tab">
+                            <form>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="ui search focus mt-30 lbel25">
+                                            <label>Account Holder Name</label>
+                                            <div class="ui left icon input swdh11 swdh19">
+                                                <input class="prompt srch_explore" type="text"
+                                                    name="account[holdername}" value="" required="" maxlength="64"
+                                                    placeholder="Enter Your Full Name">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="ui search focus mt-30 lbel25">
+                                            <label>Account Number</label>
+                                            <div class="ui left icon input swdh11 swdh19">
+                                                <input class="prompt srch_explore" type="text" name="Account[number]"
+                                                    maxlength="10" placeholder="Enter Account Number">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="lbel25 mt-30">
+                                            <label>Bank Name</label>
+                                            <select class="ui hj145 dropdown cntry152 prompt srch_explore"
+                                                name="Bank[name]">
+                                                <option value="">State Bank of India</option>
+                                                <option value="1">Indian Bank</option>
+                                                <option value="2">ICICI Bank</option>
+                                                <option value="3">HDFC Bank</option>
+                                                <option value="4">Yes Bank</option>
+                                                <option value="5">Oriental Bank</option>
+                                                <option value="6">Punjab National Bank</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="ui search focus mt-30 lbel25">
+                                            <label>IFSC Code</label>
+                                            <div class="ui left icon input swdh11 swdh19">
+                                                <input class="prompt srch_explore" type="text" name="IFSC[code]"
+                                                    maxlength="10" placeholder="Enter IFSC Code">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                    <div class="chckout_order_dt">
+                        <div class="checkout_title">
+                            <h4>Order Details</h4>
+                            <img src="images/line.svg" alt="">
+                        </div>
+                        <div class="order_dt_section">
+                            <div class="order_title">
+                                <h4>Baby Plan</h4>
+                                <div class="order_price">$49</div>
+                            </div>
+                            <div class="order_title">
+                                <h6>Taxes(GST)</h6>
+                                <div class="order_price">$2</div>
+                            </div>
+                            <div class="order_title">
+                                <h3>Total</h3>
+                                <div class="order_price">$51</div>
+                            </div>
+                            <button class="chckot_btn" type="submit">Confirm Checkout</button>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+            <div class="col-lg-4">
+                <div class="membership_chk_bg rght1528">
+                    <div class="checkout_title">
+                        <h4>Order Summary</h4>
+                        <img src="images/line.svg" alt="">
+                    </div>
+                    <div class="order_dt_section">
+                        <div class="order_title">
+                            <h4>Amount</h4>
+                            <div class="order_price">{{data?.courseinfo?.amount | currency:'NGN':'symbol-narrow'}}</div>
+                        </div>
+                        <div class="order_title">
+                            <h6>Fee</h6>
+                            <div class="order_price">{{data?.charge | currency:'NGN':'symbol-narrow'}}</div>
+                        </div>
+                        <div class="order_title">
+                            <h2>Total</h2>
+                            <div class="order_price5">$51</div>
+                        </div>
+                        <div class="scr_text"><i class="uil uil-lock-alt"></i>Secure checkout</div>
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</ng-container>

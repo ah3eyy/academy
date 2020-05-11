@@ -1,0 +1,215 @@
+<div class="auth">
+    <div class="row">
+
+        <div class="col-md-5 aside-left mobile-display-none">
+
+            <div class="inner-content ">
+                <h1 class="inner-text">
+                    <strong>Start learning new skill today!!!</strong>
+                </h1>
+            </div>
+
+        </div>
+
+        <div class="col-md-7 login" style="margin: 0;">
+
+            <div class="col-md-12" style="margin: 0 auto;">
+                <div class="card login__card">
+
+                    <div class="login__card--s1">
+
+                        <div class="auth_header">
+
+                            <!-- <span class="header-c">Welcome to Drec-Academy</span>
+                        <span class="header-l">Let's get you all set up to start learning new skills today</span> -->
+
+                            <div class="text-muted text-center mt-2 mb-3" style="font-size: 1.5rem !important;">
+                                <small>Sign up with</small></div>
+
+                            <div class="btn-wrapper text-center">
+                                <a href="#" class="btn btn-neutral btn-icon">
+                                    <span class="btn-inner--icon"><img src="../../../assets/img/facebook.svg"></span>
+                                    <span class="btn-inner--text">Facebook</span>
+                                </a>
+                                <a href="#" class="btn btn-neutral btn-icon">
+                                    <span class="btn-inner--icon"><img src="../../../assets/img/google.svg"></span>
+                                    <span class="btn-inner--text">Google</span>
+                                </a>
+                            </div>
+
+                            <div class="text-center text-muted mb-4" style="font-size: 1.5rem !important;">
+                                <small>Or sign up with credentials</small>
+                            </div>
+
+                        </div>
+
+
+                        <div class="login_body">
+
+                            <form [formGroup]='registerUser' (ngSubmit)='onRegisterUser(registerUser)'>
+
+                                <app-notification [alert]='message'></app-notification>
+
+
+                                <div class="row" style="margin: 0 !important; padding: 0 !important;">
+
+                                    <div class="col-md-6 pl">
+
+                                        <div class="form-group ">
+                                            <label for="name">First Name</label>
+                                            <input class="form-control"
+                                                [ngClass]="{ 'is-invalid': submitted && f.firstname.errors}" id='name'
+                                                placeholder='First Name' type="text" formControlName='firstname' />
+                                            <div class="invalid-feedback" *ngIf='submitted && f.firstname.errors'>
+                                                <div *ngIf="f.firstname.errors.required">First Name is required *</div>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+
+                                    <div class="col-md-6 pr">
+
+                                        <div class="form-group">
+                                            <label for="lastname">Last Name</label>
+                                            <input class="form-control"
+                                                [ngClass]="{ 'is-invalid': submitted && f.lastname.errors}"
+                                                id="lastname" placeholder="Last Name" type="text"
+                                                formControlName='lastname' />
+                                            <div class="invalid-feedback" *ngIf='submitted && f.lastname.errors'>
+                                                <div *ngIf="f.lastname.errors.required">Last Name is required *</div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="row" style="margin: 0 !important; padding: 0 !important;">
+
+                                    <div class="col-md-6 pl">
+
+                                        <div class="form-group">
+                                            <label for="phonenumber">Phone Number</label>
+                                            <input class="form-control" id=' phonenumber' placeholder='Phone Number'
+                                                [ngClass]="{ 'is-invalid': submitted && f.phone.errors}"
+                                                formControlName='phone' type="text" />
+                                            <div class="invalid-feedback" *ngIf='submitted && f.phone.errors'>
+                                                <div *ngIf="f.phone.errors.required">Phone number is required *</div>
+                                                <div *ngIf="f.phone.errors.maxlength">Phone Number cannot be more than
+                                                    11
+                                                    digit *</div>
+                                                <div *ngIf="f.phone.errors.minlength">Phone Number cannot be less than
+                                                    11
+                                                    digit *</div>
+                                                <div *ngIf="f.phone.errors.pattern">Invalid phone number provided*
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-md-6 pr">
+
+                                        <div class="form-group">
+                                            <label for="emailaddress">Email Address</label>
+                                            <input class="form-control" id="emailaddress" placeholder="Email Address"
+                                                type="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors}"
+                                                formControlName='email' />
+                                            <div class="invalid-feedback" *ngIf='submitted && f.email.errors'>
+                                                <div *ngIf="f.email.errors.required">Email Address is required *</div>
+                                                <div *ngIf="f.email.errors.email">Invalid email address provided
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="row" style="margin: 0 !important; padding: 0 !important;">
+
+                                    <div class="col-md-6 pl">
+
+                                        <div class="form-group">
+                                            <label for="password">Password</label>
+                                            <input class="form-control" id=' password' placeholder='Password'
+                                                type="password"
+                                                [ngClass]="{ 'is-invalid': submitted && f.password.errors}"
+                                                formControlName='password' />
+                                            <div class="invalid-feedback" *ngIf='submitted && f.password.errors'>
+                                                <div *ngIf="f.password.errors.required">Password is required *</div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-md-6 pr">
+
+                                        <div class="form-group">
+                                            <label for="confirmpassword">Confirm Password</label>
+                                            <input class="form-control" id="confirmpassword"
+                                                placeholder="Confirm Password" type="password"
+                                                [ngClass]="{ 'is-invalid': submitted && f.confirmpassword.errors}"
+                                                formControlName='confirmpassword' />
+                                            <div class="invalid-feedback" *ngIf='submitted && f.confirmpassword.errors'>
+                                                <div *ngIf="f.confirmpassword.errors.required">Confirm Password is
+                                                    required *
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+
+
+                                </div>
+
+                                <div class="row conditions">
+                                    <input type="checkbox" name="emailsub" id="emailsub">
+                                    <label for="emailsub">Yes, I want to receive DrecAcademy's emails</label>
+                                </div>
+
+
+
+                                <div class="row conditions">
+                                    <input type="checkbox" name="emailsub" id="terms" formControlName='acceptTerms'>
+                                    <label for="terms">I agree to the Terms, Privacy Policy and Fees</label>
+                                    <div class="invalid-feedback">
+                                        You must agree before submitting
+                                    </div>
+                                </div>
+
+                                <button class="btn btn-primary" type="submit" *ngIf='!loading'
+                                    style="font-size: 1.6rem; margin-top: 1rem; border-radius: 8rem;">Create
+                                    Account</button>
+
+                                <div class="lds-ring" *ngIf='loading'>
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                </div>
+
+
+                                <div class="row already">
+                                    <p>Already have an account? <a routerLink='/login'> Login </a></p>
+
+                                </div>
+                            </form>
+
+                        </div>
+
+                    </div>
+
+                    <div class="login__card--s2"></div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
