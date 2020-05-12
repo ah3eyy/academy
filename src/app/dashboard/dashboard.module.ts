@@ -7,12 +7,12 @@ import { AccountComponent } from './account/account.component';
 import { NavbarComponent } from './navigation/navbar/navbar.component';
 import { SidebarComponent } from './navigation/sidebar/sidebar.component';
 import { FooterComponent } from './navigation/footer/footer.component';
-import { CarouselModule } from 'ngx-owl-carousel-o';
+// import { CarouselModule } from 'ngx-owl-carousel-o';
 import { CategoriesComponent } from './categories/categories.component';
 import { CategoryDetailsComponent } from './categories/category-details/category-details.component';
 import { ScrollBottomDirective } from './scroll-bottom.directive';
 import { CourseInfoComponent } from './course-info/course-info.component';
-import { RatingModule } from 'ng-starrating';
+// import { RatingModule } from 'ng-starrating';
 import { EnrollNowComponent } from './enroll-now/enroll-now.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
@@ -21,8 +21,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     DashboardRoutingModule,
-    CarouselModule,
-    RatingModule,
+    // CarouselModule,
+    // RatingModule,
     FormsModule,
     ReactiveFormsModule,
   ]

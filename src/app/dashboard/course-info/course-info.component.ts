@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { ActivatedRoute, Router } from '@angular/router';
-import { StarRatingComponent } from 'ng-starrating';
+// import { StarRatingComponent } from 'ng-starrating';
 
 @Component({
   selector: 'app-course-info',
@@ -134,9 +134,9 @@ export class CourseInfoComponent implements OnInit {
 
   }
 
-  onRate($event: { oldValue: number, newValue: number, starRating: StarRatingComponent }) {
+  // onRate($event: { oldValue: number, newValue: number, starRating: StarRatingComponent }) {
 
-  }
+  // }
 
   onReload() {
     this.ngOnInit();

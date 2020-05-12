@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { OwlOptions } from 'ngx-owl-carousel-o';
+// import { OwlOptions } from 'ngx-owl-carousel-o';
 
 @Component({
   selector: 'app-account',
@@ -72,30 +72,30 @@ export class AccountComponent implements OnInit {
   }
 
 
-  customOptions: OwlOptions = {
-    items:10,
-    loop:false,
-    margin:20,
-    nav:true,
-    dots:false,
-    navText: ["<i class='uil uil-angle-left'></i>", "<i class='uil uil-angle-right'></i>"],
-    responsive: {
-      0: {
-        items: 1
-      },
-      600: {
-        items: 2
-      },
-      1000: {
-        items: 3
-      },
-      1200: {
-        items: 4
-      },
-      1400: {
-        items: 4
-      }
-    }
-  }
+  // customOptions: OwlOptions = {
+  //   items:10,
+  //   loop:false,
+  //   margin:20,
+  //   nav:true,
+  //   dots:false,
+  //   navText: ["<i class='uil uil-angle-left'></i>", "<i class='uil uil-angle-right'></i>"],
+  //   responsive: {
+  //     0: {
+  //       items: 1
+  //     },
+  //     600: {
+  //       items: 2
+  //     },
+  //     1000: {
+  //       items: 3
+  //     },
+  //     1200: {
+  //       items: 4
+  //     },
+  //     1400: {
+  //       items: 4
+  //     }
+  //   }
+  // }
 
 }
