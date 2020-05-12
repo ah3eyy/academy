@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  api_url: 'http://localhost/academy/public/api/'
+  api_url: 'http://book.academy.drec.com.ng/api/'
 };
