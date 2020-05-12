@@ -103,7 +103,7 @@
                                         <div class="form-group">
                                             <label for="emailaddress">Proof of Payment</label>
                                             <input class="form-control" id="emailaddress" type="file"
-                                                (change)='imageupload($event)' />
+                                                (change)='imageupload($event)' accept="image/*" />
                                             <div class="invalid-feedback" *ngIf='submitted && f.pop.errors'>
                                                 <div *ngIf="f.pop.errors.required">Phone number is required *</div>
                                             </div>
