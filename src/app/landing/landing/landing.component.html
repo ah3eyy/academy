@@ -1,1 +1,145 @@
-<p>landing works!</p>
+<div class="auth">
+    <div class="row">
+
+        <div class="col-md-7 aside-left mobile-display-none">
+
+            <div class="inner-content ">
+                <h1 class="inner-text">
+                    <!-- <strong>Start learning new skill today!!!</strong> -->
+                </h1>
+            </div>
+
+        </div>
+
+        <div class="col-md-5 login" style="margin: 0;">
+
+            <div class="col-md-12" style="margin: 0 auto;">
+                <div class="card login__card">
+
+                    <div class="login__card--s1">
+
+                        <div class="auth_header">
+
+
+
+
+                            <div class="text-center text-muted mb-4"
+                                style="font-size: 1.6rem !important; font-weight: bold;">
+                                To Pre-Order Now
+                            </div>
+
+                            <p style="font-size: 1.6rem !important;">1. Pay
+                                {{ 2000 | currency :'NGN': 'symbol-narrow' }} (Pre-order fee)</p>
+                            <div style="display: block; padding-left: 1.0rem;">
+                                <span style="display: block; font-weight: bold; font-size: 1.5rem;">Account Name: DREC
+                                    VOCATIONAL ACADEMY</span>
+                                <span style="display: block; font-weight: bold; font-size: 1.5rem;">Account Number:
+                                    1016112815</span>
+                                <span style="display: block; font-weight: bold; font-size: 1.5rem;">Bank Name: Zenith
+                                    Bank</span>
+                            </div>
+                            <p style="font-size: 1.6rem !important;">2. Fill the sign up form below. Please ensure that
+                                you fill in your correct active email
+                                address.</p>
+                            <p style="font-size: 1.6rem !important;">3. Check your spam mail for an email from us if you
+                                do not get it in your inbox</p>
+
+                        </div>
+
+
+                        <div class="login_body">
+
+                            <form [formGroup]='preorder' (ngSubmit)='onSubmit(preorder)'>
+
+                                <app-notification [alert]='message'></app-notification>
+
+                                <div class="row" style="margin: 0 !important; padding: 0 !important;">
+
+                                    <div class="col-md-12 pl">
+                                        <div class="form-group">
+                                            <label for="emailaddress">Full Name</label>
+                                            <input class="form-control" id="emailaddress" placeholder="Full Name "
+                                                type="text" [ngClass]="{ 'is-invalid': submitted && f.name.errors}"
+                                                formControlName='name' />
+                                            <div class="invalid-feedback" *ngIf='submitted && f.name.errors'>
+                                                <div *ngIf="f.name.errors.required">Full name is required *</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row" style="margin: 0 !important; padding: 0 !important;">
+                                    <div class="col-md-12 pl">
+                                        <div class="form-group">
+                                            <label for="emailaddress">Email Address</label>
+                                            <input class="form-control" id="emailaddress" placeholder="Email Address"
+                                                type="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors}"
+                                                formControlName='email' />
+                                            <div class="invalid-feedback" *ngIf='submitted && f.email.errors'>
+                                                <div *ngIf="f.email.errors.required">Email Address is required *</div>
+                                                <div *ngIf="f.email.errors.email">Invalid email address provided
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row" style="margin: 0 !important; padding: 0 !important;">
+                                    <div class="col-md-12 pl">
+                                        <div class="form-group">
+                                            <label for="emailaddress">Mobile Number</label>
+                                            <input class="form-control" id="emailaddress" placeholder="Mobile Number"
+                                                type="text" [ngClass]="{ 'is-invalid': submitted && f.phone.errors}"
+                                                formControlName='phone' />
+                                            <div class="invalid-feedback" *ngIf='submitted && f.email.errors'>
+                                                <div *ngIf="f.phone.errors.required">Phone number is required *</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row" style="margin: 0 !important; padding: 0 !important;">
+                                    <div class="col-md-12 pl">
+                                        <div class="form-group">
+                                            <label for="emailaddress">Proof of Payment</label>
+                                            <input class="form-control" id="emailaddress" type="file"
+                                                (change)='imageupload($event)' />
+                                            <div class="invalid-feedback" *ngIf='submitted && f.pop.errors'>
+                                                <div *ngIf="f.pop.errors.required">Phone number is required *</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+                                <button class="btn btn-primary" type="submit" *ngIf='!loading'
+                                    style="font-size: 1.6rem; margin-top: 1rem; border-radius: 8rem; background-color: green;">
+                                    Pre Order Now</button>
+
+                                <div class="lds-ring" *ngIf='loading'>
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                </div>
+
+
+
+                            </form>
+
+                        </div>
+
+                    </div>
+
+                    <div class="login__card--s2"></div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>

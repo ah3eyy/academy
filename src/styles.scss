@@ -23,7 +23,7 @@ body {
 }
 
 .auth {
-    height: 100vh;
+    height: 100%;
 
     .row {
         margin: 0;
@@ -33,7 +33,7 @@ body {
 
 .aside-left {
     background-image: linear-gradient(to right bottom, rgba(94, 114, 228, 0.1), rgba(115, 134, 245, 0.1)),
-        url(./assets/img/herobacground.jpg);
+        url(./assets/Cover.png);
     background-size: cover;
     background-position: center;
     height: 100%;
