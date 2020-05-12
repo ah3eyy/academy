@@ -155,4 +155,6 @@ export class EnrollNowComponent implements OnInit {
     this.ngOnInit();
   }
 
+  onClose(){}
+
 }
