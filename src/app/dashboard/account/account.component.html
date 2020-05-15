@@ -1,4 +1,4 @@
-<!-- <ng-container *ngIf='loading'>
+<ng-container *ngIf='loading'>
 
     <div class="spinner-control">
         <div class="spinnern">
@@ -12,8 +12,6 @@
     </div>
 
 </ng-container>
-
-
 <ng-container *ngIf='network'>
     <div class="spinner-control">
         <div class="spinnern">
@@ -24,6 +22,10 @@
     </div>
 
 </ng-container>
+
+<!-- 
+
+
 
 
 <ng-container *ngIf='success'>
@@ -250,3 +252,107 @@
     </div>
 
 </ng-container> -->
+
+
+
+<ng-container *ngIf='success'>
+
+    <nav class="topnav navbar navbar-expand shadow navbar-light bg-white" id="sidenavAccordion">
+        <a class="navbar-brand d-none d-sm-block" routerLink="/dashboard/account">Pre-Order</a><button
+            class="btn btn-icon btn-transparent-dark order-1 order-lg-0 mr-lg-2" id="sidebarToggle" href="#"><i
+                data-feather="menu"></i></button>
+
+        <ul class="navbar-nav align-items-center ml-auto">
+            <li class="nav-item dropdown no-caret mr-3">
+                <a class="nav-link dropdown-toggle" id="navbarDropdownDocs" href="javascript:void(0);" role="button"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <div class="d-inline d-md-none font-weight-500">Docs</div>
+                    <div class="d-none d-md-inline font-weight-500">Log Out</div>
+                </a>
+
+            </li>
+
+        </ul>
+    </nav>
+    <div id="layoutSidenav">
+
+        <div id="layoutSidenav_content">
+            <main>
+                <div class="page-header pb-10 page-header-dark bg-gradient-primary-to-secondary">
+                    <div class="container-fluid">
+                        <div class="page-header-content">
+                            <h1 class="page-header-title">
+                                <div class="page-header-icon"><i data-feather="filter"></i></div>
+                                <span>All Pre-Order User</span>
+                            </h1>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="container-fluid mt-n10">
+                    <div class="card mb-4">
+                        <div class="card-header">Users</div>
+                        <div class="card-body">
+                            <div class="datatable table-responsive">
+                                <table class="table table-bordered table-hover" id="dataTable" width="100%"
+                                    cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Email Address</th>
+                                            <th>Phone</th>
+                                            <th>Proof of payment</th>
+                                            <th>Date Created</th>
+                                            <th>Status</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Email Address</th>
+                                            <th>Phone</th>
+                                            <th>Proof of payment</th>
+                                            <th>Date Created</th>
+                                            <th>Status</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+                                        <tr *ngFor='let user of data?.user'>
+                                            <td>{{user?.name}}</td>
+                                            <td>{{user?.email}}</td>
+                                            <td>{{user?.phone}}</td>
+                                            <td><img src="{{env}}uploads/{{user?.pop}}"
+                                                    style="height: 150px; width: 150px;" /></td>
+                                            <td>{{user?.created_at | date}}</td>
+                                            <td>
+
+                                                <div *ngIf='user?.status == "pending"'
+                                                    class="badge badge-info badge-pill">Pending</div>
+                                                <div *ngIf='user?.status == "active"'
+                                                    class="badge badge-success badge-pill">Cleared</div>
+                                                <div *ngIf='user?.status == "block"'
+                                                    class="badge badge-danger badge-pill">Block</div>
+
+                                            </td>
+
+                                            <td>
+                                                <button class="btn btn-success mr-2" *ngIf='user?.status == "pending"'
+                                                    (click)='onConfirmUser(user?.id)'>Confirm User</button>
+                                            </td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </main>
+
+        </div>
+    </div>
+
+</ng-container>

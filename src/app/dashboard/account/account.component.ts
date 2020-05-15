@@ -16,6 +16,8 @@ export class AccountComponent implements OnInit {
 
   success = false;
 
+  env = environment.api_url_link;
+
   data: any;
 
   constructor(private httpclient: HttpClient) { }
@@ -34,11 +36,10 @@ export class AccountComponent implements OnInit {
 
   load() {
 
-    this.httpclient.get<any>(`${environment.api_url}v1/user-dashboard`).subscribe(
+    this.httpclient.get<any>(`${environment.api_url}v1/fetch-all-user`).subscribe(
 
       data => {
 
-        console.log(data);
         this.loading = false;
 
         if (data.code == 1) {
@@ -64,6 +65,40 @@ export class AccountComponent implements OnInit {
 
     );
 
+  }
+
+  onConfirmUser(ids){
+    
+    this.loading = true;
+
+    this.httpclient.post<any>(`${environment.api_url}v1/send-success-message`, {"id" : ids}).subscribe(
+
+      data => {
+
+        this.loading = false;
+
+        if (data.code == 1) {
+
+          this.success = true;
+
+          this.ngOnInit();
+
+          return true;
+        }
+
+        this.network = true;
+
+      },
+
+      error => {
+
+        this.loading = false;
+
+        this.network = true;
+
+      }
+
+    );
   }
 
 
