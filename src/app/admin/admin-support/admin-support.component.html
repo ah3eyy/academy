@@ -1,0 +1,123 @@
+<ng-container *ngIf='loading'>
+
+  <div class="spinner-control">
+    <div class="spinnern">
+      <div class="lds-ring" *ngIf='loading'>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+  </div>
+
+</ng-container>
+
+<ng-container *ngIf='network'>
+  <div class="spinner-control">
+    <div class="spinnern">
+      <span class="error-network">Error occurred loading page</span>
+      <button class="btn btn-danger" style="border-radius: 8rem; margin-left: 40px;" (click)='onReload()'>Reload
+        Page
+      </button>
+    </div>
+  </div>
+</ng-container>
+
+
+<ng-container *ngIf="success">
+
+  <div class="row">
+    <div class="col-lg-12">
+      <h2 class="st_title"><i class="uil uil-book-alt"></i>Total Support</h2>
+    </div>
+    <div class="col-md-12">
+      <div class="card_dash1">
+        <div class="card_dash_left1">
+          <i class="uil uil-book-alt"></i>
+          <h1 style="margin-top: 9px;">Total Active Support: {{support?.active_support}}</h1>
+        </div>
+        <div class="card_dash_right1">
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="my_courses_tabs">
+
+        <div class="tab-content" id="pills-tabContent">
+          <div class="tab-pane fade show active" id="pills-my-courses" role="tabpanel">
+            <div class="table-responsive mt-30">
+              <table class="table ucp-table">
+                <thead class="thead-s">
+                <tr>
+                  <th class="text-center" scope="col">Support ID.</th>
+                  <th class="text-center" scope="col">Staff Name.</th>
+                  <th class="text-center" scope="col">Student Name</th>
+                  <th class="text-center" scope="col">Course Name</th>
+                  <th class="text-center" scope="col">Duration</th>
+                  <th class="text-center" scope="col">Status</th>
+                  <th class="text-center" scope="col">Action</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                <tr *ngFor="let support of support?.support?.data" class="text-center">
+                  <td>SA-{{support?.id}}</td>
+                  <td>{{support?.staff_details?.name}}</td>
+                  <td class="text-center">{{support?.user_details?.name}}</td>
+                  <td class="text-center">{{support?.course_details?.course_name}}</td>
+                  <td class="text-center">{{support?.duration}} Mins</td>
+                  <td class="text-center">
+                    <b class="course_active">{{support?.status}}</b>
+                  </td>
+                  <td class="text-center">
+                    <a routerLink="/admin/support-details/{{support?.id}}" title="Edit" class="gray-s"><i
+                      class="uil uil-edit-alt"></i></a>
+                    <a title="Delete" class="gray-s"><i
+                      class="uil uil-archive"></i></a>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="card-footer py-4">
+              <nav aria-label="...">
+                <ul class="pagination justify-content-end mb-0">
+                  <li class="page-item " [ngClass]='{"disabled" :
+                                support?.support?.current_page < 5}' (click)='onPrevious()'>
+                    <a class="page-link" tabindex="-1">
+                      <i class="fas fa-angle-left"></i>
+                      <span class="sr-only">Previous</span>
+                    </a>
+                  </li>
+
+                  <li class="page-item" *ngFor='let c of counter' [ngClass]='{"active" :
+                                    support?.support?.current_page==c }' (click)='getSupport(c)'>
+                    <a class="page-link">
+                      {{c}}
+                      <span class="sr-only" *ngIf='support?.support?.current_page == c'>(current)</span>
+                    </a>
+                  </li>
+
+                  <li class="page-item">
+                    <a class="page-link" (click)='onNext()'>
+                      <i class="fas fa-angle-right"></i>
+                      <span class="sr-only">Next</span>
+                    </a>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</ng-container>

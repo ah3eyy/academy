@@ -3,9 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: true,
-  api_url: 'https://book.academy.drec.com.ng/api/',
-  api_url_link: 'https://book.academy.drec.com.ng/',
+  production: false,
+  api_url: 'http://localhost/academy/public/api/',
+  api_url_link: 'http://localhost/academy/public/storage/'
 };
 
 /*

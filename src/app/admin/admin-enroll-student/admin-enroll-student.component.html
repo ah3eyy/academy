@@ -1,0 +1,187 @@
+<ng-container *ngIf='loading'>
+
+  <div class="spinner-control">
+    <div class="spinnern">
+      <div class="lds-ring" *ngIf='loading'>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+  </div>
+
+</ng-container>
+
+<ng-container *ngIf='network'>
+  <div class="spinner-control">
+    <div class="spinnern">
+      <span class="error-network">Error occurred loading page</span>
+      <button class="btn btn-danger" style="border-radius: 8rem; margin-left: 40px;" (click)='onReload()'>Reload
+        Page
+      </button>
+    </div>
+  </div>
+</ng-container>
+
+
+<ng-container *ngIf="success">
+
+  <app-alert-notification [alertData]="messages"></app-alert-notification>
+
+  <div class="row">
+    <div class="col-lg-12">
+      <h2 class="st_title"><i class="uil uil-book-alt"></i>Enroll Student</h2>
+    </div>
+  </div>
+
+  <ng-container *ngIf='type == "student"'>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="my_courses_tabs">
+
+          <div class="tab-content" id="pills-tabContent">
+            <div class="tab-pane fade show active" id="pills-my-courses" role="tabpanel">
+              <div class="table-responsive mt-30">
+                <table class="table ucp-table">
+                  <thead class="thead-s">
+                  <tr>
+                    <th class="text-center" scope="col">Course Id.</th>
+                    <th>Title</th>
+                    <th class="text-center" scope="col">Publish Date</th>
+                    <th class="text-center" scope="col">Total Student</th>
+                    <th class="text-center" scope="col">Status</th>
+                    <th class="text-center" scope="col">Action</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+
+                  <tr *ngFor="let course of details?.data" class="text-center">
+                    <td>DA-{{course?.id}}</td>
+                    <td>{{course?.course_name}}</td>
+                    <td class="text-center">{{course?.created_at | date:'medium'}}</td>
+                    <td class="text-center">{{course?.subscribed_users}}</td>
+                    <td class="text-center">
+                      <b class="course_active" *ngIf="course?.status == 'active'">Active</b>
+                      <b class="course_active" *ngIf="course?.status !== 'active'">In-active</b>
+                    </td>
+                    <td class="text-center">
+                      <button class="create_btn_dash" (click)='onAssign(course?.id)'>
+                        Assign
+                      </button>
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="card-footer py-4">
+                <nav aria-label="...">
+                  <ul class="pagination justify-content-end mb-0">
+                    <li class="page-item " [ngClass]='{"disabled" : details?.current_page < 5}' (click)='onPrevious()'>
+                      <a class="page-link" tabindex="-1">
+                        <i class="fas fa-angle-left"></i>
+                        <span class="sr-only">Previous</span>
+                      </a>
+                    </li>
+
+                    <li class="page-item" *ngFor='let c of counter' [ngClass]='{"active" : details?.current_page==c }'
+                        (click)='fetchEnrollDetails(c)'>
+                      <a class="page-link">
+                        {{c}}
+                        <span class="sr-only" *ngIf='details?.current_page == c'>(current)</span>
+                      </a>
+                    </li>
+
+                    <li class="page-item">
+                      <a class="page-link" (click)='onNext()'>
+                        <i class="fas fa-angle-right"></i>
+                        <span class="sr-only">Next</span>
+                      </a>
+                    </li>
+                  </ul>
+                </nav>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf='type == "course"'>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="my_courses_tabs">
+
+          <div class="tab-content" id="pills-tabContent">
+            <div class="tab-pane fade show active" id="pills-my-courses" role="tabpanel">
+              <div class="table-responsive mt-30">
+                <table class="table ucp-table">
+                  <thead class="thead-s">
+                  <tr>
+                    <th class="text-center" scope="col">Tutor Id.</th>
+                    <th class="text-center" scope="col">Full Name</th>
+                    <th class="text-center" scope="col">Email</th>
+                    <th class="text-center" scope="col">Phone</th>
+                    <th class="text-center" scope="col">Action</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+
+                  <tr *ngFor="let student of details?.data" class="text-center">
+                    <td>SA-{{student?.id}}</td>
+                    <td>{{student?.name}}</td>
+                    <td class="text-center">{{student?.email}}</td>
+                    <td class="text-center">{{student?.phone}}</td>
+
+                    <td class="text-center">
+                      <button class="create_btn_dash" (click)='onAssign(student?.id)'>
+                        Assign
+                      </button>
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="card-footer py-4">
+                <nav aria-label="...">
+                  <ul class="pagination justify-content-end mb-0">
+                    <li class="page-item " [ngClass]='{"disabled" : details?.current_page < 5}' (click)='onPrevious()'>
+                      <a class="page-link" tabindex="-1">
+                        <i class="fas fa-angle-left"></i>
+                        <span class="sr-only">Previous</span>
+                      </a>
+                    </li>
+
+                    <li class="page-item" *ngFor='let c of counter' [ngClass]='{"active" : details?.current_page==c }'
+                        (click)='fetchEnrollDetails(c)'>
+                      <a class="page-link">
+                        {{c}}
+                        <span class="sr-only" *ngIf='details?.current_page == c'>(current)</span>
+                      </a>
+                    </li>
+
+                    <li class="page-item">
+                      <a class="page-link" (click)='onNext()'>
+                        <i class="fas fa-angle-right"></i>
+                        <span class="sr-only">Next</span>
+                      </a>
+                    </li>
+                  </ul>
+                </nav>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </ng-container>
+
+
+</ng-container>

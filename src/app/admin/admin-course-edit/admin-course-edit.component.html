@@ -1,0 +1,138 @@
+<app-alert-notification [alertData]="messages"></app-alert-notification>
+
+<ng-container *ngIf='loadDetail'>
+
+  <div class="spinner-control">
+    <div class="spinnern">
+      <div class="lds-ring" *ngIf='loadDetail'>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+  </div>
+
+</ng-container>
+
+<ng-container *ngIf='network'>
+  <div class="spinner-control">
+    <div class="spinnern">
+      <span class="error-network">Error occurred loading page</span>
+      <button class="btn btn-danger" style="border-radius: 8rem; margin-left: 40px;" (click)='onReload()'>Reload
+        Page
+      </button>
+    </div>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="success">
+
+  <div class="row">
+    <div class="col-lg-12">
+      <h2 class="st_title"><i class="uil uil-analysis"></i> Create New Course</h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+
+      <div class="course__form">
+        <div class="general_info10">
+          <form [formGroup]="course" (ngSubmit)="updateCourse()">
+
+            <div class="row">
+
+              <div class="col-lg-6 col-md-6">
+                <div class="ui search focus mt-30 lbel25">
+                  <label>Course Title*</label>
+                  <div class="ui left icon input swdh19" style="display: flex; flex-direction: column;">
+                    <input class="prompt srch_explore" type="text" placeholder="Enter your course title."
+                           name="title" data-purpose="edit-course-title" formControlName="course_name">
+                    <div class="invalid-feedback" style="display: block;" *ngIf='submitted && f.course_name.errors'>
+                      <div *ngIf="f.course_name.errors.required">Course name is required *</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-lg-6 col-md-6">
+                <div class="ui search focus mt-30 lbel25">
+                  <label>Enrollment Amount*</label>
+                  <div class="ui left icon input swdh19" style="display: flex; flex-direction: column;">
+                    <input class="prompt srch_explore" type="text" placeholder="Enter enrollment amount."
+                           name="subtitle" formControlName="enroll_amount"/>
+                    <div class="invalid-feedback" style="display: block;" *ngIf='submitted && f.enroll_amount.errors'>
+                      <div *ngIf="f.enroll_amount.errors.required">Enrollment amount is required *</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-lg-6 col-md-6">
+                <div class="ui search focus mt-30 lbel25">
+                  <label>Upload Cover Image*</label>
+                  <div class="ui left icon input swdh19" style="display: flex; flex-direction: column;">
+                    <img src="{{external_link}}{{details?.course?.course_image}}" height="20" width="20"/>
+                    <a class="btn btn-outline-orange prompt srch_explore" (click)="file.click()"
+                       style="width: 100%; font-size: 1.4rem;"> upload cover image</a>
+                    <input #file type="file" name="subtitle" style="display: none;" (change)="imageUpload($event)"/>
+                    <div class="invalid-feedback" style="display: block;" *ngIf='submitted && f.cover_image.errors'>
+                      <div *ngIf="f.cover_image.errors.required">Cover image is required *</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-lg-6 col-md-6">
+                <div class="ui search focus mt-30 lbel25">
+                  <label>Enter Course Category*</label>
+                  <div class="ui left icon input swdh19" style="display: flex; flex-direction: column;">
+                    <input class="prompt srch_explore" type="text" placeholder="Enter course category."
+                           name="subtitle" formControlName="course_category"/>
+                    <div class="invalid-feedback" style="display: block;" *ngIf='submitted && f.course_category.errors'>
+                      <div *ngIf="f.course_category.errors.required">Course category is required *</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-lg-12 col-md-12">
+                <div class="ui search focus mt-30 lbel25">
+                  <ck-editor name="editor1" formControlName="description" skin="moono-lisa" language="en"
+                             [fullPage]="true"></ck-editor>
+
+                  <div class="invalid-feedback" style="display: block;" *ngIf='submitted && f.description.errors'>
+                    <div *ngIf="f.description.errors.required">Description is required *</div>
+                  </div>
+                </div>
+
+                <!--              [(ngModel)]="editorValue"-->
+              </div>
+
+              <div class="col-lg-12 col-md-12" style="margin-top: 10px;">
+                <div class="ui left icon input swdh19">
+                  <button class="create_btn_dash" *ngIf="!loading">Update
+                    Course
+                  </button>
+
+                  <div class="lds-ring" *ngIf='loading'>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                  </div>
+
+                </div>
+              </div>
+
+            </div>
+
+          </form>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</ng-container>

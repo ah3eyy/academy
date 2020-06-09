@@ -1,0 +1,108 @@
+<app-admin-navbar></app-admin-navbar>
+
+<!-- Left Sidebar Start -->
+<nav class="vertical_nav">
+  <div class="left_section menu_left" id="js-menu">
+    <div class="left_section">
+      <ul>
+        <li class="menu--item">
+          <a routerLink='/admin/dashboard' class="menu--link" title="Home" routerLinkActive="active"
+             [routerLinkActiveOptions]="{exact: true}">
+            <i class='uil uil-home-alt menu--icon'></i>
+            <span class="menu--label">Dashboard</span>
+          </a>
+        </li>
+
+        <li class="menu--item">
+          <a routerLink='/admin/courses' class="menu--link" title="Live Streams"
+             routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+            <i class='uil uil-layers menu--icon'></i>
+            <span class="menu--label">Courses</span>
+          </a>
+        </li>
+
+        <li class="menu--item">
+          <a routerLink='/admin/tutors' class="menu--link" title="Live Streams" routerLinkActive="active"
+             [routerLinkActiveOptions]="{exact: true}">
+            <i class='uil uil-kayak menu--icon'></i>
+            <span class="menu--label">Tutors</span>
+          </a>
+        </li>
+
+        <li class="menu--item">
+          <a routerLink='/admin/students' class="menu--link" title="Explore" routerLinkActive="active"
+             [routerLinkActiveOptions]="{exact: true}">
+            <i class='uil uil-user-check menu--icon'></i>
+            <span class="menu--label">Students</span>
+          </a>
+        </li>
+
+        <li class="menu--item">
+          <a routerLink='/admin/earns' class="menu--link" title="Explore" routerLinkActive="active"
+             [routerLinkActiveOptions]="{exact: true}">
+            <i class='uil uil-dollar-sign menu--icon'></i>
+            <span class="menu--label">Earns</span>
+          </a>
+        </li>
+
+        <li class="menu--item">
+          <a routerLink='/admin/support' class="menu--link" title="Explore" routerLinkActive="active"
+             [routerLinkActiveOptions]="{exact: true}">
+            <i class='uil uil-search menu--icon'></i>
+            <span class="menu--label">Support Center</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="left_section pt-2">
+      <ul>
+        <li class="menu--item">
+          <a routerLink="/admin/settings" class="menu--link" title="Setting" routerLinkActive="active"
+             [routerLinkActiveOptions]="{exact: true}">
+            <i class='uil uil-cog menu--icon'></i>
+            <span class="menu--label">Setting</span>
+          </a>
+        </li>
+        <li class="menu--item">
+          <a routerLink="/admin/help" class="menu--link" title="Help" routerLinkActive="active"
+             [routerLinkActiveOptions]="{exact: true}">
+            <i class='uil uil-question-circle menu--icon'></i>
+            <span class="menu--label">Help</span>
+          </a>
+        </li>
+        <li class="menu--item">
+          <a href="report_history.html" class="menu--link" title="Report History" routerLinkActive="active"
+             [routerLinkActiveOptions]="{exact: true}">
+            <i class='uil uil-windsock menu--icon'></i>
+            <span class="menu--label">Report History</span>
+          </a>
+        </li>
+
+      </ul>
+    </div>
+    <div class="left_footer">
+      <ul>
+        <li><a routerLink="/about-us">About</a></li>
+        <li><a routerLink="/contact-us">Contact Us</a></li>
+        <li><a routerLink="/privacy-policy">Privacy Policy</a></li>
+        <li><a routerLink="/terms">Terms</a></li>
+      </ul>
+      <div class="left_footer_content">
+        <p>© 2020 <strong>DrecAcademy</strong>. All Rights Reserved.</p>
+      </div>
+    </div>
+  </div>
+</nav>
+<!-- Left Sidebar End -->
+
+<div class="wrapper">
+  <div class="sa4d25">
+    <div class="container-fluid">
+      <router-outlet></router-outlet>
+    </div>
+
+<!--    <app-admin-footer></app-admin-footer>-->
+
+  </div>
+</div>

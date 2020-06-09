@@ -1,0 +1,100 @@
+<div class="auth">
+  <div class="row">
+
+
+    <div class="col-md-4 login" style="margin: 0 auto;">
+
+      <div class="col-md-12" style="margin: 0 auto;">
+        <div class="card login__card">
+
+          <div class="login__card--s1">
+
+            <div class="auth_header">
+
+              <!-- <span class="header-c">Welcome to Drec-Academy</span>
+          <span class="header-l">Let's get you all set up to start learning new skills today</span> -->
+              <div class="text-center text-muted mb-4" style="font-size: 1.5rem !important;">
+                <small>Sign in with credentials</small>
+              </div>
+
+            </div>
+
+
+            <div class="login_body">
+
+              <form [formGroup]='loginUser' (ngSubmit)='onSubmit(loginUser)'>
+
+                <app-notification [alert]='message'></app-notification>
+
+
+                <div class="row" style="margin: 0 !important; padding: 0 !important;">
+
+                  <div class="col-md-12 pl">
+
+                    <div class="form-group">
+                      <label for="emailaddress">Email Address</label>
+                      <input class="form-control" id="emailaddress" placeholder="Email Address"
+                             type="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors}"
+                             formControlName='email'/>
+                      <div class="invalid-feedback" *ngIf='submitted && f.email.errors'>
+                        <div *ngIf="f.email.errors.required">Email Address is required *</div>
+                        <div *ngIf="f.email.errors.email">Invalid email address provided
+                        </div>
+                      </div>
+                    </div>
+
+
+                  </div>
+
+
+                </div>
+
+                <div class="row" style="margin: 0 !important; padding: 0 !important;">
+
+                  <div class="col-md-12 pl">
+
+                    <div class="form-group">
+                      <label for="password">Password</label>
+                      <input class="form-control" id=' password' placeholder='Password'
+                             type="password"
+                             [ngClass]="{ 'is-invalid': submitted && f.password.errors}"
+                             formControlName='password'/>
+                      <div class="invalid-feedback" *ngIf='submitted && f.password.errors'>
+                        <div *ngIf="f.password.errors.required">Password is required *</div>
+                      </div>
+                    </div>
+
+                  </div>
+
+
+                </div>
+
+
+                <button class="btn btn-primary" type="submit" *ngIf='!loading'
+                        style="font-size: 1.6rem; margin-top: 1rem; border-radius: 8rem;">
+                  Login Account
+                </button>
+
+                <div class="lds-ring" *ngIf='loading'>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                </div>
+
+              </form>
+
+            </div>
+
+          </div>
+
+          <div class="login__card--s2"></div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</div>

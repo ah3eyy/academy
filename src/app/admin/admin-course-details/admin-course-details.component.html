@@ -1,0 +1,142 @@
+<ng-container *ngIf='loading'>
+
+  <div class="spinner-control">
+    <div class="spinnern">
+      <div class="lds-ring" *ngIf='loading'>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+  </div>
+
+</ng-container>
+
+<ng-container *ngIf='network'>
+  <div class="spinner-control">
+    <div class="spinnern">
+      <span class="error-network">Error occurred loading page</span>
+      <button class="btn btn-danger" style="border-radius: 8rem; margin-left: 40px;" (click)='onReload()'>Reload
+        Page
+      </button>
+    </div>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="success">
+
+
+  <div class="row">
+    <div class="col-lg-12">
+      <h2 class="st_title"><i class="uil uil-book-alt"></i>{{details?.course?.course_name}} <a
+        routerLink="/admin/edit-course/{{details?.course?.id}}" title="Edit" class="gray-s"><i
+        class="uil uil-edit-alt"></i></a></h2>
+    </div>
+    <div class="col-md-12">
+      <div class="card_dash1">
+        <div class="card_dash_left1">
+          <i class="uil uil-book-alt"></i>
+          <h1 style="margin-top: 9px;">Total Student : {{details?.course?.subscribed_users}}</h1>
+        </div>
+        <div class="card_dash_right1" style="display: flex; flex-direction: column;">
+          <button class="create_btn_dash" routerLink="/admin/create-course-path/{{course_id}}">Create Course Path
+            (Module)
+          </button>
+          <button class="create_btn_dash" routerLink="/admin/course-enroll-student/{{course_id}}"
+                  style="margin-top: 1rem;">Enroll Student
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="my_courses_tabs">
+
+        <div class="tab-content" id="pills-tabContent">
+          <div class="tab-pane fade show active" id="pills-my-courses" role="tabpanel">
+            <div class="table-responsive mt-30">
+              <table class="table ucp-table">
+                <thead class="thead-s">
+                <tr>
+                  <th class="text-center" scope="col">Course Id.</th>
+                  <th class="text-center">Title</th>
+                  <th class="text-center" scope="col">Duration</th>
+                  <th class="text-center" scope="col">Status</th>
+                  <th class="text-center" scope="col">Action</th>
+                </tr>
+                </thead>
+                <tbody>
+
+
+                <ng-container *ngIf="details?.course_module?.data.length > 0">
+                  <tr *ngFor="let course of details?.course_module?.data" class="text-center">
+                    <td>DA-{{course?.id}}</td>
+                    <td>{{course?.name}}</td>
+                    <td class="text-center">{{course?.duration}} hrs</td>
+                    <td class="text-center">
+                      <b class="course_active" *ngIf="course?.status == 'active'">Active</b>
+                      <b class="course_active" *ngIf="course?.status !== 'active'">In-active</b>
+                    </td>
+                    <td class="text-center">
+                      <a routerLink="/admin/course-path-details/{{course?.id}}" title="Edit" class="gray-s"><i
+                        class="uil uil-edit-alt"></i></a>
+                      <a title="Delete" class="gray-s"><i
+                        class="uil uil-archive"></i></a>
+                    </td>
+                  </tr>
+                </ng-container>
+
+
+                </tbody>
+              </table>
+
+              <ng-container *ngIf="details?.course_module?.data.length == 0">
+
+                <p style="text-align: center; font-weight: bold; font-size: 1.3rem; margin-top: 1.4rem">
+                  No Active Course Path
+                </p>
+
+              </ng-container>
+
+            </div>
+
+            <div class="card-footer py-4" *ngIf="details?.course_module?.data.length > 0">
+              <nav aria-label="...">
+                <ul class="pagination justify-content-end mb-0">
+                  <li class="page-item " [ngClass]='{"disabled" :
+                                details?.course_module?.current_page < 5}' (click)='onPrevious()'>
+                    <a class="page-link" tabindex="-1">
+                      <i class="fas fa-angle-left"></i>
+                      <span class="sr-only">Previous</span>
+                    </a>
+                  </li>
+
+                  <li class="page-item" *ngFor='let c of counter' [ngClass]='{"active" :
+                                    details?.course_module?.current_page==c}' (click)='load(c)'>
+                    <a class="page-link">
+                      {{c}}
+                      <span class="sr-only" *ngIf='details?.course_module?.current_page == c'>(current)</span>
+                    </a>
+                  </li>
+
+                  <li class="page-item">
+                    <a class="page-link" (click)='onNext()'>
+                      <i class="fas fa-angle-right"></i>
+                      <span class="sr-only">Next</span>
+                    </a>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</ng-container>

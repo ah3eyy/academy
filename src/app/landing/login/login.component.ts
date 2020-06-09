@@ -55,7 +55,6 @@ export class LoginComponent implements OnInit {
       return;
     }
 
-    
 
     this.http.post<any>(`${environment.api_url}auth/login`, credentials.value).subscribe(
 

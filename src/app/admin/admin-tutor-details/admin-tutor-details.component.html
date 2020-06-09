@@ -1,0 +1,244 @@
+<ng-container *ngIf='loading'>
+
+  <div class="spinner-control">
+    <div class="spinnern">
+      <div class="lds-ring" *ngIf='loading'>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+  </div>
+
+</ng-container>
+
+<ng-container *ngIf='network'>
+  <div class="spinner-control">
+    <div class="spinnern">
+      <span class="error-network">Error occurred loading page</span>
+      <button class="btn btn-danger" style="border-radius: 8rem; margin-left: 40px;" (click)='onReload()'>Reload
+        Page
+      </button>
+    </div>
+  </div>
+</ng-container>
+
+
+<ng-container *ngIf="success">
+
+  <app-alert-notification [alertData]="messages"></app-alert-notification>
+
+  <div class="row">
+    <div class="col-lg-12">
+      <h2 class="st_title"><i class="uil uil-book-alt"></i>{{details?.tutor?.name}} <a
+        routerLink="/admin/edit-tutor-details/{{details?.tutor?.id}}" title="Edit" class="gray-s"><i
+        class="uil uil-edit-alt"></i></a></h2>
+    </div>
+    <div class="col-md-12">
+      <div class="card_dash1">
+        <div class="card_dash_left1" style="display: flex; flex-direction: column;">
+          <h4 style="margin-top: 9px;">Tutor Name : {{details?.tutor?.name}}</h4>
+          <h4 style="margin-top: 9px;">Tutor Phone Number : {{details?.tutor?.phone}}</h4>
+          <h4 style="margin-top: 9px;">Tutor Email Address : {{details?.tutor?.email}}</h4>
+          <h4 style="margin-top: 9px;">Tutor Username : {{details?.tutor?.username}}</h4>
+        </div>
+        <div class="card_dash_right1">
+          <button class="create_btn_dash" routerLink="/admin/assign-tutor/tutor/{{details?.tutor?.id}}">
+            Assign Course
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-12">
+      <div class="card_dash1">
+
+        <div style="display: flex; flex-direction: row; justify-content: center">
+
+          <ng-container *ngIf="!details?.tutor?.photo_id">
+
+            <button class="btn studio-link-btn" style="font-size: 1.4rem;" (click)="photo_id.click()" *ngIf="!photoId">
+              Upload Photo Id
+            </button>
+
+            <ng-container *ngIf='photoId'>
+              <div class="lds-ring">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+              </div>
+              <span style="font-size: 1.4rem; margin-left: 1rem;"> Uploading Photo Id</span>
+            </ng-container>
+            <input type="file" style="display: none" #photo_id (change)="photoIdUpload($event)"/>
+          </ng-container>
+
+          <ng-container *ngIf="details?.tutor?.photo_id">
+            <app-preview-service [showImage]="showImage"></app-preview-service>
+            <button class="btn studio-link-btn" style="font-size: 1.4rem;"
+                    (click)="onPreviewImage(details?.tutor?.photo_id)" *ngIf="!photoId">
+              Preview Photo Id
+            </button>
+
+            <button class="btn studio-link-btn" style="font-size: 1.4rem;" (click)="photo_id.click()" *ngIf="!photoId">
+              Re-Upload Photo Id
+            </button>
+
+            <ng-container *ngIf='photoId'>
+              <div class="lds-ring">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+              </div>
+              <span style="font-size: 1.4rem; margin-left: 1rem;"> Uploading Photo Id</span>
+            </ng-container>
+            <input type="file" style="display: none" #photo_id (change)="photoIdUpload($event)"/>
+
+          </ng-container>
+
+        </div>
+
+      </div>
+    </div>
+
+
+    <div class="col-md-12">
+      <div class="card_dash1">
+
+        <div style="display: flex; flex-direction: row; justify-content: center">
+
+          <ng-container *ngIf="!details?.tutor?.avater">
+
+            <button class="btn studio-link-btn" style="font-size: 1.4rem;" (click)="avater.click()"
+                    *ngIf="!profileImage">
+              Upload Profile Picture
+            </button>
+
+            <ng-container *ngIf='profileImage'>
+              <div class="lds-ring">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+              </div>
+              <span style="font-size: 1.4rem; margin-left: 1rem;"> Uploading Photo Id</span>
+            </ng-container>
+            <input type="file" style="display: none" #avater (change)="avaterUpload($event)"/>
+          </ng-container>
+
+          <ng-container *ngIf="details?.tutor?.avater">
+            <app-preview-service [showImage]="showImage"></app-preview-service>
+            <button class="btn studio-link-btn" style="font-size: 1.4rem;"
+                    (click)="onPreviewImage(details?.tutor?.avater)" *ngIf="!profileImage">
+              Preview Profile Picture
+            </button>
+
+            <button class="btn studio-link-btn" style="font-size: 1.4rem;" (click)="avater.click()"
+                    *ngIf="!profileImage">
+              Re-Upload Profile Picture
+            </button>
+
+            <ng-container *ngIf='profileImage'>
+              <div class="lds-ring">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+              </div>
+              <span style="font-size: 1.4rem; margin-left: 1rem;"> Uploading Photo Id</span>
+            </ng-container>
+            <input type="file" style="display: none" #avater (change)="avaterUpload($event)"/>
+
+          </ng-container>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="my_courses_tabs">
+
+        <div class="tab-content" id="pills-tabContent">
+          <div class="tab-pane fade show active" id="pills-my-courses" role="tabpanel">
+            <div class="table-responsive mt-30">
+              <table class="table ucp-table">
+                <thead class="thead-s">
+                <tr>
+                  <th class="text-center" scope="col">Course Name.</th>
+                  <th class="text-center">Total Student</th>
+                  <th class="text-center" scope="col">Designation</th>
+                  <th class="text-center" scope="col">Action</th>
+                </tr>
+                </thead>
+                <tbody>
+
+
+                <ng-container *ngIf="details?.tutor_course?.data.length > 0">
+                  <tr *ngFor="let tutor of details?.tutor_course?.data" class="text-center">
+                    <td>{{tutor?.fetch_course?.course_name}}</td>
+                    <td>{{tutor?.fetch_course?.subscribed_users}}</td>
+                    <td class="text-center">{{tutor?.designation}}</td>
+                    <td class="text-center">
+                      <a title="Delete" class="gray-s course_active" style="cursor: pointer;" (click)="unAssign(tutor?.id)">
+                        Un-Assign
+                      </a>
+                    </td>
+                  </tr>
+                </ng-container>
+
+
+                </tbody>
+              </table>
+
+              <ng-container *ngIf="details?.tutor_course?.data.length == 0">
+
+                <p style="text-align: center; font-weight: bold; font-size: 1.3rem; margin-top: 1.4rem">
+                  No active course assigned
+                </p>
+
+              </ng-container>
+
+            </div>
+
+            <div class="card-footer py-4" *ngIf="details?.tutor_course?.data.length > 0">
+              <nav aria-label="...">
+                <ul class="pagination justify-content-end mb-0">
+                  <li class="page-item " [ngClass]='{"disabled" :
+                                details?.tutor_course?.current_page < 5}' (click)='onPrevious()'>
+                    <a class="page-link" tabindex="-1">
+                      <i class="fas fa-angle-left"></i>
+                      <span class="sr-only">Previous</span>
+                    </a>
+                  </li>
+
+                  <li class="page-item" *ngFor='let c of counter' [ngClass]='{"active" :
+                                    details?.tutor_course?.current_page==c}' (click)='loadDetails(c)'>
+                    <a class="page-link">
+                      {{c}}
+                      <span class="sr-only" *ngIf='details?.tutor_course?.current_page == c'>(current)</span>
+                    </a>
+                  </li>
+
+                  <li class="page-item">
+                    <a class="page-link" (click)='onNext()'>
+                      <i class="fas fa-angle-right"></i>
+                      <span class="sr-only">Next</span>
+                    </a>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</ng-container>

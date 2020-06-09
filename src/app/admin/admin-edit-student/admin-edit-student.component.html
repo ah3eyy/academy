@@ -1,0 +1,138 @@
+<ng-container *ngIf='loading'>
+
+  <div class="spinner-control">
+    <div class="spinnern">
+      <div class="lds-ring" *ngIf='loading'>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+  </div>
+
+</ng-container>
+
+<ng-container *ngIf='network'>
+  <div class="spinner-control">
+    <div class="spinnern">
+      <span class="error-network">Error occurred loading page</span>
+      <button class="btn btn-danger" style="border-radius: 8rem; margin-left: 40px;" (click)='onReload()'>Reload
+        Page
+      </button>
+    </div>
+  </div>
+</ng-container>
+
+
+<ng-container *ngIf="success">
+
+  <app-alert-notification [alertData]="messages"></app-alert-notification>
+
+
+  <div class="row">
+    <div class="col-lg-12">
+      <h2 class="st_title"><i class="uil uil-analysis"></i> Edit Student Details</h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+
+      <div class="course__form">
+        <div class="general_info10">
+          <form [formGroup]="student" (ngSubmit)="onUpdateStudent()">
+
+            <div class="row">
+
+              <div class="col-lg-6 col-md-6">
+                <div class="ui search focus mt-30 lbel25">
+                  <label>First Name*</label>
+                  <div class="ui left icon input swdh19" style="display: flex; flex-direction: column;">
+                    <input class="prompt srch_explore" type="text" placeholder="Enter student first name."
+                           name="title" data-purpose="edit-course-title" formControlName="first_name">
+                    <div class="invalid-feedback" style="display: block;" *ngIf='submitted && f.first_name.errors'>
+                      <div *ngIf="f.first_name.errors.required">First name is required *</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-lg-6 col-md-6">
+                <div class="ui search focus mt-30 lbel25">
+                  <label>Last Name*</label>
+                  <div class="ui left icon input swdh19" style="display: flex; flex-direction: column;">
+                    <input class="prompt srch_explore" type="text" placeholder="Enter student last name."
+                           name="title" data-purpose="edit-course-title" formControlName="last_name">
+                    <div class="invalid-feedback" style="display: block;" *ngIf='submitted && f.last_name.errors'>
+                      <div *ngIf="f.last_name.errors.required">Last name is required *</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-lg-6 col-md-6">
+                <div class="ui search focus mt-30 lbel25">
+                  <label>Email Address*</label>
+                  <div class="ui left icon input swdh19" style="display: flex; flex-direction: column;">
+                    <input class="prompt srch_explore" type="text" placeholder="Enter email address."
+                           name="subtitle" formControlName="email"/>
+                    <div class="invalid-feedback" style="display: block;" *ngIf='submitted && f.email.errors'>
+                      <div *ngIf="f.email.errors.required">Email address is required *</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-lg-6 col-md-6">
+                <div class="ui search focus mt-30 lbel25">
+                  <label>Enter Phone Number*</label>
+                  <div class="ui left icon input swdh19" style="display: flex; flex-direction: column;">
+                    <input class="prompt srch_explore" type="text" placeholder="Enter user name."
+                           name="subtitle" formControlName="phone"/>
+                    <div class="invalid-feedback" style="display: block;" *ngIf='submitted && f.phone.errors'>
+                      <div *ngIf="f.phone.errors.required">phone is required *</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-lg-6 col-md-6">
+                <div class="ui search focus mt-30 lbel25">
+                  <label>Enter Address*</label>
+                  <div class="ui left icon input swdh19" style="display: flex; flex-direction: column;">
+                    <input class="prompt srch_explore" type="text" placeholder="Enter Address."
+                           name="subtitle" formControlName="address"/>
+                    <div class="invalid-feedback" style="display: block;" *ngIf='submitted && f.address.errors'>
+                      <div *ngIf="f.address.errors.required">Address is required *</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-lg-12 col-md-12" style="margin-top: 20px;">
+                <div class="ui left icon input swdh19">
+                  <button class="create_btn_dash" *ngIf="!loadEdit">Update
+                    Student
+                  </button>
+
+                  <div class="lds-ring" *ngIf='loadEdit'>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                  </div>
+
+                </div>
+              </div>
+
+            </div>
+
+          </form>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</ng-container>

@@ -1,0 +1,34 @@
+<ng-container *ngIf="alertData?.show == 'show'">
+  <div class="alert">
+    <ng-container *ngIf="alertData?.type == 'danger'">
+
+      <div class="alert-custom-danger">
+        <div class="alert-custom-content-danger">
+          <p class="alert-text-custom">{{alertData?.message}} </p>
+        </div>
+      </div>
+
+    </ng-container>
+    <ng-container *ngIf="alertData?.type == 'success'">
+
+      <div class="alert-custom-success">
+        <div class="alert-custom-content">
+          <p class="alert-text-custom">{{alertData?.message}} </p>
+        </div>
+      </div>
+
+    </ng-container>
+
+    <ng-container *ngIf="alertData?.type == 'info'">
+
+      <div class="alert-custom-success">
+        <div class="alert-custom-content">
+          <p class="alert-text-custom">{{alertData?.message}} </p>
+        </div>
+      </div>
+
+    </ng-container>
+
+  </div>
+
+</ng-container>

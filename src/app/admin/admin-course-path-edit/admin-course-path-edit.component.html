@@ -1,0 +1,110 @@
+<ng-container *ngIf='loading'>
+
+  <div class="spinner-control">
+    <div class="spinnern">
+      <div class="lds-ring" *ngIf='loading'>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+  </div>
+
+</ng-container>
+
+<ng-container *ngIf='network'>
+  <div class="spinner-control">
+    <div class="spinnern">
+      <span class="error-network">Error occurred loading page</span>
+      <button class="btn btn-danger" style="border-radius: 8rem; margin-left: 40px;" (click)='onReload()'>Reload
+        Page
+      </button>
+    </div>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="success">
+  <app-alert-notification [alertData]="messages"></app-alert-notification>
+
+  <div class="row">
+    <div class="col-lg-12">
+      <h2 class="st_title"><i class="uil uil-analysis"></i> Create New Course Module</h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+
+      <div class="course__form">
+        <div class="general_info10">
+          <form [formGroup]="course" (ngSubmit)="updateCoursePath()">
+
+            <div class="row">
+
+              <div class="col-lg-6 col-md-6">
+                <div class="ui search focus mt-30 lbel25">
+                  <label>Course Path Title*</label>
+                  <div class="ui left icon input swdh19" style="display: flex; flex-direction: column;">
+                    <input class="prompt srch_explore" type="text" placeholder="Enter your course path title."
+                           name="title" data-purpose="edit-course-title" formControlName="course_name">
+                    <div class="invalid-feedback" style="display: block;" *ngIf='submitted && f.course_name.errors'>
+                      <div *ngIf="f.course_name.errors.required">Course path name is required *</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-lg-6 col-md-6">
+                <div class="ui search focus mt-30 lbel25">
+                  <label>Upload Course Video*</label>
+                  <div class="ui left icon input swdh19" style="display: flex; flex-direction: column;">
+                    <a class="btn btn-outline-orange prompt srch_explore" (click)="file.click()"
+                       style="width: 100%; font-size: 1.4rem;"> upload course video</a>
+                    <input #file type="file" name="subtitle" style="display: none;" (change)="videoUpload($event)"/>
+                    <div class="invalid-feedback" style="display: block;" *ngIf='submitted && f.course_video.errors'>
+                      <div *ngIf="f.course_video.errors.required">Course video is required *</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-lg-6 col-md-6">
+                <div class="ui search focus mt-30 lbel25">
+                  <label>Enter Course Path Duration*</label>
+                  <div class="ui left icon input swdh19" style="display: flex; flex-direction: column;">
+                    <input class="prompt srch_explore" type="text" placeholder="Enter path duration"
+                           name="subtitle" formControlName="duration"/>
+                    <div class="invalid-feedback" style="display: block;" *ngIf='submitted && f.duration.errors'>
+                      <div *ngIf="f.duration.errors.required">Course path duration is required *</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-lg-12 col-md-12" style="margin-top: 20px;">
+                <div class="ui left icon input swdh19">
+                  <button class="create_btn_dash" *ngIf="!loading">Create
+                    Course Path
+                  </button>
+
+                  <div class="lds-ring" *ngIf='loading'>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                  </div>
+
+                </div>
+              </div>
+
+            </div>
+
+          </form>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</ng-container>
