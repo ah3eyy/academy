@@ -24,6 +24,10 @@ export class TutorSupportComponent implements OnInit {
 
   external_url = environment.api_url_link;
 
+  loadingMessage = false;
+
+  messageLoader = false;
+
   active;
 
   constructor(private tutorService: TutorService, private activetedRoute: ActivatedRoute) {
@@ -74,10 +78,13 @@ export class TutorSupportComponent implements OnInit {
   }
 
   onPrevious() {
-
   }
 
   onNext() {
+  }
+
+  selectMessage(messageId) {
+    this.active = messageId;
   }
 
   onReload() {
