@@ -25,4 +25,8 @@ export class TutorService {
     return this.httpClient.get(`${this.url}fetch-course-module-details/${course_module_id}?page=${page}`);
   }
 
+  fetchSupport(page = 1) {
+    return this.httpClient.get(`${this.url}fetch-support?page=${page}`);
+  }
+
 }

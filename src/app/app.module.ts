@@ -57,6 +57,7 @@ import { TutorSidebarComponent } from './tutor/tutor-component/tutor-sidebar/tut
 import { TutorCoursesComponent } from './tutor/tutor-courses/tutor-courses.component';
 import { TutorCourseDetailsComponent } from './tutor/tutor-course-details/tutor-course-details.component';
 import { TutorCourseModuleDetailsComponent } from './tutor/tutor-course-module-details/tutor-course-module-details.component';
+import { TutorSupportComponent } from './tutor/tutor-support/tutor-support.component';
 
 
 @NgModule({
@@ -108,6 +109,7 @@ import { TutorCourseModuleDetailsComponent } from './tutor/tutor-course-module-d
     TutorCoursesComponent,
     TutorCourseDetailsComponent,
     TutorCourseModuleDetailsComponent,
+    TutorSupportComponent,
   ],
   imports: [
     BrowserModule,

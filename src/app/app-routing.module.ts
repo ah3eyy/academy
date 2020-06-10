@@ -36,6 +36,7 @@ import {TutorAuthComponent} from './tutor/tutor-auth/tutor-auth.component';
 import {TutorCoursesComponent} from './tutor/tutor-courses/tutor-courses.component';
 import {TutorCourseDetailsComponent} from './tutor/tutor-course-details/tutor-course-details.component';
 import {TutorCourseModuleDetailsComponent} from './tutor/tutor-course-module-details/tutor-course-module-details.component';
+import {TutorSupportComponent} from './tutor/tutor-support/tutor-support.component';
 
 
 const routes: Routes = [
@@ -162,6 +163,9 @@ const routes: Routes = [
       },
       {
         path: 'course-path-details/:course_id', component: TutorCourseModuleDetailsComponent
+      },
+      {
+        path: 'support', component: TutorSupportComponent
       }
     ]
   },
