@@ -60,6 +60,7 @@ export class AdminServicesService {
     formData.append('course_video', data.course_video);
     formData.append('course_id', data.course_id);
     formData.append('duration', data.duration);
+    formData.append('module_id', data.module_id);
     return this.httpClient.post(`${this.url}update-course-module-details`, formData);
   }
 

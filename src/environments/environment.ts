@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   api_url: 'http://localhost/academy/public/api/',
-  api_url_link: 'http://localhost/academy/public/storage/'
+  api_url_link: 'http://localhost/academy/storage/app/'
 };
 
 /*

@@ -136,7 +136,7 @@ export class AdminEditStudentComponent implements OnInit {
             this.messages = {
               'type': 'success',
               'show': 'show',
-              'message': 'Student created successfully'
+              'message': 'Profile updated successfully'
             };
 
             this.router.navigate([`admin/student-details/${this.student_id}`]);

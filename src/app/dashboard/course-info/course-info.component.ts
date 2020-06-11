@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { environment } from 'src/environments/environment';
-import { ActivatedRoute, Router } from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {environment} from 'src/environments/environment';
+import {ActivatedRoute, Router} from '@angular/router';
+import {VgMedia} from 'videogular2/compiled/src/core/vg-media/vg-media';
+
 // import { StarRatingComponent } from 'ng-starrating';
 
 @Component({
@@ -10,6 +12,8 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./course-info.component.scss']
 })
 export class CourseInfoComponent implements OnInit {
+
+  d: VgMedia
 
   loading = false;
 
@@ -21,7 +25,6 @@ export class CourseInfoComponent implements OnInit {
 
   getParam;
 
-
   loadMore = false;
 
   retryLoadMore = false;
@@ -32,12 +35,13 @@ export class CourseInfoComponent implements OnInit {
 
   loadMoreSuccess = true;
 
+  external_link = environment.api_url_link;
+
   constructor(private httpClient: HttpClient, private activeRouter: ActivatedRoute, private route: Router) {
     this.getParam = this.activeRouter.params['value'].courseid;
   }
 
   ngOnInit() {
-
     this.loading = true;
 
     this.success = false;
@@ -57,7 +61,6 @@ export class CourseInfoComponent implements OnInit {
   load() {
 
     this.httpClient.get<any>(`${environment.api_url}v1/course/${this.getParam}`).subscribe(
-
       data => {
 
         this.loading = false;
@@ -86,7 +89,6 @@ export class CourseInfoComponent implements OnInit {
         this.network = true;
 
       }
-
     );
 
 
@@ -100,14 +102,14 @@ export class CourseInfoComponent implements OnInit {
     this.loadMore = true;
 
     this.httpClient.get<any>(`${environment.api_url}v1/course/${this.getParam}?page=${this.nextPage}`).subscribe(
-
       data => {
 
         this.loadMore = false;
 
         if (data.code == 1) {
 
-          this.loadMoreSuccess = true;;
+          this.loadMoreSuccess = true;
+          ;
 
           this.data.reviews.data = [...this.data.reviews.data, ...data.data.reviews.data];
 
@@ -129,7 +131,6 @@ export class CourseInfoComponent implements OnInit {
         this.retryLoadMore = true;
 
       }
-
     );
 
   }

@@ -1,0 +1,120 @@
+<ng-container *ngIf='loading'>
+
+  <div class="spinner-control">
+    <div class="spinnern">
+      <div class="lds-ring" *ngIf='loading'>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+  </div>
+
+</ng-container>
+
+<ng-container *ngIf='network'>
+  <div class="spinner-control">
+    <div class="spinnern">
+      <span class="error-network">Error occurred loading page</span>
+      <button class="btn btn-danger" style="border-radius: 8rem; margin-left: 40px;" (click)='onReload()'>Reload
+        Page
+      </button>
+    </div>
+  </div>
+
+</ng-container>
+
+
+<ng-container *ngIf='success'>
+  <div class="row">
+    <div class="col-xl-8 col-lg-8">
+      <div class="section3125">
+        <div class="live1452">
+          <vg-player (onPlayerReady)="onPlayerReady($event)">
+            <vg-overlay-play></vg-overlay-play>
+            <vg-buffering></vg-buffering>
+
+            <vg-controls>
+              <vg-play-pause></vg-play-pause>
+              <vg-playback-button></vg-playback-button>
+
+              <vg-time-display vgProperty="current" vgFormat="mm:ss"></vg-time-display>
+
+              <vg-scrub-bar>
+                <vg-scrub-bar-current-time></vg-scrub-bar-current-time>
+                <vg-scrub-bar-buffering-time></vg-scrub-bar-buffering-time>
+              </vg-scrub-bar>
+
+              <vg-time-display vgProperty="left" vgFormat="mm:ss"></vg-time-display>
+              <vg-time-display vgProperty="total" vgFormat="mm:ss"></vg-time-display>
+
+              <vg-track-selector></vg-track-selector>
+              <vg-mute></vg-mute>
+              <vg-volume></vg-volume>
+
+              <vg-fullscreen></vg-fullscreen>
+            </vg-controls>
+
+
+            <video [vgMedia]="media" #media id="singleVideo" preload="auto" style="width: 100%;"
+                   [vgDash]="active_video"
+                   [vgHls]="active_video">
+              <!--              <source [src]="active_video" type="video/mp4">-->
+            </video>
+          </vg-player>
+
+        </div>
+        <div class="user_dt5">
+          <div class="user_dt_left">
+            <div class="live_user_dt">
+              <div class="user_img5">
+                <img src="{{external_link + data?.courseinfo?.tutor[0]?.fetch_tutor?.avater}}" alt=""
+                     onerror="this.src='../../../assets/extra/images/left-imgs/img-2.jpg'">
+              </div>
+              <div class="user_cntnt">
+                <h4>{{data?.courseinfo?.tutor[0].fetch_tutor?.name}}</h4>
+                <button class="subscribe-btn" routerLink="/dashboard/support/{{data?.courseinfo?.id}}">Contact Support</button>
+              </div>
+            </div>
+          </div>
+          <div class="user_dt_right">
+            <ul>
+              <li>
+                <a class="lkcm152"><i class='uil uil-user-plus'></i><span>{{data?.courseinfo?.subscribed_users}}</span></a>
+              </li>
+              <!--              <li>-->
+              <!--                <a href="live_output.html#" class="lkcm152"><i class='uil uil-thumbs-up'></i><span>100</span></a>-->
+              <!--              </li>-->
+              <!--              <li>-->
+              <!--                <a href="live_output.html#" class="lkcm152"><i class='uil uil-thumbs-down'></i><span>20</span></a>-->
+              <!--              </li>-->
+              <!--              <li>-->
+              <!--                <a href="live_output.html#" class="lkcm152"><i class='uil uil-share-alt'></i><span>9</span></a>-->
+              <!--              </li>-->
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-4 col-lg-4">
+      <div class="right_side">
+        <div class="fcrse_3">
+          <div class="cater_ttle">
+            <h4>Course Modules</h4>
+          </div>
+          <div class="live_chat">
+            <div class="chat1">
+              <p style="cursor: pointer;" [ngClass]="{'active' : currentCourse?.id == module?.id}"
+                 *ngFor="let module of data?.course_module; let i= index" (click)="onSelectCourseModule(i)">
+                <a>{{module?.name}}</a>
+                <i class="uil uil-play-circle" style="text-align: right;"></i>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</ng-container>

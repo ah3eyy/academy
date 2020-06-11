@@ -1,28 +1,73 @@
 <ng-container *ngIf='loading'>
 
-    <div class="spinner-control">
-        <div class="spinnern">
-            <div class="lds-ring" *ngIf='loading'>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-            </div>
-        </div>
+  <div class="spinner-control">
+    <div class="spinnern">
+      <div class="lds-ring" *ngIf='loading'>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
     </div>
+  </div>
 
 </ng-container>
 <ng-container *ngIf='network'>
-    <div class="spinner-control">
-        <div class="spinnern">
-            <span class="error-network">Error occurred loading page</span>
-            <button class="btn btn-danger" style="border-radius: 8rem; margin-left: 40px;" (click)='onReload()'>Reload
-                Page</button>
-        </div>
+  <div class="spinner-control">
+    <div class="spinnern">
+      <span class="error-network">Error occurred loading page</span>
+      <button class="btn btn-danger" style="border-radius: 8rem; margin-left: 40px;" (click)='onReload()'>Reload
+        Page
+      </button>
     </div>
+  </div>
 
 </ng-container>
 
 <ng-container *ngIf='success'>
 
+  <div class="row">
+
+    <div class="col-md-9">
+      <div class="_14d25 mb-20">
+        <div class="row">
+          <div class="col-md-12">
+            <h4 class="mhs_title">Enrolled Courses</h4>
+            <ng-container *ngFor="let course of data?.active_course?.data">
+              <div class="fcrse_1">
+                <a routerLink="/dashboard/course/{{course?.courseinfo?.id}}" class="hf_img">
+                  <img src="{{externalLink + course?.courseinfo?.course_image}}" alt=""
+                       onerror="this.src='assets/extra/images/courses/img-1.jpg'">
+                  <div class="course-overlay">
+                    <!--                    <div class="badge_seller">Bestseller</div>-->
+                    <div class="crse_reviews">
+                      <i class="uil uil-star"></i> {{course?.courseinfo?.rating}}
+                    </div>
+                    <span class="play_btn1"><i class="uil uil-play"></i></span>
+                    <div class="crse_timer">
+                      {{course?.courseinfo?.course_hr}} Hrs
+                    </div>
+                  </div>
+                </a>
+                <div class="hs_content">
+                  <div class="vdtodt">
+                    <span class="vdt14">{{course?.courseinfo?.subscribed_users}} Students</span>
+                  </div>
+                  <a routerLink="/dashboard/course/{{course?.courseinfo?.tag}}" class="crse14s title900">
+                    {{course?.courseinfo?.course_name}}
+                  </a>
+                  <!--                  <a href="saved_courses.html#" class="crse-cate"></a>-->
+                  <div class="auth1lnkprce">
+                    <p class="cr1fot">Tutor : <a>{{course?.courseinfo?.tutor[0].fetch_tutor?.name}}</a></p>
+                    <div class="prce142">{{course?.courseinfo?.amount | currency :'NGN' : 'symbol-narrow'}}</div>
+                  </div>
+                </div>
+              </div>
+            </ng-container>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </ng-container>

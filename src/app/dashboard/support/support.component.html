@@ -1,0 +1,139 @@
+<ng-container *ngIf='loading'>
+
+  <div class="spinner-control">
+    <div class="spinnern">
+      <div class="lds-ring" *ngIf='loading'>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+  </div>
+
+</ng-container>
+
+<ng-container *ngIf='network'>
+  <div class="spinner-control">
+    <div class="spinnern">
+      <span class="error-network">Error occurred loading page</span>
+      <button class="btn btn-danger" style="border-radius: 8rem; margin-left: 40px;" (click)='onReload()'>Reload
+        Page
+      </button>
+    </div>
+  </div>
+</ng-container>
+
+
+<ng-container *ngIf="success">
+  <div class="row">
+    <div class="col-lg-12">
+      <h2 class="st_title"><i class="uil uil-comments"></i> Support</h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <div class="all_msg_bg">
+        <div class="row no-gutters">
+
+          <div class="col-xl-8 col-lg-7 col-md-12">
+            <div class="chatbox_right">
+
+              <ng-container *ngIf="noMessageSelected">
+                <div class="chat_header">
+                  <div class="user-status">
+                    <div class="user-avatar">
+                      <img src="{{selectedUserDetails?.user_details?.avater}}" alt=""
+                           onerror="this.src='../../../assets/extra/images/left-imgs/img-1.jpg'" alt="">
+                    </div>
+                    <p class="user-status-title"><span class="bold">{{selectedUserDetails?.user_details?.name}}</span>
+                    </p>
+                    <p class="user-status-tag online" *ngIf="message?.status_online">Online</p>
+                    <div class="user-status-time floaty eps_dots eps_dots5 more_dropdown">
+                      <a href="#"><i class="uil uil-ellipsis-h"></i></a>
+                      <div class="dropdown-content">
+                        <span><i class="uil uil-trash-alt"></i>Close</span>
+                        <span><i class="uil uil-ban"></i>Transfer</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="messages-line simplebar-content-wrapper2 scrollstyle_4">
+                  <div class="mCustomScrollbar">
+                    <ng-container *ngIf='messageLoader== true'>
+                      <ng-container *ngFor="let message of messageData">
+
+                        <div class="main-message-box ta-right" *ngIf="message?.sender == 'teacher'">
+                          <div class="message-dt">
+                            <div class="message-inner-dt">
+                              <p>{{message?.message}}</p>
+                            </div><!--message-inner-dt end-->
+                            <span
+                              *ngIf="message?.created_at !== 'now' && message?.created_at !== 'failed'">{{message?.created_at | date :'medium'}}</span>
+                            <span *ngIf="message?.created_at == 'now'">Just Now</span>
+                            <span *ngIf="message?.created_at == 'failed'">Failed</span>
+                          </div><!--message-dt end-->
+                        </div><!--main-message-box end-->
+                        <div class="main-message-box st3" *ngIf="message?.sender !== 'teacher'">
+                          <div class="message-dt st3">
+                            <div class="message-inner-dt">
+                              <p>{{message?.message}}.</p>
+                            </div><!--message-inner-dt end-->
+                            <span
+                              *ngIf="message?.created_at !== 'now' && message?.created_at !== 'failed'">{{message?.created_at | date :'medium'}}</span>
+                            <span *ngIf="message?.created_at == 'now'">Just Now</span>
+                            <span *ngIf="message?.created_at == 'failed'">Failed</span>
+                          </div><!--message-dt end-->
+                        </div><!--main-message-box end-->
+
+                      </ng-container>
+                    </ng-container>
+
+                    <ng-container *ngIf='loadingMessage == false'>
+                      <div class="spinner-control">
+                        <div class="spinnern">
+                          <div class="lds-ring">
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                          </div>
+                        </div>
+                      </div>
+                    </ng-container>
+
+                  </div>
+                </div>
+                <div class="message-send-area">
+                  <form>
+                    <div class="mf-field">
+                      <div class="ui search focus input__msg">
+                        <div class="ui left icon input swdh19">
+                          <input class="prompt srch_explore" type="text" id="chat-widget-message-text-2"
+                                 name="chat_widget_message_text_2" placeholder="Write a message..."
+                                 [(ngModel)]="userMessage.message">
+                        </div>
+                      </div>
+                      <button class="add_msg" type="submit" (click)="sendMessage()"><i
+                        class="uil uil-envelope-send"></i></button>
+                    </div>
+                  </form>
+                </div>
+              </ng-container>
+
+              <ng-container *ngIf="!noMessageSelected">
+
+                <div style="width: 100%; padding: 1.4rem; ">
+                  <p></p>
+                  <textarea [(ngModel)]="complain.message" rows="50" cols="50" style="width: 100%;"></textarea>
+                </div>
+              </ng-container>
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>

@@ -38,7 +38,7 @@ export class AdminCoursePathEditComponent implements OnInit {
     private adminService: AdminServicesService,
     private formBuilder: FormBuilder,
     private cdf: ChangeDetectorRef,
-    private router : Router
+    private router: Router
   ) {
 
     this.course_id = activateRoute.params['value'].course_id;
@@ -82,7 +82,8 @@ export class AdminCoursePathEditComponent implements OnInit {
       course_name: ['', [Validators.required]],
       duration: ['', [Validators.required]],
       course_video: [''],
-      course_id: ['', [Validators.required]]
+      course_id: ['', [Validators.required]],
+      module_id: ['']
     });
   }
 
@@ -104,7 +105,8 @@ export class AdminCoursePathEditComponent implements OnInit {
             this.course.patchValue({
               course_name: this.details.course_module.name,
               duration: this.details.course_module.duration,
-              course_id: this.course_id
+              course_id: this.course_id,
+              module_id: this.details.course_module.id
             });
 
             return;
@@ -129,7 +131,7 @@ export class AdminCoursePathEditComponent implements OnInit {
 
   }
 
-  updateCoursePath(){
+  updateCoursePath() {
 
     try {
 
