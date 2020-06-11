@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  api_url: 'http://localhost/academy/public/api/',
-  api_url_link: 'http://localhost/academy/storage/app/'
+  api_url: 'https://dva.com.ng/api/',
+  api_url_link: 'https://dva.com.ng/storage/app/'
 };
