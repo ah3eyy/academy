@@ -13,9 +13,7 @@ const routes: Routes = [
   {
     path: '', component: DashboardComponent, children: [
 
-      { path: '', redirectTo: '/dashboard/account', pathMatch: 'full', canActivate: [AuthGuard] },
-
-      { path: 'account', component: AccountComponent, canActivate: [AuthGuard] },
+      { path: '', redirectTo: '/dashboard/my-course', pathMatch: 'full', canActivate: [AuthGuard] },
 
       { path: 'course-categories', component: CategoriesComponent, canActivate: [AuthGuard] },
 

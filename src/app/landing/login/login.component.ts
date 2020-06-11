@@ -61,7 +61,7 @@ export class LoginComponent implements OnInit {
       data => {
 
         if (data.code == 1) {
-          this.authService.login(data.accessToken);
+          this.authService.login(data.data.accessToken);
 
           if (this.authService.isAuthenticate()) {
 

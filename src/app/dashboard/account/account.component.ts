@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { environment } from 'src/environments/environment';
+import {Component, OnInit} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {environment} from 'src/environments/environment';
+
 // import { OwlOptions } from 'ngx-owl-carousel-o';
 
 @Component({
@@ -20,7 +21,8 @@ export class AccountComponent implements OnInit {
 
   data: any;
 
-  constructor(private httpclient: HttpClient) { }
+  constructor(private httpclient: HttpClient) {
+  }
 
   ngOnInit() {
 
@@ -36,8 +38,7 @@ export class AccountComponent implements OnInit {
 
   load() {
 
-    this.httpclient.get<any>(`${environment.api_url}v1/fetch-all-user`).subscribe(
-
+    this.httpclient.get<any>(`${environment.api_url}v1/fetch-user-course`).subscribe(
       data => {
 
         this.loading = false;
@@ -62,43 +63,8 @@ export class AccountComponent implements OnInit {
         this.network = true;
 
       }
-
     );
 
-  }
-
-  onConfirmUser(ids){
-    
-    this.loading = true;
-
-    this.httpclient.post<any>(`${environment.api_url}v1/send-success-message`, {"id" : ids}).subscribe(
-
-      data => {
-
-        this.loading = false;
-
-        if (data.code == 1) {
-
-          this.success = true;
-
-          this.ngOnInit();
-
-          return true;
-        }
-
-        this.network = true;
-
-      },
-
-      error => {
-
-        this.loading = false;
-
-        this.network = true;
-
-      }
-
-    );
   }
 
 

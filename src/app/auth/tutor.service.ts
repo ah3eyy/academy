@@ -29,4 +29,12 @@ export class TutorService {
     return this.httpClient.get(`${this.url}fetch-support?page=${page}`);
   }
 
+  fetchConversation(page = 1, supportId) {
+    return this.httpClient.get(`${this.url}fetch-conversation/${supportId}?page=${page}`);
+  }
+
+  sendMessage(data){
+    return this.httpClient.post(`${this.url}send-message`, data);
+  }
+
 }
