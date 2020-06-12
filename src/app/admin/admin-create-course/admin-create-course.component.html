@@ -82,9 +82,15 @@
 
             <div class="col-lg-12 col-md-12" style="margin-top: 10px;">
               <div class="ui left icon input swdh19">
-                <button class="create_btn_dash" type="submit">Create Your
-                  Course
+                <button class="create_btn_dash" *ngIf="!loading">Create New Course
                 </button>
+
+                <div class="lds-ring" *ngIf='loading'>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                </div>
               </div>
             </div>
 
