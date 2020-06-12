@@ -19,7 +19,7 @@
                 <label>Course Title*</label>
                 <div class="ui left icon input swdh19" style="display: flex; flex-direction: column;">
                   <input class="prompt srch_explore" type="text" placeholder="Enter your course title."
-                         name="title" data-purpose="edit-course-title">
+                         name="title" data-purpose="edit-course-title" formControlName="course_name">
                   <div class="invalid-feedback" style="display: block;" *ngIf='submitted && f.course_name.errors'>
                     <div *ngIf="f.course_name.errors.required">Course name is required *</div>
                   </div>
@@ -32,7 +32,7 @@
                 <label>Enrollment Amount*</label>
                 <div class="ui left icon input swdh19" style="display: flex; flex-direction: column;">
                   <input class="prompt srch_explore" type="text" placeholder="Enter enrollment amount."
-                         name="subtitle"/>
+                         name="subtitle" formControlName="enroll_amount"/>
                   <div class="invalid-feedback" style="display: block;" *ngIf='submitted && f.enroll_amount.errors'>
                     <div *ngIf="f.enroll_amount.errors.required">Enrollment amount is required *</div>
                   </div>
@@ -58,8 +58,8 @@
               <div class="ui search focus mt-30 lbel25">
                 <label>Enter Course Category*</label>
                 <div class="ui left icon input swdh19" style="display: flex; flex-direction: column;">
-                  <input class="prompt srch_explore" type="text" placeholder="Enter enrollment amount."
-                         name="subtitle"/>
+                  <input class="prompt srch_explore" type="text" placeholder="Enter Course Category."
+                         name="subtitle" formControlName="course_category"/>
                   <div class="invalid-feedback" style="display: block;" *ngIf='submitted && f.course_category.errors'>
                     <div *ngIf="f.course_category.errors.required">Course category is required *</div>
                   </div>
