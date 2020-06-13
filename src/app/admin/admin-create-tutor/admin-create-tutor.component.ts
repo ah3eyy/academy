@@ -38,7 +38,7 @@ export class AdminCreateTutorComponent implements OnInit {
     this.tutor = this.formBuilder.group({
       name: ['', [Validators.required]],
       email: ['', [Validators.required]],
-      user_name: ['', [Validators.required]],
+      username: ['', [Validators.required]],
       phone: ['', [Validators.required]]
     });
   }
