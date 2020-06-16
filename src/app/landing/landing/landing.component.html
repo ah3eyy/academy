@@ -1,145 +1,201 @@
-<div class="auth">
-    <div class="row">
+<app-landing-navbar [headerType]="'index'"></app-landing-navbar>
 
-        <div class="col-md-7 aside-left mobile-display-none">
-
-            <div class="inner-content ">
-                <h1 class="inner-text">
-                    <!-- <strong>Start learning new skill today!!!</strong> -->
-                </h1>
-            </div>
-
-        </div>
-
-        <div class="col-md-5 login" style="margin: 0;">
-
-            <div class="col-md-12" style="margin: 0 auto;">
-                <div class="card login__card">
-
-                    <div class="login__card--s1">
-
-                        <div class="auth_header">
-
-
-
-
-                            <div class="text-center text-muted mb-4"
-                                style="font-size: 1.6rem !important; font-weight: bold;">
-                                To Pre-Order Now
-                            </div>
-
-                            <p style="font-size: 1.6rem !important;">1. Pay
-                                {{ 2000 | currency :'NGN': 'symbol-narrow' }} (Pre-order fee)</p>
-                            <div style="display: block; padding-left: 1.0rem;">
-                                <span style="display: block; font-weight: bold; font-size: 1.5rem;">Account Name: DREC
-                                    VOCATIONAL ACADEMY</span>
-                                <span style="display: block; font-weight: bold; font-size: 1.5rem;">Account Number:
-                                    1016112815</span>
-                                <span style="display: block; font-weight: bold; font-size: 1.5rem;">Bank Name: Zenith
-                                    Bank</span>
-                            </div>
-                            <p style="font-size: 1.6rem !important;">2. Fill the sign up form below. Please ensure that
-                                you fill in your correct active email
-                                address.</p>
-                            <p style="font-size: 1.6rem !important;">3. Check your spam mail for an email from us if you
-                                do not get it in your inbox</p>
-
-                        </div>
-
-
-                        <div class="login_body">
-
-                            <form [formGroup]='preorder' (ngSubmit)='onSubmit(preorder)'>
-
-                                <app-notification [alert]='message'></app-notification>
-
-                                <div class="row" style="margin: 0 !important; padding: 0 !important;">
-
-                                    <div class="col-md-12 pl">
-                                        <div class="form-group">
-                                            <label for="emailaddress">Full Name</label>
-                                            <input class="form-control" id="emailaddress" placeholder="Full Name "
-                                                type="text" [ngClass]="{ 'is-invalid': submitted && f.name.errors}"
-                                                formControlName='name' />
-                                            <div class="invalid-feedback" *ngIf='submitted && f.name.errors'>
-                                                <div *ngIf="f.name.errors.required">Full name is required *</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row" style="margin: 0 !important; padding: 0 !important;">
-                                    <div class="col-md-12 pl">
-                                        <div class="form-group">
-                                            <label for="emailaddress">Email Address</label>
-                                            <input class="form-control" id="emailaddress" placeholder="Email Address"
-                                                type="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors}"
-                                                formControlName='email' />
-                                            <div class="invalid-feedback" *ngIf='submitted && f.email.errors'>
-                                                <div *ngIf="f.email.errors.required">Email Address is required *</div>
-                                                <div *ngIf="f.email.errors.email">Invalid email address provided
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row" style="margin: 0 !important; padding: 0 !important;">
-                                    <div class="col-md-12 pl">
-                                        <div class="form-group">
-                                            <label for="emailaddress">Mobile Number</label>
-                                            <input class="form-control" id="emailaddress" placeholder="Mobile Number"
-                                                type="text" [ngClass]="{ 'is-invalid': submitted && f.phone.errors}"
-                                                formControlName='phone' />
-                                            <div class="invalid-feedback" *ngIf='submitted && f.email.errors'>
-                                                <div *ngIf="f.phone.errors.required">Phone number is required *</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row" style="margin: 0 !important; padding: 0 !important;">
-                                    <div class="col-md-12 pl">
-                                        <div class="form-group">
-                                            <label for="emailaddress">Proof of Payment</label>
-                                            <input class="form-control" id="emailaddress" type="file"
-                                                (change)='imageupload($event)' accept="image/*" />
-                                            <div class="invalid-feedback" *ngIf='submitted && f.pop.errors'>
-                                                <div *ngIf="f.pop.errors.required">Phone number is required *</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-
-
-                                <button class="btn btn-primary" type="submit" *ngIf='!loading'
-                                    style="font-size: 1.6rem; margin-top: 1rem; border-radius: 8rem; background-color: green;">
-                                    Pre Order Now</button>
-
-                                <div class="lds-ring" *ngIf='loading'>
-                                    <div></div>
-                                    <div></div>
-                                    <div></div>
-                                    <div></div>
-                                </div>
-
-
-
-                            </form>
-
-                        </div>
-
-                    </div>
-
-                    <div class="login__card--s2"></div>
-
-                </div>
-
-            </div>
-
-        </div>
-
+<ng-container *ngIf='loading'>
+  <div class="spinner-control">
+    <div class="spinnern">
+      <div class="lds-ring" *ngIf='loading'>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
     </div>
+  </div>
+</ng-container>
+<ng-container *ngIf='network'>
+  <div class="spinner-control">
+    <div class="spinnern">
+      <span class="error-ntwork">Error occurred loading page</span>
+      <button class="btn btn-danger" style="border-radius: 8rem; margin-left: 40px;" (click)='onReload()'>Reload
+        Page
+      </button>
+    </div>
+    e
+  </div>
+</ng-container>
+
+<ng-container *ngIf="success">
+  <div id="about" class="uk-section uk-section-muted uk-section-large">
+    <div class="uk-container">
+      <div class="uk-width-4-5@m">
+        <h2 class="uk-heading-small">
+          <mark>Unlimited</mark>
+          access to thousands of
+          <mark>vocational courses</mark>
+        </h2>
+      </div>
+      <div class="uk-child-width-1-2@s uk-child-width-1-3@m uk-margin-large-top uk-grid-match" data-uk-grid>
+
+        <ng-container *ngFor="let course of courses?.course">
+          <div>
+            <div class="uk-card uk-card-small uk-card-border">
+              <div class="uk-card-media-top uk-position-relative uk-light">
+                <img src="{{course?.course_image}}" onerror="this.src='../../../assets/extra/images/courses/img-2.jpg'"
+                     alt="Course Title">
+                <div class="uk-position-cover uk-overlay-xlight"></div>
+                <div class="uk-position-top-left">
+                  <span
+                    class="uk-text-bold uk-text-price uk-text-small">{{course?.amount | currency: 'NGN': 'symbol-narrow'}}</span>
+                </div>
+                <div class="uk-position-top-right">
+                  <!--                  <a href="#" class="uk-icon-button uk-like uk-position-z-index uk-position-relative"-->
+                  <!--                     data-uk-icon="heart"></a>-->
+                </div>
+              </div>
+              <div class="uk-card-body">
+                <h3 class="uk-card-title uk-margin-small-bottom">{{course?.course_name}}</h3>
+                <div class="uk-text-muted uk-text-small" *ngIf="course?.tutor?.length > 0">
+                  Tutor
+                  : <span class="uk-card-title uk-margin-small-bottom">{{course?.tutor[0]?.fetch_tutor?.name}}</span>
+                </div>
+                <div class="uk-text-muted uk-text-small uk-rating uk-margin-small-top">
+                  <!--                  <span class="uk-rating-filled" data-uk-icon="icon: star; ratio: 0.75"></span>-->
+                  <!--                  <span class="uk-rating-filled" data-uk-icon="icon: star; ratio: 0.75"></span>-->
+                  <!--                  <span class="uk-rating-filled" data-uk-icon="icon: star; ratio: 0.75"></span>-->
+                  <!--                  <span class="uk-rating-filled" data-uk-icon="icon: star; ratio: 0.75"></span>-->
+                  <!--                  <span class="uk-rating-filled" data-uk-icon="icon: star; ratio: 0.75"></span>-->
+                  <!--                  <span class="uk-margin-small-left uk-text-bold">5.0</span>-->
+                  <span *ngIf="course?.subscribed_users > 0">({{course?.subscribed_users}})</span>
+                </div>
+              </div>
+              <a routerLink="/course/{{course?.id}}" class="uk-position-cover"></a>
+            </div>
+          </div>
+        </ng-container>
+
+      </div>
+      <a routerLink="/courses" class="uk-button uk-button-success-outline uk-button-large uk-margin-medium-top">Explore
+        courses</a>
+    </div>
+  </div>
+</ng-container>
+
+<div class="uk-section uk-section-muted uk-section-large">
+  <div class="uk-container uk-container-expand">
+    <div class="uk-child-width-1-2@s uk-grid-large" data-uk-grid>
+      <div>
+        <div class="uk-child-width-1-3 uk-grid-small" data-uk-grid="parallax: 150">
+          <div>
+            <img src="https://via.placeholder.com/400x400" alt="Tow Sawyer">
+          </div>
+          <div>
+            <img src="https://via.placeholder.com/400x400" alt="Tow Sawyer">
+          </div>
+          <div>
+            <img src="https://via.placeholder.com/400x400" alt="Tow Sawyer">
+          </div>
+          <div>
+            <img src="https://via.placeholder.com/400x400" alt="Tow Sawyer">
+          </div>
+          <div>
+            <img src="https://via.placeholder.com/400x400" alt="Tow Sawyer">
+          </div>
+          <div>
+            <img src="https://via.placeholder.com/400x400" alt="Tow Sawyer">
+          </div>
+        </div>
+      </div>
+      <div class="uk-flex uk-flex-middle">
+        <div class="uk-width-3-4@m">
+          <h2 class="uk-heading-small">Our
+            <mark>community</mark>
+            is here every step of the way
+          </h2>
+          <ul class="uk-list uk-list-large uk-list-bullet uk-text-large uk-margin-medium-top">
+            <li>Formulate alternative and professional ideas business</li>
+            <li>Readiness and professional e-tailers. Conveniently evolve installed base ideas</li>
+            <li>Evolve installed base ideas vis-a-vis business processes</li>
+            <li>Monotonectally incubate quality manufactured products without high-quality</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
+
+<div class="uk-section uk-section-large uk-background-cover uk-background-norepeat
+  uk-background-center-center uk-background-blend-soft-light uk-light uk-background-primary"
+     style="background-image: url('assets/img/herobacground.jpg')">
+  <div class="uk-container uk-container-large">
+    <div class="uk-width-1-2@m">
+      <h2 class="uk-heading-small uk-margin-remove">What do you want to
+        <mark>learn today</mark>
+      </h2>
+    </div>
+  </div>
+  <div class="uk-container uk-container-large uk-margin-large-top">
+    <div class="uk-grid-large" data-uk-grid>
+      <div class="uk-width-1-3@m">
+        <p class="uk-text-large">Professionally build sticky ideas visavis front-end convergence. Intrinsicly enable
+          multifunctional
+          total linkage and also revolutionary paradigms.</p>
+        <a routerLink="/courses" class="uk-button uk-button-success-outline uk-button-large uk-margin-medium-top">Find
+          your course</a>
+      </div>
+      <div class="uk-width-expand@m">
+
+        <div data-uk-slider="sets: true">
+          <div class="uk-position-relative uk-visible-toggle uk-light" tabindex="-1">
+            <div class="uk-slider-container">
+              <div class="uk-position-absolute uk-slidenav-above">
+                <a class="uk-slidenav-large uk-visible@m uk-text-success uk-margin-right" href="#"
+                   data-uk-slidenav-previous data-uk-slider-item="previous"></a>
+                <a class="uk-slidenav-large uk-visible@m uk-text-success" href="#" data-uk-slidenav-next
+                   data-uk-slider-item="next"></a>
+              </div>
+              <ul class="uk-slider-items uk-child-width-1-3@s uk-grid-large">
+                <li *ngFor="let category of courses?.category">
+                  <div
+                    class="uk-card uk-border-light-hover uk-card-small uk-height-small uk-inline uk-border-light-xlarge uk-flex uk-flex-column">
+                    <div class="uk-card-body uk-margin-auto-top">
+                      <h3 class="uk-card-title uk-margin-remove">{{category?.name}}</h3>
+                      <p class="uk-text-small uk-text-demi-bold uk-margin-xsmall-top">185 courses</p>
+                    </div>
+                    <!--                    <a href="courses.html" class="uk-position-cover"></a>-->
+                  </div>
+                </li>
+
+              </ul>
+            </div>
+            <a class="uk-position-center-left uk-position-small uk-hidden@m" href="#" data-uk-slidenav-previous
+               data-uk-slider-item="previous"></a>
+            <a class="uk-position-center-right uk-position-small uk-hidden@m" href="#" data-uk-slidenav-next
+               data-uk-slider-item="next"></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="uk-section uk-section-secondary">
+  <div class="uk-container">
+    <div class="uk-child-width-1-2@m uk-grid-large uk-flex uk-flex-middle" data-uk-grid>
+      <div>
+        <h3>Subscribe to our newsletter to receive product updates and offers.</h3>
+      </div>
+      <div>
+        <div class="uk-grid-collapse" data-uk-grid>
+          <div class="uk-width-expand">
+            <input class="uk-input uk-form-large uk-border-remove-right" type="email" placeholder="Your email address">
+          </div>
+          <div class="uk-width-auto">
+            <button class="uk-button uk-button-large uk-button-success-outline">Subscribe</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-landing-footerbar></app-landing-footerbar>

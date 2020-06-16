@@ -1,0 +1,518 @@
+<app-landing-navbar [headerType]="'details'" [otherDetails]="courses?.course"></app-landing-navbar>
+
+<ng-container *ngIf='loading'>
+  <div class="spinner-control">
+    <div class="spinnern">
+      <div class="lds-ring" *ngIf='loading'>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+  </div>
+</ng-container>
+<ng-container *ngIf='network'>
+  <div class="spinner-control">
+    <div class="spinnern">
+      <span class="error-ntwork">Error occurred loading page</span>
+      <button class="btn btn-danger" style="border-radius: 8rem; margin-left: 40px;" (click)='onReload()'>Reload
+        Page
+      </button>
+    </div>
+    e
+  </div>
+</ng-container>
+
+
+<ng-container *ngIf="success">
+
+
+  <div id="course" class="uk-section">
+    <div class="uk-container uk-margin-pricing-offset">
+      <div class="uk-grid-large" data-uk-grid>
+        <div class="uk-width-expand@m">
+          <div class="uk-article">
+            <h2>Description</h2>
+            <p [innerHTML]="courses?.course?.description"></p>
+
+            <h2 class="uk-margin-large-top">Content</h2>
+            <ul class="uk-margin-top" data-uk-accordion="multiple: true">
+              <li class="uk-open" *ngFor="let courseModule of courses?.course?.course_modules">
+                <a class="uk-accordion-title" href="#">{{courseModule?.name}}?<span
+                  class="uk-align-right uk-margin-remove-bottom">{{courseModule?.duration}} hrs</span></a>
+              </li>
+<!--              <li>-->
+<!--                <a class="uk-accordion-title" href="#">Understanding the Elements of User Experience<span-->
+<!--                  class="uk-align-right uk-margin-remove-bottom">19:26</span></a>-->
+<!--                <div class="uk-accordion-content">-->
+<!--                  <table class="uk-table uk-table-justify uk-table-middle uk-table-divider">-->
+<!--                    <tbody>-->
+<!--                    <tr class="uk-text-muted">-->
+<!--                      <td class="uk-table-expand"><span class="uk-margin-small-right" data-uk-icon="play-circle"></span>The-->
+<!--                        Elements of User Experience-->
+<!--                      </td>-->
+<!--                      <td><span data-uk-icon="lock"></span></td>-->
+<!--                      <td class="uk-table-shrink">04:24</td>-->
+<!--                    </tr>-->
+<!--                    <tr class="uk-text-muted">-->
+<!--                      <td><span class="uk-margin-small-right" data-uk-icon="play-circle"></span>Exploring the Elements-->
+<!--                        of User Experience-->
+<!--                      </td>-->
+<!--                      <td><span data-uk-icon="lock"></span></td>-->
+<!--                      <td>04:24</td>-->
+<!--                    </tr>-->
+<!--                    <tr class="uk-text-muted">-->
+<!--                      <td><span class="uk-margin-small-right" data-uk-icon="play-circle"></span>How the Elements Work-->
+<!--                        Together-->
+<!--                      </td>-->
+<!--                      <td><span data-uk-icon="lock"></span></td>-->
+<!--                      <td>04:24</td>-->
+<!--                    </tr>-->
+<!--                    <tr class="uk-text-muted">-->
+<!--                      <td><span class="uk-margin-small-right" data-uk-icon="play-circle"></span>Identifying Business-->
+<!--                        Goals-->
+<!--                      </td>-->
+<!--                      <td><span data-uk-icon="lock"></span></td>-->
+<!--                      <td>04:24</td>-->
+<!--                    </tr>-->
+<!--                    </tbody>-->
+<!--                  </table>-->
+<!--                </div>-->
+<!--              </li>-->
+<!--              <li>-->
+<!--                <a class="uk-accordion-title" href="#">Using the Design Elements Structure<span-->
+<!--                  class="uk-align-right uk-margin-remove-bottom">35:30</span></a>-->
+<!--                <div class="uk-accordion-content">-->
+<!--                  <table class="uk-table uk-table-justify uk-table-middle uk-table-divider">-->
+<!--                    <tbody>-->
+<!--                    <tr class="uk-text-muted">-->
+<!--                      <td class="uk-table-expand"><span class="uk-margin-small-right" data-uk-icon="play-circle"></span>Generating-->
+<!--                        Effective Requirements-->
+<!--                      </td>-->
+<!--                      <td><span data-uk-icon="lock"></span></td>-->
+<!--                      <td class="uk-table-shrink">04:24</td>-->
+<!--                    </tr>-->
+<!--                    <tr class="uk-text-muted">-->
+<!--                      <td><span class="uk-margin-small-right" data-uk-icon="play-circle"></span>Exploring Information-->
+<!--                        Architecture-->
+<!--                      </td>-->
+<!--                      <td><span data-uk-icon="lock"></span></td>-->
+<!--                      <td>04:24</td>-->
+<!--                    </tr>-->
+<!--                    <tr class="uk-text-muted">-->
+<!--                      <td><span class="uk-margin-small-right" data-uk-icon="play-circle"></span>Convention and Metaphor-->
+<!--                      </td>-->
+<!--                      <td><span data-uk-icon="lock"></span></td>-->
+<!--                      <td>04:24</td>-->
+<!--                    </tr>-->
+<!--                    <tr class="uk-text-muted">-->
+<!--                      <td><span class="uk-margin-small-right" data-uk-icon="play-circle"></span>Contrast and Uniformity-->
+<!--                      </td>-->
+<!--                      <td><span data-uk-icon="lock"></span></td>-->
+<!--                      <td>04:24</td>-->
+<!--                    </tr>-->
+<!--                    </tbody>-->
+<!--                  </table>-->
+<!--                </div>-->
+<!--              </li>-->
+            </ul>
+
+            <!--            <h2 class="uk-margin-large-top">What do <mark>students think</mark> about the course?</h2>-->
+            <!--            <div class="uk-border-secondary-xlarge uk-grid-collapse" data-uk-grid>-->
+            <!--              <div class="uk-width-1-3@s uk-padding">-->
+            <!--                <h5 class="uk-margin-remove">Average rating: <mark>4.75</mark></h5>-->
+            <!--                <p class="uk-text-small uk-margin-small">Out of 1534 reviews</p>-->
+            <!--                <div class="uk-rating">-->
+            <!--                  <span class="uk-rating-filled" data-uk-icon="icon: star; ratio: 1.1"></span>-->
+            <!--                  <span class="uk-rating-filled" data-uk-icon="icon: star; ratio: 1.1"></span>-->
+            <!--                  <span class="uk-rating-filled" data-uk-icon="icon: star; ratio: 1.1"></span>-->
+            <!--                  <span class="uk-rating-filled" data-uk-icon="icon: star; ratio: 1.1"></span>-->
+            <!--                  <span class="uk-rating-filled" data-uk-icon="icon: star; ratio: 1.1"></span>-->
+            <!--                </div>-->
+            <!--              </div>-->
+            <!--              <div class="uk-width-expand@s uk-padding">-->
+            <!--                <div class="uk-grid-small" data-uk-grid>-->
+            <!--                  <div class="uk-width-expand">-->
+            <!--                    <div class="uk-rating uk-flex uk-flex-middle">-->
+            <!--                      <span class="uk-rating-filled" data-uk-icon="icon: star; ratio: .8"></span>-->
+            <!--                      <span class="uk-rating-filled" data-uk-icon="icon: star; ratio: .8"></span>-->
+            <!--                      <span class="uk-rating-filled" data-uk-icon="icon: star; ratio: .8"></span>-->
+            <!--                      <span class="uk-rating-filled" data-uk-icon="icon: star; ratio: .8"></span>-->
+            <!--                      <span class="uk-rating-filled" data-uk-icon="icon: star; ratio: .8"></span>-->
+            <!--                    </div>-->
+            <!--                  </div>-->
+            <!--                  <div class="uk-width-auto"><h6>68%</h6></div>-->
+            <!--                </div>-->
+            <!--                <progress class="uk-progress uk-width-1-1" value="68" max="100"></progress>-->
+            <!--                <div class="uk-grid-small" data-uk-grid>-->
+            <!--                  <div class="uk-width-expand">-->
+            <!--                    <div class="uk-rating uk-flex uk-flex-middle">-->
+            <!--                      <span class="uk-rating-filled" data-uk-icon="icon: star; ratio: .8"></span>-->
+            <!--                      <span class="uk-rating-filled" data-uk-icon="icon: star; ratio: .8"></span>-->
+            <!--                      <span class="uk-rating-filled" data-uk-icon="icon: star; ratio: .8"></span>-->
+            <!--                      <span class="uk-rating-filled" data-uk-icon="icon: star; ratio: .8"></span>-->
+            <!--                      <span data-uk-icon="icon: star; ratio: .8"></span>-->
+            <!--                    </div>-->
+            <!--                  </div>-->
+            <!--                  <div class="uk-width-auto"><h6>11%</h6></div>-->
+            <!--                </div>-->
+            <!--                <progress class="uk-progress uk-width-1-1" value="11" max="100"></progress>-->
+            <!--                <div class="uk-grid-small" data-uk-grid>-->
+            <!--                  <div class="uk-width-expand">-->
+            <!--                    <div class="uk-rating uk-flex uk-flex-middle">-->
+            <!--                      <span class="uk-rating-filled" data-uk-icon="icon: star; ratio: .8"></span>-->
+            <!--                      <span class="uk-rating-filled" data-uk-icon="icon: star; ratio: .8"></span>-->
+            <!--                      <span class="uk-rating-filled" data-uk-icon="icon: star; ratio: .8"></span>-->
+            <!--                      <span data-uk-icon="icon: star; ratio: .8"></span>-->
+            <!--                      <span data-uk-icon="icon: star; ratio: .8"></span>-->
+            <!--                    </div>-->
+            <!--                  </div>-->
+            <!--                  <div class="uk-width-auto"><h6>12%</h6></div>-->
+            <!--                </div>-->
+            <!--                <progress class="uk-progress uk-width-1-1" value="12" max="100"></progress>-->
+            <!--              </div>-->
+            <!--              <div class="uk-width-expand@s uk-padding">-->
+            <!--                <div class="uk-grid-small" data-uk-grid>-->
+            <!--                  <div class="uk-width-expand">-->
+            <!--                    <div class="uk-rating uk-flex uk-flex-middle">-->
+            <!--                      <span class="uk-rating-filled" data-uk-icon="icon: star; ratio: .8"></span>-->
+            <!--                      <span class="uk-rating-filled" data-uk-icon="icon: star; ratio: .8"></span>-->
+            <!--                      <span data-uk-icon="icon: star; ratio: .8"></span>-->
+            <!--                      <span data-uk-icon="icon: star; ratio: .8"></span>-->
+            <!--                      <span data-uk-icon="icon: star; ratio: .8"></span>-->
+            <!--                    </div>-->
+            <!--                  </div>-->
+            <!--                  <div class="uk-width-auto"><h6>6%</h6></div>-->
+            <!--                </div>-->
+            <!--                <progress class="uk-progress uk-width-1-1" value="6" max="100"></progress>-->
+            <!--                <div class="uk-grid-small" data-uk-grid>-->
+            <!--                  <div class="uk-width-expand">-->
+            <!--                    <div class="uk-rating uk-flex uk-flex-middle">-->
+            <!--                      <span class="uk-rating-filled" data-uk-icon="icon: star; ratio: .8"></span>-->
+            <!--                      <span data-uk-icon="icon: star; ratio: .8"></span>-->
+            <!--                      <span data-uk-icon="icon: star; ratio: .8"></span>-->
+            <!--                      <span data-uk-icon="icon: star; ratio: .8"></span>-->
+            <!--                      <span data-uk-icon="icon: star; ratio: .8"></span>-->
+            <!--                    </div>-->
+            <!--                  </div>-->
+            <!--                  <div class="uk-width-auto"><h6>1%</h6></div>-->
+            <!--                </div>-->
+            <!--                <progress class="uk-progress uk-width-1-1" value="2" max="100"></progress>-->
+            <!--              </div>-->
+            <!--            </div>-->
+            <!--            <h3 class="uk-margin-large-top">Student reviews</h3>-->
+            <!--            <ul class="uk-comment-list uk-margin-medium-top">-->
+            <!--              <li>-->
+            <!--                <article class="uk-comment uk-visible-toggle" tabindex="-1">-->
+            <!--                  <header class="uk-comment-header uk-position-relative">-->
+            <!--                    <div class="uk-grid-medium uk-flex-middle" data-uk-grid>-->
+            <!--                      <div class="uk-width-auto">-->
+            <!--                        <img class="uk-comment-avatar uk-border-circle" src="https://via.placeholder.com/100x100" width="80" height="80" alt="Alice Thomson">-->
+            <!--                      </div>-->
+            <!--                      <div class="uk-width-expand">-->
+            <!--                        <h4 class="uk-comment-title uk-margin-remove"><a class="uk-link-reset" href="#">Alice Jenkins</a></h4>-->
+            <!--                        <p class="uk-comment-meta uk-margin-remove"><a class="uk-link-reset" href="#">12 days ago</a></p>-->
+            <!--                        <div class="uk-rating">-->
+            <!--                          <span class="uk-rating-filled" data-uk-icon="icon: star; ratio: 0.8"></span>-->
+            <!--                          <span class="uk-rating-filled" data-uk-icon="icon: star; ratio: 0.8"></span>-->
+            <!--                          <span class="uk-rating-filled" data-uk-icon="icon: star; ratio: 0.8"></span>-->
+            <!--                          <span class="uk-rating-filled" data-uk-icon="icon: star; ratio: 0.8"></span>-->
+            <!--                          <span data-uk-icon="icon: star; ratio: 0.8"></span>-->
+            <!--                        </div>-->
+            <!--                      </div>-->
+            <!--                    </div>-->
+            <!--                    <div class="uk-position-top-right uk-position-small uk-hidden-hover"><a class="uk-link-muted" href="#">Reply</a>-->
+            <!--                    </div>-->
+            <!--                  </header>-->
+            <!--                  <div class="uk-comment-body">-->
+            <!--                    <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et-->
+            <!--                      dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet-->
+            <!--                      clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>-->
+            <!--                  </div>-->
+            <!--                </article>-->
+            <!--                <ul>-->
+            <!--                  <li>-->
+            <!--                    <article class="uk-comment uk-comment-primary uk-visible-toggle" tabindex="-1">-->
+            <!--                      <header class="uk-comment-header uk-position-relative">-->
+            <!--                        <div class="uk-grid-medium uk-flex-middle" data-uk-grid>-->
+            <!--                          <div class="uk-width-auto">-->
+            <!--                            <img class="uk-comment-avatar uk-border-circle" src="https://via.placeholder.com/100x100" width="80" height="80" alt="Tom Solender">-->
+            <!--                          </div>-->
+            <!--                          <div class="uk-width-expand">-->
+            <!--                            <h4 class="uk-comment-title uk-margin-remove"><a class="uk-link-reset" href="#">Tom Solender</a></h4>-->
+            <!--                            <p class="uk-comment-meta uk-margin-remove-top"><a class="uk-link-reset" href="#">12 days ago</a></p>-->
+            <!--                          </div>-->
+            <!--                        </div>-->
+            <!--                        <div class="uk-position-top-right uk-position-small uk-hidden-hover"><a class="uk-link-muted"-->
+            <!--                                                                                                href="#">Reply</a></div>-->
+            <!--                      </header>-->
+            <!--                      <div class="uk-comment-body">-->
+            <!--                        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore-->
+            <!--                          et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.-->
+            <!--                          Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>-->
+            <!--                      </div>-->
+            <!--                    </article>-->
+            <!--                  </li>-->
+            <!--                  <li>-->
+            <!--                    <article class="uk-comment uk-visible-toggle" tabindex="-1">-->
+            <!--                      <header class="uk-comment-header uk-position-relative">-->
+            <!--                        <div class="uk-grid-medium uk-flex-middle" data-uk-grid>-->
+            <!--                          <div class="uk-width-auto">-->
+            <!--                            <img class="uk-comment-avatar uk-border-circle" src="https://via.placeholder.com/100x100" width="80" height="80" alt="Alice Thomson">-->
+            <!--                          </div>-->
+            <!--                          <div class="uk-width-expand">-->
+            <!--                            <h4 class="uk-comment-title uk-margin-remove"><a class="uk-link-reset" href="#">John Thomson</a></h4>-->
+            <!--                            <p class="uk-comment-meta uk-margin-remove"><a class="uk-link-reset" href="#">12 days ago</a></p>-->
+            <!--                            <div class="uk-rating">-->
+            <!--                              <span class="uk-rating-filled" data-uk-icon="icon: star; ratio: 0.8"></span>-->
+            <!--                              <span class="uk-rating-filled" data-uk-icon="icon: star; ratio: 0.8"></span>-->
+            <!--                              <span class="uk-rating-filled" data-uk-icon="icon: star; ratio: 0.8"></span>-->
+            <!--                              <span class="uk-rating-filled" data-uk-icon="icon: star; ratio: 0.8"></span>-->
+            <!--                              <span data-uk-icon="icon: star; ratio: 0.8"></span>-->
+            <!--                            </div>-->
+            <!--                          </div>-->
+            <!--                        </div>-->
+            <!--                        <div class="uk-position-top-right uk-position-small uk-hidden-hover"><a class="uk-link-muted"-->
+            <!--                                                                                                href="#">Reply</a></div>-->
+            <!--                      </header>-->
+            <!--                      <div class="uk-comment-body">-->
+            <!--                        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore-->
+            <!--                          et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.-->
+            <!--                          Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>-->
+            <!--                      </div>-->
+            <!--                    </article>-->
+            <!--                  </li>-->
+            <!--                </ul>-->
+            <!--              </li>-->
+            <!--            </ul>-->
+
+            <!--            <h2 class="uk-margin-large-top" id="contact">How do I <mark>contact</mark> you with my questions?</h2>-->
+            <!--            <p>Activity that and the scarfs, for bit of text, never just-->
+            <!--              as our have they of begin to cannot in of ran middle at behind seal that their accustomed. For-->
+            <!--              devotion their to though one small sight escape, little. In so her has I solider, touched-->
+            <!--              the we the past, time, he posterity.</p>-->
+          </div>
+        </div>
+        <div class="uk-width-1-3@m">
+          <div>
+            <div>
+              <h3>This course includes</h3>
+              <ul class="uk-list uk-margin-small-top">
+                <li><span class="uk-margin-small-right" data-uk-icon="clock"></span> On-demand video</li>
+                <li><span class="uk-margin-small-right" data-uk-icon="unlock"></span>Full lifetime access</li>
+                <li><span class="uk-margin-small-right" data-uk-icon="tablet"></span>Access on mobile</li>
+                <li><span class="uk-margin-small-right" data-uk-icon="file-text"></span>Certificate of completion</li>
+                <li><span class="uk-margin-small-right" data-uk-icon="question"></span>Questions answered by tutor</li>
+                <li><span class="uk-margin-small-right" data-uk-icon="future"></span>Future course updates</li>
+              </ul>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!--  <div id="lesson" class="uk-flex-top uk-modal-container" data-uk-modal>-->
+<!--    <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical uk-background-muted">-->
+<!--      <button class="uk-modal-close-outside" type="button" data-uk-close></button>-->
+<!--      <h2 class="uk-modal-title">Introduction: a UXD Parable</h2>-->
+<!--      <iframe src="https://player.vimeo.com/video/126241629" width="1000" height="562" data-uk-responsive-->
+<!--              data-uk-video></iframe>-->
+<!--      <div class="uk-margin-top uk-article">-->
+<!--        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et-->
+<!--          dolore magna aliqua. Ut enim ad minim reprehenderit in voluptate velit esse cillum dolore eu-->
+<!--          fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia-->
+<!--          deserunt mollit anim id est laborum.</p>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+
+<!--  <div class="uk-section uk-section-muted">-->
+<!--    <div class="uk-container">-->
+<!--      <h2>Other Courses You May Like</h2>-->
+<!--      <div class="uk-child-width-1-2@s uk-child-width-1-3@m uk-margin-large-top" data-uk-grid>-->
+<!--        <div>-->
+<!--          <div class="uk-card uk-card-small uk-card-border">-->
+<!--            <div class="uk-card-media-top uk-position-relative uk-light">-->
+<!--              <img src="https://via.placeholder.com/640x400" alt="Course Title">-->
+<!--              <div class="uk-position-cover uk-overlay-xlight"></div>-->
+<!--              <div class="uk-position-top-left">-->
+<!--                <span class="uk-text-bold uk-text-price uk-text-small">$27.00</span>-->
+<!--              </div>-->
+<!--              <div class="uk-position-top-right">-->
+<!--                <a href="#" class="uk-icon-button uk-like uk-position-z-index uk-position-relative"-->
+<!--                   data-uk-icon="heart"></a>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--            <div class="uk-card-body">-->
+<!--              <h3 class="uk-card-title uk-margin-small-bottom">Business Presentation Course</h3>-->
+<!--              <div class="uk-text-muted uk-text-small">Thomas Haller</div>-->
+<!--              <div class="uk-text-muted uk-text-small uk-rating uk-margin-small-top">-->
+<!--                <span class="uk-rating-filled" data-uk-icon="icon: star; ratio: 0.75"></span>-->
+<!--                <span class="uk-rating-filled" data-uk-icon="icon: star; ratio: 0.75"></span>-->
+<!--                <span class="uk-rating-filled" data-uk-icon="icon: star; ratio: 0.75"></span>-->
+<!--                <span class="uk-rating-filled" data-uk-icon="icon: star; ratio: 0.75"></span>-->
+<!--                <span class="uk-rating-filled" data-uk-icon="icon: star; ratio: 0.75"></span>-->
+<!--                <span class="uk-margin-small-left uk-text-bold">5.0</span>-->
+<!--                <span>(324)</span>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--            <a href="course.html" class="uk-position-cover"></a>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div>-->
+<!--          <div class="uk-card uk-card-small uk-card-border">-->
+<!--            <div class="uk-card-media-top uk-position-relative uk-light">-->
+<!--              <img src="https://via.placeholder.com/640x400" alt="Course Title">-->
+<!--              <div class="uk-position-cover uk-overlay-xlight"></div>-->
+<!--              <div class="uk-position-top-left">-->
+<!--                <span class="uk-text-bold uk-text-price uk-text-small">$17.00</span>-->
+<!--              </div>-->
+<!--              <div class="uk-position-top-right">-->
+<!--                <a href="#" class="uk-icon-button uk-like uk-position-z-index uk-position-relative"-->
+<!--                   data-uk-icon="heart"></a>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--            <div class="uk-card-body">-->
+<!--              <h3 class="uk-card-title uk-margin-small-bottom">Outdoor Portrait Photography</h3>-->
+<!--              <div class="uk-text-muted uk-text-small">Jane Mathews</div>-->
+<!--              <div class="uk-text-muted uk-text-small uk-rating uk-margin-small-top">-->
+<!--                <span class="uk-rating-filled" data-uk-icon="icon: star; ratio: 0.75"></span>-->
+<!--                <span class="uk-rating-filled" data-uk-icon="icon: star; ratio: 0.75"></span>-->
+<!--                <span class="uk-rating-filled" data-uk-icon="icon: star; ratio: 0.75"></span>-->
+<!--                <span class="uk-rating-filled" data-uk-icon="icon: star; ratio: 0.75"></span>-->
+<!--                <span class="uk-rating-filled" data-uk-icon="icon: star; ratio: 0.75"></span>-->
+<!--                <span class="uk-margin-small-left uk-text-bold">5.0</span>-->
+<!--                <span>(1624)</span>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--            <a href="course.html" class="uk-position-cover"></a>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div>-->
+<!--          <div class="uk-card uk-card-small uk-card-border">-->
+<!--            <div class="uk-card-media-top uk-position-relative uk-light">-->
+<!--              <img src="https://via.placeholder.com/640x400" alt="Course Title">-->
+<!--              <div class="uk-position-cover uk-overlay-xlight"></div>-->
+<!--              <div class="uk-position-top-left">-->
+<!--                <span class="uk-text-bold uk-text-price uk-text-small">$49.00</span>-->
+<!--              </div>-->
+<!--              <div class="uk-position-top-right">-->
+<!--                <a href="#" class="uk-icon-button uk-like uk-position-z-index uk-position-relative"-->
+<!--                   data-uk-icon="heart"></a>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--            <div class="uk-card-body">-->
+<!--              <h3 class="uk-card-title uk-margin-small-bottom">Creating Digital Artwork on Tablet</h3>-->
+<!--              <div class="uk-text-muted uk-text-small">Chris Jenkins</div>-->
+<!--              <div class="uk-text-muted uk-text-small uk-rating uk-margin-small-top">-->
+<!--                <span class="uk-rating-filled" data-uk-icon="icon: star; ratio: 0.75"></span>-->
+<!--                <span class="uk-rating-filled" data-uk-icon="icon: star; ratio: 0.75"></span>-->
+<!--                <span class="uk-rating-filled" data-uk-icon="icon: star; ratio: 0.75"></span>-->
+<!--                <span class="uk-rating-filled" data-uk-icon="icon: star; ratio: 0.75"></span>-->
+<!--                <span data-uk-icon="icon: star; ratio: 0.75"></span>-->
+<!--                <span class="uk-margin-small-left uk-text-bold">4.0</span>-->
+<!--                <span>(724)</span>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--            <a href="course.html" class="uk-position-cover"></a>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div>-->
+<!--          <div class="uk-card uk-card-small uk-card-border">-->
+<!--            <div class="uk-card-media-top uk-position-relative uk-light">-->
+<!--              <img src="https://via.placeholder.com/640x400" alt="Course Title">-->
+<!--              <div class="uk-position-cover uk-overlay-xlight"></div>-->
+<!--              <div class="uk-position-top-left">-->
+<!--                <span class="uk-text-bold uk-text-price uk-text-small">$36.00</span>-->
+<!--              </div>-->
+<!--              <div class="uk-position-top-right">-->
+<!--                <a href="#" class="uk-icon-button uk-like uk-position-z-index uk-position-relative"-->
+<!--                   data-uk-icon="heart"></a>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--            <div class="uk-card-body">-->
+<!--              <h3 class="uk-card-title uk-margin-small-bottom">Advanced Portrait Photography</h3>-->
+<!--              <div class="uk-text-muted uk-text-small">Jannet Wilkins</div>-->
+<!--              <div class="uk-text-muted uk-text-small uk-rating uk-margin-small-top">-->
+<!--                <span class="uk-rating-filled" data-uk-icon="icon: star; ratio: 0.75"></span>-->
+<!--                <span class="uk-rating-filled" data-uk-icon="icon: star; ratio: 0.75"></span>-->
+<!--                <span class="uk-rating-filled" data-uk-icon="icon: star; ratio: 0.75"></span>-->
+<!--                <span class="uk-rating-filled" data-uk-icon="icon: star; ratio: 0.75"></span>-->
+<!--                <span class="uk-rating-filled" data-uk-icon="icon: star; ratio: 0.75"></span>-->
+<!--                <span class="uk-margin-small-left uk-text-bold">5.0</span>-->
+<!--                <span>(214)</span>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--            <a href="course.html" class="uk-position-cover"></a>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div>-->
+<!--          <div class="uk-card uk-card-small uk-card-border">-->
+<!--            <div class="uk-card-media-top uk-position-relative uk-light">-->
+<!--              <img src="https://via.placeholder.com/640x400" alt="Course Title">-->
+<!--              <div class="uk-position-cover uk-overlay-xlight"></div>-->
+<!--              <div class="uk-position-top-left">-->
+<!--                <span class="uk-text-bold uk-text-price uk-text-small">$45.00</span>-->
+<!--              </div>-->
+<!--              <div class="uk-position-top-right">-->
+<!--                <a href="#" class="uk-icon-button uk-like uk-position-z-index uk-position-relative"-->
+<!--                   data-uk-icon="heart"></a>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--            <div class="uk-card-body">-->
+<!--              <h3 class="uk-card-title uk-margin-small-bottom">React Development Environment</h3>-->
+<!--              <div class="uk-text-muted uk-text-small">Ben Allen</div>-->
+<!--              <div class="uk-text-muted uk-text-small uk-rating uk-margin-small-top">-->
+<!--                <span class="uk-rating-filled" data-uk-icon="icon: star; ratio: 0.75"></span>-->
+<!--                <span class="uk-rating-filled" data-uk-icon="icon: star; ratio: 0.75"></span>-->
+<!--                <span class="uk-rating-filled" data-uk-icon="icon: star; ratio: 0.75"></span>-->
+<!--                <span class="uk-rating-filled" data-uk-icon="icon: star; ratio: 0.75"></span>-->
+<!--                <span data-uk-icon="icon: star; ratio: 0.75"></span>-->
+<!--                <span class="uk-margin-small-left uk-text-bold">4.0</span>-->
+<!--                <span>(324)</span>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--            <a href="course.html" class="uk-position-cover"></a>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div>-->
+<!--          <div class="uk-card uk-card-small uk-card-border">-->
+<!--            <div class="uk-card-media-top uk-position-relative uk-light">-->
+<!--              <img src="https://via.placeholder.com/640x400" alt="Course Title">-->
+<!--              <div class="uk-position-cover uk-overlay-xlight"></div>-->
+<!--              <div class="uk-position-top-left">-->
+<!--                <span class="uk-text-bold uk-text-price uk-text-small">$27.00</span>-->
+<!--              </div>-->
+<!--              <div class="uk-position-top-right">-->
+<!--                <a href="#" class="uk-icon-button uk-like uk-position-z-index uk-position-relative"-->
+<!--                   data-uk-icon="heart"></a>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--            <div class="uk-card-body">-->
+<!--              <h3 class="uk-card-title uk-margin-small-bottom">UI Design for Product Developers</h3>-->
+<!--              <div class="uk-text-muted uk-text-small">Pete Frances</div>-->
+<!--              <div class="uk-text-muted uk-text-small uk-rating uk-margin-small-top">-->
+<!--                <span class="uk-rating-filled" data-uk-icon="icon: star; ratio: 0.75"></span>-->
+<!--                <span class="uk-rating-filled" data-uk-icon="icon: star; ratio: 0.75"></span>-->
+<!--                <span class="uk-rating-filled" data-uk-icon="icon: star; ratio: 0.75"></span>-->
+<!--                <span class="uk-rating-filled" data-uk-icon="icon: star; ratio: 0.75"></span>-->
+<!--                <span class="uk-rating-filled" data-uk-icon="icon: star; ratio: 0.75"></span>-->
+<!--                <span class="uk-margin-small-left uk-text-bold">4.65</span>-->
+<!--                <span>(1447)</span>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--            <a href="course.html" class="uk-position-cover"></a>-->
+<!--          </div>-->
+<!--        </div>-->
+
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+
+
+</ng-container>
+
+<app-landing-footerbar></app-landing-footerbar>

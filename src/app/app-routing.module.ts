@@ -37,6 +37,8 @@ import {TutorCoursesComponent} from './tutor/tutor-courses/tutor-courses.compone
 import {TutorCourseDetailsComponent} from './tutor/tutor-course-details/tutor-course-details.component';
 import {TutorCourseModuleDetailsComponent} from './tutor/tutor-course-module-details/tutor-course-module-details.component';
 import {TutorSupportComponent} from './tutor/tutor-support/tutor-support.component';
+import {LandingCoursesComponent} from './landing/landing-courses/landing-courses.component';
+import {LandingCourseDetailsComponent} from './landing/landing-course-details/landing-course-details.component';
 
 
 const routes: Routes = [
@@ -48,6 +50,12 @@ const routes: Routes = [
   },
   {
     path: 'register', component: RegisterComponent, pathMatch: 'full'
+  },
+  {
+    path: 'courses', component: LandingCoursesComponent, pathMatch: 'full'
+  },
+  {
+    path: 'course/:id', component: LandingCourseDetailsComponent, pathMatch: 'full'
   },
   {
     path: 'forgot-password', component: ForgetPasswordComponent

@@ -1,0 +1,85 @@
+<app-landing-navbar [headerType]="'courses'"></app-landing-navbar>
+
+
+<ng-container *ngIf='loading'>
+  <div class="spinner-control">
+    <div class="spinnern">
+      <div class="lds-ring" *ngIf='loading'>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+  </div>
+</ng-container>
+<ng-container *ngIf='network'>
+  <div class="spinner-control">
+    <div class="spinnern">
+      <span class="error-ntwork">Error occurred loading page</span>
+      <button class="btn btn-danger" style="border-radius: 8rem; margin-left: 40px;" (click)='onReload()'>Reload
+        Page
+      </button>
+    </div>
+    e
+  </div>
+</ng-container>
+
+<ng-container *ngIf="success">
+  <div id="about" class="uk-section uk-section-muted uk-section-large">
+    <div class="uk-container">
+      <div class="uk-width-4-5@m">
+        <h5 class="uk-heading-small">
+          <mark>Unlimited</mark>
+          access to thousands of
+          <mark>vocational courses</mark>
+        </h5>
+      </div>
+      <div class="uk-child-width-1-2@s uk-child-width-1-3@m uk-margin-large-top uk-grid-match" data-uk-grid>
+
+        <ng-container *ngFor="let course of courses?.course?.data">
+          <div>
+            <div class="uk-card uk-card-small uk-card-border">
+              <div class="uk-card-media-top uk-position-relative uk-light">
+                <img src="{{course?.course_image}}" onerror="this.src='../../../assets/extra/images/courses/img-2.jpg'"
+                     alt="Course Title">
+                <div class="uk-position-cover uk-overlay-xlight"></div>
+                <div class="uk-position-top-left">
+                  <span
+                    class="uk-text-bold uk-text-price uk-text-small">{{course?.amount | currency: 'NGN': 'symbol-narrow'}}</span>
+                </div>
+                <div class="uk-position-top-right">
+                  <!--                  <a href="#" class="uk-icon-button uk-like uk-position-z-index uk-position-relative"-->
+                  <!--                     data-uk-icon="heart"></a>-->
+                </div>
+              </div>
+              <div class="uk-card-body">
+                <h3 class="uk-card-title uk-margin-small-bottom">{{course?.course_name}}</h3>
+                <div class="uk-text-muted uk-text-small" *ngIf="course?.tutor?.length > 0">
+                  Tutor
+                  : <span class="uk-card-title uk-margin-small-bottom">{{course?.tutor[0]?.fetch_tutor?.name}}</span>
+                </div>
+                <div class="uk-text-muted uk-text-small uk-rating uk-margin-small-top">
+                  <!--                  <span class="uk-rating-filled" data-uk-icon="icon: star; ratio: 0.75"></span>-->
+                  <!--                  <span class="uk-rating-filled" data-uk-icon="icon: star; ratio: 0.75"></span>-->
+                  <!--                  <span class="uk-rating-filled" data-uk-icon="icon: star; ratio: 0.75"></span>-->
+                  <!--                  <span class="uk-rating-filled" data-uk-icon="icon: star; ratio: 0.75"></span>-->
+                  <!--                  <span class="uk-rating-filled" data-uk-icon="icon: star; ratio: 0.75"></span>-->
+                  <!--                  <span class="uk-margin-small-left uk-text-bold">5.0</span>-->
+                  <span *ngIf="course?.subscribed_users > 0">({{course?.subscribed_users}})</span>
+                </div>
+              </div>
+              <a routerLink="/course/{{course?.id}}" class="uk-position-cover"></a>
+            </div>
+          </div>
+        </ng-container>
+
+      </div>
+      <a class="uk-button uk-button-success-outline uk-button-large uk-margin-medium-top" (click)="onLoadMore()">
+        Show more courses
+      </a>
+    </div>
+  </div>
+</ng-container>
+
+<app-landing-footerbar></app-landing-footerbar>

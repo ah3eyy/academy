@@ -63,6 +63,10 @@ import {VgCoreModule} from 'videogular2/compiled/core';
 import {VgControlsModule} from 'videogular2/compiled/controls';
 import {VgOverlayPlayModule} from 'videogular2/compiled/overlay-play';
 import {VgBufferingModule} from 'videogular2/compiled/buffering';
+import { LandingNavbarComponent } from './landing/landing-navbar/landing-navbar.component';
+import { LandingFooterbarComponent } from './landing/landing-footerbar/landing-footerbar.component';
+import { LandingCoursesComponent } from './landing/landing-courses/landing-courses.component';
+import { LandingCourseDetailsComponent } from './landing/landing-course-details/landing-course-details.component';
 
 @NgModule({
   declarations: [
@@ -114,6 +118,10 @@ import {VgBufferingModule} from 'videogular2/compiled/buffering';
     TutorCourseDetailsComponent,
     TutorCourseModuleDetailsComponent,
     TutorSupportComponent,
+    LandingNavbarComponent,
+    LandingFooterbarComponent,
+    LandingCoursesComponent,
+    LandingCourseDetailsComponent,
   ],
   imports: [
     BrowserModule,
