@@ -1,7 +1,6 @@
-import {Component, OnInit, ChangeDetectorRef} from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {environment} from 'src/environments/environment';
+import {PublicService} from '../../auth/public.service';
 
 @Component({
   selector: 'app-landing',
@@ -22,7 +21,8 @@ export class LandingComponent implements OnInit {
 
   success;
 
-  constructor(private http: HttpClient, private formbuilder: FormBuilder, private cdf: ChangeDetectorRef) {
+
+  constructor(private http: HttpClient, private cdf: ChangeDetectorRef, private publicService: PublicService) {
   }
 
   ngOnInit() {
@@ -33,28 +33,16 @@ export class LandingComponent implements OnInit {
   }
 
   fetchCourse() {
-
-    this.http.get(`${environment.api_url}home/fetch-courses`).subscribe(
-      (res: any) => {
-
+    this.publicService.courses().subscribe(
+      (response: any) => {
+        this.success = true;
         this.loading = false;
-
-        if (res.code == 1) {
-          this.success = true;
-          this.courses = res.data;
-
-          return;
-        }
-
-        this.network = true;
-
+        this.courses = response.data.courses;
       },
       (error) => {
-
-        this.loading = false;
-
         this.network = true;
 
+        this.loading = false;
       }
     );
 

@@ -1,5 +1,5 @@
 <header class="uk-cover-container uk-background-cover uk-background-norepeat uk-background-center-center"
-        style="background-image: url('assets/img/herobacground.jpg');">
+        style="background-image: url('../../../assets/img/herobacground.jpg');">
   <video src="" data-uk-cover></video>
   <div class="uk-overlay uk-position-cover uk-overlay-video"></div>
   <div data-uk-sticky="animation: uk-animation-slide-top; sel-target: .uk-navbar-container;
@@ -8,19 +8,14 @@
       <div class="uk-container uk-container-large">
         <div class="uk-position-z-index" data-uk-navbar>
           <div class="uk-navbar-left">
-            <a class="uk-navbar-item uk-logo" routerLink="/">Drec-Academy</a>
+            <a class="uk-navbar-item uk-logo" href="index.html">curso</a>
           </div>
           <div class="uk-navbar-center">
             <ul class="uk-navbar-nav uk-visible@m">
-              <li routerLinkActive="uk-active" [routerLinkActiveOptions]="{exact: true}">
-                <a routerLink="/">Home</a>
-              </li>
-              <li routerLinkActive="uk-active" [routerLinkActiveOptions]="{exact: true}">
-                <a routerLink="/courses">Courses</a>
-              </li>
-              <li routerLinkActive="uk-active" [routerLinkActiveOptions]="{exact: true}">
-                <a routerLink="/about-us">About Us</a>
-              </li>
+              <li class="uk-active"><a routerLink="/">Home</a></li>
+              <li><a routerLink="/courses">Courses</a></li>
+              <li><a routerLink="/search">Search</a></li>
+              <li><a routerLink="/login">Login</a></li>
             </ul>
           </div>
           <div class="uk-navbar-right">
@@ -51,8 +46,7 @@
             down</a>
         </div>
       </div>
-
-      <div class="uk-width-expand@m uk-section uk-flex uk-flex-column" *ngIf="headerType == 'index'">
+      <div class="uk-width-expand@m uk-section uk-flex uk-flex-column">
         <div class="uk-margin-auto-top uk-margin-auto-bottom">
           <h1 class="uk-heading-medium uk-margin-remove-top uk-letter-spacing-xl"
               data-uk-scrollspy="cls: uk-animation-slide-bottom-medium; repeat: true">
@@ -88,55 +82,13 @@
           </div>
         </div>
       </div>
-
-      <div class="uk-width-expand@m uk-section" *ngIf="headerType == 'courses'">
-        <div class="uk-margin-top">
-          <div class="uk-width-4-5@m"
-               data-uk-scrollspy="cls: uk-animation-slide-bottom-medium; delay: 200; repeat: true">
-            <h1 class="uk-heading-medium uk-margin-remove-top uk-letter-spacing-xl">Thousands of classes to
-              <mark>explore</mark>
-              your
-              <mark>creativity</mark>
-              and
-              <mark>grow</mark>
-              your career
-            </h1>
-            <a routerLink="/login" class="uk-button uk-button-large uk-button-success-outline uk-margin-medium-top">
-              Get started </a>
-          </div>
-        </div>
-      </div>
-
-      <div class="uk-width-expand@m uk-section" *ngIf="headerType == 'details'">
-        <div class="uk-margin-top">
-          <div class="uk-grid-large" data-uk-grid
-               data-uk-scrollspy="cls: uk-animation-slide-bottom-medium; delay: 200; repeat: true">
-            <div class="uk-width-1-2@m">
-              <h1 class="uk-heading-medium uk-margin-remove-top uk-letter-spacing-xl">{{otherDetails?.course_name}}</h1>
-              <a routerLink="/enroll-now/{{otherDetails?.id}}"
-                 class="uk-button uk-button-large uk-button-success-outline">Enroll Now</a>
-            </div>
-            <div class="uk-width-1-2@m uk-text-large uk-flex uk-flex-middle">
-              <div>
-                <p>Completely mesh interactive web-readiness via mission-critical growth strategies. Seamlessly
-                  maintain granular communities through cross-platform niches. </p>
-                <p>Holisticly unleash end-to-end users
-                  after long-term high-impact channels. Globally synthesize proactive bandwidth with interactive
-                  content.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="uk-header-right uk-section uk-visible@m uk-flex uk-flex-right uk-flex-bottom"
-             *ngIf="headerType !== 'details'">
-          <div>
-            <ul class="uk-subnav uk-text-xsmall uk-text-bold">
-              <li><a class="uk-link-border" href="#" target="_blank">facebook</a></li>
-              <li><a class="uk-link-border" href="#" target="_blank">twitter</a></li>
-              <li><a class="uk-link-border" href="#" target="_blank">instagram</a></li>
-            </ul>
-          </div>
+      <div class="uk-header-right uk-section uk-visible@m uk-flex uk-flex-right uk-flex-bottom">
+        <div>
+          <ul class="uk-subnav uk-text-xsmall uk-text-bold">
+            <li><a class="uk-link-border" href="#" target="_blank">facebook</a></li>
+            <li><a class="uk-link-border" href="#" target="_blank">twitter</a></li>
+            <li><a class="uk-link-border" href="#" target="_blank">instagram</a></li>
+          </ul>
         </div>
       </div>
     </div>

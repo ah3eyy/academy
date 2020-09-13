@@ -67,6 +67,7 @@ import { LandingNavbarComponent } from './landing/landing-navbar/landing-navbar.
 import { LandingFooterbarComponent } from './landing/landing-footerbar/landing-footerbar.component';
 import { LandingCoursesComponent } from './landing/landing-courses/landing-courses.component';
 import { LandingCourseDetailsComponent } from './landing/landing-course-details/landing-course-details.component';
+import { LandingSearchComponent } from './landing/landing-search/landing-search.component';
 
 @NgModule({
   declarations: [
@@ -122,6 +123,7 @@ import { LandingCourseDetailsComponent } from './landing/landing-course-details/
     LandingFooterbarComponent,
     LandingCoursesComponent,
     LandingCourseDetailsComponent,
+    LandingSearchComponent,
   ],
   imports: [
     BrowserModule,
