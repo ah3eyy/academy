@@ -90,8 +90,9 @@
 	right: 15px;
 	height: 45px;
 	line-height: 45px;
-	font-family: FontAwesome;
-	content: "\f0d7";
+	font-family: 'Font Awesome 5 Free';
+    content: "\f0d7";
+    font-weight: 900;
 }
 
 .menu--subitens__opened {

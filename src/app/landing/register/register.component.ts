@@ -1,9 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { environment } from 'src/environments/environment';
-import { AuthService } from 'src/app/auth/auth.service';
-import { Router } from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {AuthService} from 'src/app/auth/auth.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -20,7 +19,8 @@ export class RegisterComponent implements OnInit {
 
   loading = false;
 
-  constructor(private http: HttpClient, private formbuilder: FormBuilder, private authService: AuthService, private route: Router) { }
+  constructor(private http: HttpClient, private formbuilder: FormBuilder, private authService: AuthService, private route: Router) {
+  }
 
   ngOnInit() {
 
@@ -31,78 +31,58 @@ export class RegisterComponent implements OnInit {
   registerUserInit() {
 
     this.registerUser = this.formbuilder.group({
-      firstname: ['', [Validators.required]],
-      lastname: ['', [Validators.required]],
-      phone: ['', [Validators.required, Validators.maxLength(11), Validators.minLength(11), Validators.pattern('[0-9]*')]],
+      full_name: ['', [Validators.required]],
+      phone_number: ['', [Validators.required, Validators.maxLength(11), Validators.minLength(11), Validators.pattern('[0-9]*')]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]],
-      confirmpassword: ['', [Validators.required]],
+      confirm_password: ['', [Validators.required]],
       acceptTerms: [true, Validators.requiredTrue]
     });
 
   }
 
 
-  get f() { return this.registerUser.controls; }
+  get f() {
+    return this.registerUser.controls;
+  }
 
 
   onRegisterUser(userInfo: FormGroup) {
 
     this.loading = true;
 
-    this.submitted = true;
-
     if (this.registerUser.invalid) {
       this.loading = false;
       return;
     }
 
+    this.authService.userRegister(this.registerUser.value).subscribe(
+      (response: any) => {
 
-    this.http.post<any>(`${environment.api_url}auth/register`, userInfo.value).subscribe(
-      data => {
+        this.authService.login(response.data.access_token);
 
-        if (data.code == 1) {
+        this.authService.saveUser(response.data.user);
 
-          this.authService.login(data.accessToken);
+        this.message = {
+          'type': 'success',
+          'message': 'Account created successfully',
+          'status': true
+        };
 
-          if (this.authService.isAuthenticate()) {
-            
-            this.message = { 'type': 'success', 'message': 'Account created successfully and profile is being setup', 'status': true };
-
-            this.route.navigate(['dashboard']);
-
-            return true;
-          }
-
-          this.loading = false;
-
-          this.submitted = false;
-
-          this.message = { 'type': 'error', 'message': 'An error occurred', 'status': true };
-
-        }
-
-
-        this.loading = false;
-
-        this.submitted = false;
-
-        this.message = { 'type': 'error', 'message': 'An error occurred', 'status': true };
+        this.route.navigate(['/']);
 
       },
       error => {
 
         this.loading = false;
 
-        this.submitted = false;
-
-        let message = 'An error occurred';
+        let message = 'An error occurred creating account';
 
         if (error.error) {
-          message = error.error.short_description
+          message = error.error.message;
         }
 
-        this.message = { 'type': 'error', 'message': message, 'status': true };
+        this.message = {'type': 'error', 'message': message, 'status': true};
 
       }
     );

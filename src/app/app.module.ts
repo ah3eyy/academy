@@ -68,6 +68,10 @@ import { LandingFooterbarComponent } from './landing/landing-footerbar/landing-f
 import { LandingCoursesComponent } from './landing/landing-courses/landing-courses.component';
 import { LandingCourseDetailsComponent } from './landing/landing-course-details/landing-course-details.component';
 import { LandingSearchComponent } from './landing/landing-search/landing-search.component';
+import { MyCoursesComponent } from './student/my-courses/my-courses.component';
+import { NavBarComponent } from './student/component/nav-bar/nav-bar.component';
+import { HeaderComponent } from './student/component/header/header.component';
+import { StudentComponent } from './student/student.component';
 
 @NgModule({
   declarations: [
@@ -124,6 +128,10 @@ import { LandingSearchComponent } from './landing/landing-search/landing-search.
     LandingCoursesComponent,
     LandingCourseDetailsComponent,
     LandingSearchComponent,
+    MyCoursesComponent,
+    NavBarComponent,
+    HeaderComponent,
+    StudentComponent,
   ],
   imports: [
     BrowserModule,

@@ -4093,3 +4093,18 @@ i.icon8 {
     right: 13px;
     position: absolute;
 }
+
+.ui.menu.cate-dpdwn {
+    box-shadow: none !important;
+    border: 0 !important;
+}
+
+.ui.menu.cate-dpdwn>.item:hover {
+    background: #fff !important;
+}
+
+.menu.dropdown_category5 {
+    margin-top: 0 !important;
+    border-top: 1px solid #fff !important;
+    border-radius: 3px !important;
+}

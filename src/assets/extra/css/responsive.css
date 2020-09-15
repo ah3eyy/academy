@@ -171,7 +171,7 @@
 .ml_item {
 	width: auto !important;
     text-align: left !important;
-	padding-top: 4px;
+	padding-top: 13px;
 	margin-left: 15px !important;
 }
 
@@ -290,6 +290,10 @@
 .title478 {
     padding: 62px 0 50px !important;
 }
+
+.top-category {
+	display: none;
+}
 }
  
 /* Small devices (landscape phones, 576px and up) */
@@ -395,7 +399,6 @@
 .ml_item {
 	width: auto !important;
     text-align: center !important;
-	padding-top: 0;
 	margin-left: 15px !important;
 }
 
@@ -473,6 +476,9 @@
     padding: 62px 0 50px !important;
 }
 
+.top-category {
+	display: none;
+}
 }
 
 /* Medium devices (tablets, 768px and up) */
@@ -569,7 +575,6 @@
 .ml_item {
 	width: auto !important;
     text-align: center !important;
-	padding-top: 0;
 	margin-left: 15px !important;
 }
 

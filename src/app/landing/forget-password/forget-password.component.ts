@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
-import { environment } from 'src/environments/environment';
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {Router} from '@angular/router';
+import {HttpClient} from '@angular/common/http';
+import {AuthService} from '../../auth/auth.service';
 
 @Component({
   selector: 'app-forget-password',
@@ -19,7 +19,8 @@ export class ForgetPasswordComponent implements OnInit {
 
   message;
 
-  constructor(private formbuilder: FormBuilder, private route: Router, private http: HttpClient) { }
+  constructor(private formbuilder: FormBuilder, private route: Router, private http: HttpClient, private authService: AuthService) {
+  }
 
   ngOnInit() {
 
@@ -36,7 +37,9 @@ export class ForgetPasswordComponent implements OnInit {
 
   }
 
-  get f() { return this.forgotPassword.controls; }
+  get f() {
+    return this.forgotPassword.controls;
+  }
 
 
   onForgotPassword(info: FormGroup) {
@@ -50,29 +53,12 @@ export class ForgetPasswordComponent implements OnInit {
       return;
     }
 
-
-    this.http.post<any>(`${environment.api_url}auth/forgot-password`, info.value).subscribe(
-
+    this.authService.forgotPassword(info.value).subscribe(
       data => {
 
-        if (data.code == 1) {
-
-          this.loading = false;
-
-          this.submitted = false;
-
-          this.message = { 'type': 'success', 'message': 'Reset e-mail has being sent to the provided email address.', 'status': true };
-
-          return true;
-        }
-
+        this.message = {'type': 'success', 'message': 'Reset e-mail has being sent to the provided email address.', 'status': true};
 
         this.loading = false;
-
-        this.submitted = false;
-
-        this.message = { 'type': 'error', 'message': 'An error occurred', 'status': true };
-
 
       },
 
@@ -80,20 +66,16 @@ export class ForgetPasswordComponent implements OnInit {
 
         this.loading = false;
 
-        this.submitted = false;
-
         let message = 'An error occurred';
 
         if (error.error) {
-          message = error.error.short_description
+          message = error.error.message;
         }
 
-        this.message = { 'type': 'error', 'message': message, 'status': true };
+        this.message = {'type': 'error', 'message': message, 'status': true};
 
 
       }
-
-
     );
 
   }

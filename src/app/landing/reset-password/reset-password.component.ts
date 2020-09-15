@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import { environment } from 'src/environments/environment';
+import {Component, OnInit} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {ActivatedRoute, Router} from '@angular/router';
+import {AuthService} from '../../auth/auth.service';
 
 @Component({
   selector: 'app-reset-password',
@@ -21,7 +21,8 @@ export class ResetPasswordComponent implements OnInit {
 
   getParam;
 
-  constructor(private http: HttpClient, private formbuilder : FormBuilder, private activeRouter: ActivatedRoute, private route: Router) { }
+  constructor(private http: HttpClient, private formbuilder: FormBuilder, private activeRouter: ActivatedRoute, private route: Router, private authService: AuthService) {
+  }
 
   ngOnInit() {
 
@@ -35,7 +36,7 @@ export class ResetPasswordComponent implements OnInit {
 
   }
 
-  resetInit(){
+  resetInit() {
 
     this.reset = this.formbuilder.group({
 
@@ -43,16 +44,18 @@ export class ResetPasswordComponent implements OnInit {
 
       password: ['', [Validators.required]],
 
-      confirmpassword: ['', [Validators.required]]
+      confirm_password: ['', [Validators.required]]
 
     });
 
   }
 
-  get f() { return this.reset.controls; }
+  get f() {
+    return this.reset.controls;
+  }
 
-  onSumit(info: FormGroup){
-    
+  onSumit(info: FormGroup) {
+
     this.loading = true;
 
     this.submitted = true;
@@ -63,30 +66,12 @@ export class ResetPasswordComponent implements OnInit {
     }
 
 
-    this.http.post<any>(`${environment.api_url}auth/reset-password`, info.value).subscribe(
+    this.authService.resetPassword(info.value).subscribe(
+      async (data: any) => {
 
-      data => {
+        this.message = {'type': 'success', 'message': 'Password reset successfully.', 'status': true};
 
-        if (data.code == 1) {
-
-          this.loading = false;
-
-          this.submitted = false;
-
-          this.message = { 'type': 'success', 'message': 'Password reset successfully.', 'status': true };
-
-          this.route.navigate(['/login']);
-
-          return true;
-        }
-
-
-        this.loading = false;
-
-        this.submitted = false;
-
-        this.message = { 'type': 'error', 'message': 'An error occurred', 'status': true };
-
+        await this.route.navigate(['/login']);
 
       },
 
@@ -99,15 +84,11 @@ export class ResetPasswordComponent implements OnInit {
         let message = 'An error occurred';
 
         if (error.error) {
-          message = error.error.short_description
+          message = error.error.short_description;
         }
 
-        this.message = { 'type': 'error', 'message': message, 'status': true };
-
-
+        this.message = {'type': 'error', 'message': message, 'status': true};
       }
-
-
     );
 
   }

@@ -157,7 +157,7 @@ Night Mood
 }
 
 .night-mode .menu.dropdown_account {
-    margin-top: 11px !important;
+    margin-top: 0 !important;
     border-top: 1px solid #242424 !important;
     border-radius: 3px !important;
 	background: #171717 !important;
@@ -176,6 +176,25 @@ Night Mood
 }
 
 .night-mode .ui.dropdown .menu>.channel_my:hover {
+    color: #fff !important;
+    background: #333 !important;
+}
+
+.night-mode .ui.menu.cate-dpdwn {
+    box-shadow: none !important;
+    border: 0 !important;
+	background: transparent !important;
+}
+
+.night-mode .ui.menu.cate-dpdwn>.item:hover {
+    background: transparent !important;
+}
+
+.night-mode .ui.menu .ui.dropdown .menu>.channel_item {
+    color: #c7c7c7 !important;
+}
+
+.night-mode .ui.menu .ui.dropdown .menu>.channel_item:hover {
     color: #fff !important;
     background: #333 !important;
 }
@@ -2295,4 +2314,19 @@ Night Mood
 .night-mode .btn-subscribe .button:before ,
 .night-mode .post-comment-text::before{
     border-right-color: #201f23;
+}
+
+.night-mode .code-apply-btn:hover {
+    color: #fff !important;
+    background: #cc2622;
+}
+
+.night-mode .chck-btn22 {
+    color: #fff !important;
+    background: #ed2a26;
+}
+
+.night-mode .chck-btn22:hover {
+    color: #fff !important;
+    background: #cc2622;
 }

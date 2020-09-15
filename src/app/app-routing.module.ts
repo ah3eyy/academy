@@ -40,6 +40,8 @@ import {TutorSupportComponent} from './tutor/tutor-support/tutor-support.compone
 import {LandingCoursesComponent} from './landing/landing-courses/landing-courses.component';
 import {LandingCourseDetailsComponent} from './landing/landing-course-details/landing-course-details.component';
 import {LandingSearchComponent} from './landing/landing-search/landing-search.component';
+import {MyCoursesComponent} from './student/my-courses/my-courses.component';
+import {StudentComponent} from './student/student.component';
 
 
 const routes: Routes = [
@@ -70,6 +72,19 @@ const routes: Routes = [
   {
     path: 'dashboard',
     loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule)
+  },
+  {
+    path: 'student',
+    component:StudentComponent,
+    canActivate: [AuthGuard],
+    children: [
+      {
+        path: '', redirectTo: 'my-courses', pathMatch: 'full'
+      },
+      {
+        path: 'my-courses', component: MyCoursesComponent
+      },
+    ]
   },
   {
     path: 'admin-login',

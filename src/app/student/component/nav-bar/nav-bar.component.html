@@ -1,0 +1,76 @@
+<nav class="uk-navbar-container uk-letter-spacing-small uk-text-bold">
+  <div class="uk-container uk-container-large">
+    <div class="uk-position-z-index" data-uk-navbar>
+      <div class="uk-navbar-left">
+        <a class="uk-navbar-item uk-logo" routerLink="/">
+          <img src="assets/img/logos.png" style="width: 60px;"/>
+        </a>
+      </div>
+      <div class="uk-navbar-center">
+        <ul class="uk-navbar-nav uk-visible@m">
+          <li class="uk-active"><a routerLink="/">Home</a></li>
+          <li><a routerLink="/courses">Courses</a></li>
+          <li><a routerLink="/search">Search</a></li>
+
+          <ng-container *ngIf="!is_login">
+            <li><a routerLink="/login">Login</a></li>
+          </ng-container>
+
+          <ng-container *ngIf="is_login">
+            <li><a routerLink="/student">My Courses</a></li>
+            <li><a routerLink="/live-sessions">Live Sessions</a></li>
+          </ng-container>
+
+
+        </ul>
+      </div>
+      <div class="uk-navbar-right">
+        <div>
+          <a class="uk-navbar-toggle" data-uk-search-icon href="#"></a>
+          <div class="uk-drop" data-uk-drop="mode: click; pos: left-center; offset: 0">
+            <form class="uk-search uk-search-navbar uk-width-1-1">
+              <input class="uk-search-input uk-text-demi-bold" type="search" placeholder="Search..." autofocus>
+            </form>
+          </div>
+        </div>
+        <div class="uk-navbar-item">
+          <div *ngIf="!is_login"><a class="uk-button uk-button-success-outline" routerLink="/register">Sign Up</a>
+          </div>
+
+          <div *ngIf="is_login">
+            <div class="dropdown">
+              <div
+                class="click dropdown-toggle d-flex align-items-center"
+                id="dropdownMenudiv"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                <div class="ml-3">
+                  <p class="mb-0 font12 font-light">Hello, {{user_details?.full_name}}</p>
+                </div>
+                <div class="profile">
+            <span class="px-2">
+              <i class="fa fa-angle-down"></i>
+            </span>
+                  <img src="./assets/user.png" class="rounded-circle" alt="" style="width: 30px;"/>
+                </div>
+              </div>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenudiv">
+                <a class="dropdown-item click font12" routerLink="/admin/profile"
+                >Profile</a
+                >
+                <a class="dropdown-item click font12" (click)="onLogOut()">
+                  Logout
+                </a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <a class="uk-navbar-toggle uk-hidden@m" href="#offcanvas" data-uk-toggle><span
+          data-uk-navbar-toggle-icon></span></a>
+      </div>
+    </div>
+  </div>
+</nav>

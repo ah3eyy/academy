@@ -403,7 +403,7 @@ header {
 
 .search120 {
     float: left;
-    margin-left: 80px;
+    margin-left: 50px;
 }
 
 .srch10 {
@@ -441,7 +441,7 @@ i.icon1 {
 }
 
 .option_links {
-    padding: 10px 8px;
+    padding: 18px 8px;
     font-size: 20px;
     color: #686f7a;
 	position: relative;
@@ -458,7 +458,7 @@ i.icon1 {
 .noti_count {
     font-size: 11px;
     position: absolute;
-    top: 3px;
+    top: 10px;
     right: 8px;
     background: #ed2a26;
     color: #fff;
@@ -469,6 +469,11 @@ i.icon1 {
     border-radius: 100%;
     font-weight: 500;
     font-family: 'Roboto', sans-serif;
+}
+
+.opts_account {
+    padding: 12px 0;
+    float: right;
 }
 
 .opts_account img {
@@ -518,7 +523,7 @@ i.icon1 {
 }
 
 .menu.dropdown_account {
-    margin-top: 11px !important;
+    margin-top: 0 !important;
     border-top: 1px solid #fff !important;
     border-radius: 3px !important;
 }
@@ -659,6 +664,21 @@ i.icon1 {
 .vbm_btn:hover {
     background: #333;
     color: #fff !important;
+}
+
+.ui.menu.cate-dpdwn {
+    box-shadow: none !important;
+    border: 0 !important;
+}
+
+.ui.menu.cate-dpdwn>.item:hover {
+    background: #fff !important;
+}
+
+.menu.dropdown_category5 {
+    margin-top: 0 !important;
+    border-top: 1px solid #fff !important;
+    border-radius: 3px !important;
 }
 
 /*--- Index Homepage ---*/
@@ -926,6 +946,43 @@ i.icon1 {
 	transition: all .2s ease-in-out;
 }
 
+.fcrse_1 .shrt-cart-btn  {
+    display: none;
+}
+
+.fcrse_1:hover .auth1lnkprce .shrt-cart-btn  {
+    display: block;
+	visibility: visible;
+	opacity: 1;
+	transition: all 0.5s ease;
+}
+
+.shrt-cart-btn:hover  {
+	color: #ed2a26;
+}
+
+.fcrse_1:hover  {
+	transition: all 0.5s ease;
+	 transform: translateY(-5px);
+    -webkit-transform: translateY(1px);
+    -moz-transform: translateY(-5px);
+    -ms-transform: translateY(-5px);
+    -o-transform: translateY(-5px);
+}
+
+.shrt-cart-btn {
+    font-size: 18px;
+    color: #333;
+    background: transparent;
+    padding: 0;
+    border-radius: 25px;
+    margin-right: 10px;
+	border: 0;
+	float: right;
+	margin-left: 10px;
+	opacity: 0;
+}
+
 .fcrse_img {
 	width: 100%;
 	float: left;
@@ -1177,8 +1234,7 @@ i.icon1 {
     float: left;
     text-align: center;
     border-radius: 100%;
-    /* padding: 15px 13px; */
-    padding-top: 1rem;
+    padding: 15px 13px;
     font-size: 20px;
     color: #fff;
     position: absolute;
@@ -4577,6 +4633,11 @@ a.rmv-btn i {
     width: 100%;
 }
 
+.back_link {
+    padding-top: 10px;
+    float: left;
+}
+
 .back_link a {
     color: #333;
     float: left;
@@ -4600,6 +4661,7 @@ a.rmv-btn i {
     float: left;
 	width: 80%;
     text-align: center;
+	padding-top: 12px;
 }
 
 .main_logo15 {
@@ -7834,6 +7896,57 @@ a.rmv-btn i {
 .line-title {
     padding-top: 20px;
     margin-bottom: 6px;
+}
+
+/* --- Shopping Cart --- */
+
+.coupon_code p {
+    font-family: 'Roboto', sans-serif;
+    padding: 20px 0 0;
+    float: left;
+    width: 100%;
+}
+
+.code-apply-btn {
+    height: 40px;
+    padding: 0 20px;
+    border: 0;
+    /* margin-top: 45px; */
+    /* margin-bottom: 20px; */
+    color: #fff;
+    border-radius: 20px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    background: #ed2a26;
+    /* display: block; */
+    position: absolute;
+    right: 0;
+}
+
+.code-apply-btn:hover {
+    color: #fff !important;
+    background: #333;
+}
+
+.chck-btn22 {
+    font-size: 14px;
+    margin-top: 30px;
+    font-weight: 400;
+    font-family: 'Roboto', sans-serif;
+    color: #fff !important;
+    background: #ed2a26;
+    border-radius: 20px;
+    text-align: center;
+    border: 0;
+    width: 100%;
+    float: left;
+    height: 40px;
+    padding: 10px 0;
+}
+
+.chck-btn22:hover {
+    color: #fff !important;
+    background: #333;
 }
 
 /* --- Night Mode Btn --- */

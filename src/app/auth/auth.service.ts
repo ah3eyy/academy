@@ -31,10 +31,9 @@ export class AuthService extends CacheService {
 
   resstatus: boolean;
 
-  url = environment.api_url + '/api/v1/auth/';
+  url = environment.api_url + 'v1/auth/';
 
   login(token: string) {
-    this.logout();
     this.setCookie('token', token, 1);
   }
 
@@ -60,6 +59,14 @@ export class AuthService extends CacheService {
     }
 
     return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+  }
+
+  saveUser(data) {
+    this.setCookie('xxx', JSON.stringify(data), 1);
+  }
+
+  getUser() {
+    return JSON.parse(this.getCookie('xxx'));
   }
 
   authStatus(): IAuthStatus {

@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import {AuthService} from '../../auth/auth.service';
+import {AuthService} from '../../../auth/auth.service';
 
 @Component({
-  selector: 'app-landing-search',
-  templateUrl: './landing-search.component.html',
-  styleUrls: ['./landing-search.component.scss']
+  selector: 'app-nav-bar',
+  templateUrl: './nav-bar.component.html',
+  styleUrls: ['./nav-bar.component.scss']
 })
-export class LandingSearchComponent implements OnInit {
+export class NavBarComponent implements OnInit {
 
   is_login = false;
 
@@ -38,5 +38,4 @@ export class LandingSearchComponent implements OnInit {
 
     this.ngOnInit();
   }
-
 }
