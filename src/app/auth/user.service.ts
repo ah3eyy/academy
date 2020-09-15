@@ -7,7 +7,7 @@ import {environment} from '../../environments/environment.prod';
 })
 export class UserService {
 
-  url = environment.api_url + '/api/v1/';
+  url = environment.api_url + '/api/v1/user/';
 
   constructor(
     private httpClient: HttpClient
@@ -40,6 +40,10 @@ export class UserService {
 
   userCourses() {
     return this.httpClient.post(`${this.url}user-courses`, {});
+  }
+
+  liveSession() {
+    return this.httpClient.post(`${this.url}live-session`, {});
   }
 
   userCourseDetails(data) {

@@ -2,11 +2,11 @@ import {Component, OnInit} from '@angular/core';
 import {UserService} from '../../auth/user.service';
 
 @Component({
-  selector: 'app-my-courses',
-  templateUrl: './my-courses.component.html',
-  styleUrls: ['./my-courses.component.scss']
+  selector: 'app-live-sessions',
+  templateUrl: './live-sessions.component.html',
+  styleUrls: ['./live-sessions.component.scss']
 })
-export class MyCoursesComponent implements OnInit {
+export class LiveSessionsComponent implements OnInit {
 
   network = false;
   success = false;
@@ -20,11 +20,11 @@ export class MyCoursesComponent implements OnInit {
   ngOnInit() {
     this.loading = true;
 
-    this.fetchMyCourses();
+    this.fetchLiveSessions();
   }
 
-  fetchMyCourses() {
-    this.userService.userCourses().subscribe(
+  fetchLiveSessions() {
+    this.userService.liveSession().subscribe(
       (response: any) => {
         this.details = response.data;
 
@@ -42,4 +42,5 @@ export class MyCoursesComponent implements OnInit {
   reload() {
     this.ngOnInit();
   }
+
 }

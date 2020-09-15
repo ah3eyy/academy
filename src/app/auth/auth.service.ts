@@ -31,7 +31,7 @@ export class AuthService extends CacheService {
 
   resstatus: boolean;
 
-  url = environment.api_url + 'v1/auth/';
+  url = environment.api_url + '/api/v1/auth/';
 
   login(token: string) {
     this.setCookie('token', token, 1);

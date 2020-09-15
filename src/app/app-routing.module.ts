@@ -42,6 +42,7 @@ import {LandingCourseDetailsComponent} from './landing/landing-course-details/la
 import {LandingSearchComponent} from './landing/landing-search/landing-search.component';
 import {MyCoursesComponent} from './student/my-courses/my-courses.component';
 import {StudentComponent} from './student/student.component';
+import {LiveSessionsComponent} from './student/live-sessions/live-sessions.component';
 
 
 const routes: Routes = [
@@ -75,7 +76,7 @@ const routes: Routes = [
   },
   {
     path: 'student',
-    component:StudentComponent,
+    component: StudentComponent,
     canActivate: [AuthGuard],
     children: [
       {
@@ -83,6 +84,9 @@ const routes: Routes = [
       },
       {
         path: 'my-courses', component: MyCoursesComponent
+      },
+      {
+        path: 'live-sessions', component: LiveSessionsComponent
       },
     ]
   },

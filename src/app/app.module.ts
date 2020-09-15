@@ -72,6 +72,7 @@ import { MyCoursesComponent } from './student/my-courses/my-courses.component';
 import { NavBarComponent } from './student/component/nav-bar/nav-bar.component';
 import { HeaderComponent } from './student/component/header/header.component';
 import { StudentComponent } from './student/student.component';
+import { LiveSessionsComponent } from './student/live-sessions/live-sessions.component';
 
 @NgModule({
   declarations: [
@@ -132,6 +133,7 @@ import { StudentComponent } from './student/student.component';
     NavBarComponent,
     HeaderComponent,
     StudentComponent,
+    LiveSessionsComponent,
   ],
   imports: [
     BrowserModule,
