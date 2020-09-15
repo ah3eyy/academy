@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  api_url: 'http://remoteapi.dva.com.ng',
+  api_url: 'https://remoteapi.dva.com.ng',
   api_url_link: 'http://localhost/academy/storage/app/'
 };
 
