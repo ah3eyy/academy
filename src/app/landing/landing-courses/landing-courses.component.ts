@@ -2,6 +2,7 @@ import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {FormBuilder} from '@angular/forms';
 import {environment} from '../../../environments/environment';
+import {PublicService} from '../../auth/public.service';
 
 @Component({
   selector: 'app-landing-courses',
@@ -24,7 +25,9 @@ export class LandingCoursesComponent implements OnInit {
 
   loadMore = false;
 
-  constructor(private http: HttpClient, private formbuilder: FormBuilder, private cdf: ChangeDetectorRef) {
+  constructor(
+    public  publicService:PublicService,
+    private http: HttpClient, private formbuilder: FormBuilder, private cdf: ChangeDetectorRef) {
   }
 
   ngOnInit() {
@@ -34,28 +37,28 @@ export class LandingCoursesComponent implements OnInit {
     this.fetchCourse();
   }
 
-  fetchCourse() {
-
-    this.http.get(`${environment.api_url}home/fetch-all-courses`).subscribe(
+  fetchCourse(page= 1) {
+    this.publicService.courses(page).subscribe(
       (res: any) => {
-
+        this.success = true;
         this.loading = false;
+        this.courses = res.data.courses;
 
-        if (res.code == 1) {
-          this.success = true;
-          this.courses = res.data;
-          return;
+        if (res.data.courses.data.length > 0) {
+          res.data.courses.data.map((e) => {
+            this.courses.data.push(e);
+          });
         }
 
-        this.network = true;
+        this.courses.last_page = res.data.courses.last_page;
+
+        this.courses.current_page = res.data.courses.current_page;
 
       },
       (error) => {
-
-        this.loading = false;
-
         this.network = true;
 
+        this.loading = false;
       }
     );
 
@@ -65,48 +68,12 @@ export class LandingCoursesComponent implements OnInit {
     this.ngOnInit();
   }
 
-  loadCourse(page) {
-
-    this.http.get(`${environment.api_url}home/fetch-all-courses?page=${page}`).subscribe(
-      (res: any) => {
-
-        this.loading = false;
-
-        if (res.code == 1) {
-          this.success = true;
-
-          if (res.data.course.data.length > 0) {
-            res.data.course.data.map((e) => {
-              this.courses.course.data.push(e);
-            });
-          }
-
-          this.courses.course.last_page = res.data.course.last_page;
-
-          this.courses.course.current_page = res.data.course.current_page;
-
-          return;
-        }
-
-        this.network = true;
-
-      },
-      (error) => {
-
-        this.loading = false;
-
-        this.network = true;
-
-      }
-    );
-
-  }
 
   onLoadMore() {
 
     if (this.courses.course.current_page < this.courses.course.last_page && (this.courses.course.current_page + 1) <= this.courses.course.last_page) {
 
-      this.loadCourse(this.courses.course.current_page + 1);
+      this.fetchCourse(this.courses.course.current_page + 1);
 
     }
 

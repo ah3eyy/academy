@@ -73,6 +73,7 @@ import { NavBarComponent } from './student/component/nav-bar/nav-bar.component';
 import { HeaderComponent } from './student/component/header/header.component';
 import { StudentComponent } from './student/student.component';
 import { LiveSessionsComponent } from './student/live-sessions/live-sessions.component';
+import { NavBarDetailsComponent } from './landing/nav-bar-details/nav-bar-details.component';
 
 @NgModule({
   declarations: [
@@ -134,6 +135,7 @@ import { LiveSessionsComponent } from './student/live-sessions/live-sessions.com
     HeaderComponent,
     StudentComponent,
     LiveSessionsComponent,
+    NavBarDetailsComponent,
   ],
   imports: [
     BrowserModule,

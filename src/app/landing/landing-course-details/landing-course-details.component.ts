@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {FormBuilder} from '@angular/forms';
 import {environment} from '../../../environments/environment';
 import {ActivatedRoute} from '@angular/router';
+import {PublicService} from '../../auth/public.service';
 
 @Component({
   selector: 'app-landing-course-details',
@@ -25,7 +26,12 @@ export class LandingCourseDetailsComponent implements OnInit {
 
   getCourseId;
 
-  constructor(private http: HttpClient, private formbuilder: FormBuilder, private cdf: ChangeDetectorRef, private activatedRoute: ActivatedRoute) {
+  constructor(private http: HttpClient,
+              public publicService:PublicService,
+              private formbuilder: FormBuilder,
+              private cdf: ChangeDetectorRef,
+              private activatedRoute: ActivatedRoute
+  ) {
     this.getCourseId = activatedRoute.params['value'].id;
   }
 
@@ -37,31 +43,20 @@ export class LandingCourseDetailsComponent implements OnInit {
   }
 
   fetchCourse() {
-
-    this.http.get(`${environment.api_url}home/fetch-course-details/${this.getCourseId}`).subscribe(
-      (res: any) => {
-
+    this.publicService.courseDetail({slug: this.getCourseId}).subscribe(
+      (response: any) => {
+        this.success = true;
         this.loading = false;
-
-        if (res.code == 1) {
-          this.success = true;
-          this.courses = res.data;
-          console.log(this.courses);
-          return;
-        }
-
-        this.network = true;
-
+        this.courses = response.data;
+        this.network = false;
+        console.log(this.courses.classes)
       },
       (error) => {
-
-        this.loading = false;
-
         this.network = true;
 
+        this.loading = false;
       }
     );
-
   }
 
   onReload() {

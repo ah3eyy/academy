@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  api_url: 'https://remoteapi.dva.com.ng',
+  api_url: 'http://127.0.0.1:8000',
   api_url_link: 'https://remoteapi.dva.com.ng'
 };
 
