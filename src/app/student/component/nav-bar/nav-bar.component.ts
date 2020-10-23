@@ -12,13 +12,15 @@ export class NavBarComponent implements OnInit {
 
   user_details;
 
+  toggle_item = false;
+
   constructor(
     private authService: AuthService
   ) {
   }
 
   ngOnInit() {
-    console.log(this.authService.isAuthenticate());
+
     if (this.authService.isAuthenticate()) {
       this.is_login = true;
       this.user_details = this.authService.getUser();
@@ -31,6 +33,8 @@ export class NavBarComponent implements OnInit {
   ngOnChanges(): void {
 
   }
+
+
 
 
   onLogOut() {

@@ -1,9 +1,9 @@
-import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {FormBuilder} from '@angular/forms';
-import {environment} from '../../../environments/environment';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {PublicService} from '../../auth/public.service';
+import {AuthService} from '../../auth/auth.service';
 
 @Component({
   selector: 'app-landing-course-details',
@@ -26,30 +26,43 @@ export class LandingCourseDetailsComponent implements OnInit {
 
   getCourseId;
 
+  userDetails;
+
+  userPaid = false;
+
+  @ViewChild('makePaymentBtn', {static: false}) makePaymentBtn: ElementRef;
+
   constructor(private http: HttpClient,
-              public publicService:PublicService,
+              public publicService: PublicService,
               private formbuilder: FormBuilder,
               private cdf: ChangeDetectorRef,
-              private activatedRoute: ActivatedRoute
+              private activatedRoute: ActivatedRoute,
+              public authService: AuthService,
+              public router: Router
   ) {
     this.getCourseId = activatedRoute.params['value'].id;
   }
 
-  ngOnInit() {
+  async ngOnInit() {
     this.loading = true;
     this.network = false;
     this.success = false;
+    this.userDetails = this.authService.getUser();
     this.fetchCourse();
   }
 
   fetchCourse() {
-    this.publicService.courseDetail({slug: this.getCourseId}).subscribe(
+    this.publicService.courseDetail({slug: this.getCourseId, uid: this.userDetails.uid}).subscribe(
       (response: any) => {
         this.success = true;
         this.loading = false;
         this.courses = response.data;
         this.network = false;
-        console.log(this.courses.classes)
+
+        if (this.courses.user_course) {
+          this.userPaid = true;
+        }
+        console.log(this.courses.classes);
       },
       (error) => {
         this.network = true;
@@ -59,7 +72,8 @@ export class LandingCourseDetailsComponent implements OnInit {
     );
   }
 
-  onReload() {
-    this.ngOnInit();
+  async onReload() {
+    await this.ngOnInit();
   }
+
 }

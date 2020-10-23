@@ -20,7 +20,24 @@
                data-uk-scrollspy="cls: uk-animation-slide-bottom-medium; delay: 200; repeat: true">
             <div class="uk-width-1-2@m">
               <h1 class="uk-heading-medium uk-margin-remove-top uk-letter-spacing-xl">{{details?.name}}</h1>
-              <a  class="uk-button uk-button-large uk-button-success-outline">Enroll Now</a>
+
+              <a *ngIf="!user_paid"  class="uk-button uk-button-large uk-button-success-outline" (click)="enrollCourse()">
+                Enroll Now <i class="fa fa-spin fa-spinner" *ngIf="paymentLoading"></i>
+              </a>
+              <a *ngIf="user_paid" href="#course"  class="uk-button uk-button-large uk-button-success-outline" >
+                Start Live Lesson
+              </a>
+              <button
+                style="visibility: hidden"
+                angular4-paystack
+                [paystackOptions]="options"
+                (paymentInit)="paymentCancel()"
+                (close)="paymentCancel()"
+                (callback)="paymentDone($event)"
+                #makePaymentBtn
+              >
+                Pay with Paystack
+              </button>
             </div>
             <div class="uk-width-1-2@m uk-text-large uk-flex uk-flex-middle">
               <div>

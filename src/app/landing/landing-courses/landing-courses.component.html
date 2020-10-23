@@ -1,29 +1,24 @@
 <app-landing-navbar></app-landing-navbar>
 
-<div id="courses" class="uk-section">
-  <div class="uk-container">
-    <h2 class="uk-text-center">Unlimited access to vocational courses</h2>
-    <ul class="uk-flex-center uk-margin-medium" data-uk-tab>
-      <li><a href="#">All Categories</a></li>
-      <li><a href="#">Design</a></li>
-      <li><a href="#">Development</a></li>
-      <li><a href="#">Illustration</a></li>
-      <li><a href="#">Photography</a></li>
-      <li><a href="#">Business</a></li>
-      <li><a href="#">Technology</a></li>
-      <li><a href="#">Writing</a></li>
-    </ul>
-    <ul class="uk-switcher">
-      <li>
-        <div class="uk-child-width-1-2@s uk-child-width-1-3@m uk-margin-large-top uk-grid-match" data-uk-grid>
+<ng-container>
+  <div id="about" class="uk-section uk-section-muted uk-section-large">
+    <div class="uk-container">
+      <div class="uk-width-4-5@m">
+        <h2 class="uk-heading-small">
+          <mark>Unlimited</mark>
+          access to vocational
+          <mark>courses</mark>
+        </h2>
+      </div>
+      <div class="uk-child-width-1-2@s uk-child-width-1-3@m uk-margin-large-top uk-grid-match" data-uk-grid>
 
-          <div *ngFor="let courses of courses?.data" >
-            <div class="uk-card uk-card-small uk-card-border" routerLink="/course-details/{{courses?.slug}}">
-              <div class="uk-card-media-top uk-position-relative uk-light">
-                <img [src]="courses?.preview_image" onerror='this.src="https://via.placeholder.com/640x400"'
-                     alt="Course Title">
-                <div class="uk-position-cover uk-overlay-xlight"></div>
-                <div class="uk-position-top-left">
+        <div *ngFor="let courses of courses?.data" >
+          <div class="uk-card uk-card-small uk-card-border" routerLink="/course-details/{{courses?.slug}}">
+            <div class="uk-card-media-top uk-position-relative uk-light">
+              <img [src]="courses?.preview_image" onerror='this.src="https://via.placeholder.com/640x400"'
+                   alt="Course Title">
+              <div class="uk-position-cover uk-overlay-xlight"></div>
+              <div class="uk-position-top-left">
               <span class="uk-text-bold uk-text-price uk-text-small">
                 <ng-container *ngIf="courses?.amount !== 0">
                 {{courses?.amount | currency : 'NGN': 'symbol-narrow'}}
@@ -34,35 +29,34 @@
                 </ng-container>
 
               </span>
-                </div>
-                <div class="uk-position-top-right">
-                  <a class="uk-icon-button uk-like uk-position-z-index uk-position-relative" data-uk-icon="heart"></a>
-                </div>
               </div>
-              <div class="uk-card-body">
-                <h3 class="uk-card-title uk-margin-small-bottom">{{courses?.name}}</h3>
-                <div class="uk-text-muted uk-text-small">Active Class
-                  <span>({{courses?.classes_count == 0 ? 1 : courses?.classes_count}})</span></div>
-                <div class="uk-text-muted uk-text-small uk-rating uk-margin-small-top">
-                  <span class="uk-rating-filled" data-uk-icon="icon: star; ratio: 0.75"></span>
-                  <span class="uk-rating-filled" data-uk-icon="icon: star; ratio: 0.75"></span>
-                  <span class="uk-rating-filled" data-uk-icon="icon: star; ratio: 0.75"></span>
-                  <span class="uk-rating-filled" data-uk-icon="icon: star; ratio: 0.75"></span>
-                  <span class="uk-rating-filled" data-uk-icon="icon: star; ratio: 0.75"></span>
-                  <span class="uk-margin-small-left uk-text-bold">5.0</span>
-
-                </div>
+              <div class="uk-position-top-right">
+                <a class="uk-icon-button uk-like uk-position-z-index uk-position-relative" data-uk-icon="heart"></a>
               </div>
-              <a class="uk-position-cover"></a>
             </div>
+            <div class="uk-card-body">
+              <h3 class="uk-card-title uk-margin-small-bottom">{{courses?.name}}</h3>
+              <div class="uk-text-muted uk-text-small">Active Class
+                <span>({{courses?.classes_count == 0 ? 1 : courses?.classes_count}})</span></div>
+              <div class="uk-text-muted uk-text-small uk-rating uk-margin-small-top">
+                <span class="uk-rating-filled" data-uk-icon="icon: star; ratio: 0.75"></span>
+                <span class="uk-rating-filled" data-uk-icon="icon: star; ratio: 0.75"></span>
+                <span class="uk-rating-filled" data-uk-icon="icon: star; ratio: 0.75"></span>
+                <span class="uk-rating-filled" data-uk-icon="icon: star; ratio: 0.75"></span>
+                <span class="uk-rating-filled" data-uk-icon="icon: star; ratio: 0.75"></span>
+                <span class="uk-margin-small-left uk-text-bold">5.0</span>
+
+              </div>
+            </div>
+            <a class="uk-position-cover"></a>
           </div>
-
         </div>
-      </li>
 
-    </ul>
-    <a (click)="onLoadMore()" class="uk-button uk-button-success-outline uk-margin-large-top">Show more classes <i class="fa fa-spin fa-spinner"></i></a>
+
+      </div>
+      <a (click)="onLoadMore()" class="uk-button uk-button-success-outline uk-margin-large-top">Show more classes <i class="fa fa-spin fa-spinner" *ngIf="loading"></i></a>
+    </div>
   </div>
-</div>
+</ng-container>
 
 <app-landing-footerbar></app-landing-footerbar>

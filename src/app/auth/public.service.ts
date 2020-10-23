@@ -14,11 +14,13 @@ export class PublicService {
   ) {
   }
 
-  courses(page =1) {
+  courses(page = 1) {
     return this.httpClient.post(`${this.url}courses?page=${page}`, {});
   }
 
   courseDetail(data) {
     return this.httpClient.post(`${this.url}course-details`, data);
   }
+
+
 }

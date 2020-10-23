@@ -74,6 +74,8 @@ import { HeaderComponent } from './student/component/header/header.component';
 import { StudentComponent } from './student/student.component';
 import { LiveSessionsComponent } from './student/live-sessions/live-sessions.component';
 import { NavBarDetailsComponent } from './landing/nav-bar-details/nav-bar-details.component';
+import { Angular4PaystackModule } from 'angular4-paystack';
+import {environment} from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -148,7 +150,8 @@ import { NavBarDetailsComponent } from './landing/nav-bar-details/nav-bar-detail
     VgCoreModule,
     VgControlsModule,
     VgOverlayPlayModule,
-    VgBufferingModule
+    VgBufferingModule,
+    Angular4PaystackModule.forRoot(environment.public_pay_stack_key),
   ],
   providers: [AuthService, DataService, UiService, {
     provide: HTTP_INTERCEPTORS,

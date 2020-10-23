@@ -1,24 +1,37 @@
-<app-nav-bar-details [details]="courses?.course"></app-nav-bar-details>
+<app-nav-bar-details [details]="courses?.course" [user_paid]="userPaid"></app-nav-bar-details>
 
 
-<div id="course" class="uk-section" >
+<div id="course" class="uk-section">
   <div class="uk-container uk-margin-pricing-offset" style="margin-top: -60px;">
     <div class="uk-grid-large" data-uk-grid>
       <div class="uk-width-expand@m">
         <div class="uk-article">
           <div [innerHTML]="courses?.course?.description"></div>
-<!--          <h2 class="uk-margin-large-top">Content</h2>-->
-          <ul class="uk-margin-top" data-uk-accordion="multiple: true">
+          <!--          <h2 class="uk-margin-large-top">Content</h2>-->
+          <ul class="uk-margin-top">
 
-            <li  >
-<!--              *ngFor="let classs of courses?.course?.classes"-->
+            <li>
               <div class="uk-accordion-content">
                 <table class="uk-table uk-table-justify uk-table-middle uk-table-divider">
                   <tbody>
-                  <tr class="uk-text-muted" >
-                    <td class="uk-table-expand"><span class="uk-margin-small-right" data-uk-icon="play-circle"></span>ooo</td>
-                    <td><span data-uk-icon="lock"></span></td>
-                    <td class="uk-table-shrink">04:24</td>
+                  <tr class="uk-text-muted" *ngFor="let classs of courses?.course?.classes">
+                    <td class="uk-table-expand">
+                      <ng-container *ngIf="userPaid">
+                        <a href="{{classs?.video_link}}">
+                          <span class="uk-margin-small-right" data-uk-icon="play-circle"></span>
+                          ooo
+                        </a>
+                      </ng-container>
+                      <ng-container *ngIf="!userPaid">
+                        <span class="uk-margin-small-right" data-uk-icon="play-circle"></span>
+                        ooo
+                      </ng-container>
+                    </td>
+                    <td>
+                      {{classs?.name}}
+                      <span data-uk-icon="lock" *ngIf="!userPaid"></span>
+                    </td>
+                    <!--                    <td class="uk-table-shrink">04:24</td>-->
                   </tr>
 
                   </tbody>
@@ -27,7 +40,10 @@
             </li>
           </ul>
 
-          <h2 class="uk-margin-large-top" id="contact">How do I <mark>contact</mark> you with my questions?</h2>
+          <h2 class="uk-margin-large-top" id="contact">How do I
+            <mark>contact</mark>
+            you with my questions?
+          </h2>
           <p>Activity that and the scarfs, for bit of text, never just
             as our have they of begin to cannot in of ran middle at behind seal that their accustomed. For
             devotion their to though one small sight escape, little. In so her has I solider, touched
@@ -58,7 +74,8 @@
   <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical uk-background-muted">
     <button class="uk-modal-close-outside" type="button" data-uk-close></button>
     <h2 class="uk-modal-title">Introduction: a UXD Parable</h2>
-    <iframe src="https://player.vimeo.com/video/126241629" width="1000" height="562" data-uk-responsive data-uk-video></iframe>
+    <iframe src="https://player.vimeo.com/video/126241629" width="1000" height="562" data-uk-responsive
+            data-uk-video></iframe>
     <div class="uk-margin-top uk-article">
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
         dolore magna aliqua. Ut enim ad minim reprehenderit in voluptate velit esse cillum dolore eu
@@ -72,7 +89,7 @@
   <div class="uk-container">
     <h2>Other Courses You May Like</h2>
     <div class="uk-child-width-1-2@s uk-child-width-1-3@m uk-margin-large-top" data-uk-grid>
-      <div *ngFor="let courses of courses?.others" >
+      <div *ngFor="let courses of courses?.others">
         <div class="uk-card uk-card-small uk-card-border" routerLink="/course-details/{{courses?.slug}}">
           <div class="uk-card-media-top uk-position-relative uk-light">
             <img [src]="courses?.preview_image" onerror='this.src="https://via.placeholder.com/640x400"'
