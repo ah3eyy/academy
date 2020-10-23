@@ -26,7 +26,7 @@ export class MyCoursesComponent implements OnInit {
   fetchMyCourses() {
     this.userService.userCourses().subscribe(
       (response: any) => {
-        this.details = response.data;
+        this.details = response.data.user_courses;
 
         this.loading = false;
         this.success = true;

@@ -1,49 +1,63 @@
 <app-landing-navbar></app-landing-navbar>
 
-<ng-container >
-<div id="about" class="uk-section uk-section-muted uk-section-large">
-  <div class="uk-container">
-    <div class="uk-width-4-5@m">
-      <h2 class="uk-heading-small"><mark>Unlimited</mark> access to thousands of <mark>courses</mark></h2>
-    </div>
-    <div class="uk-child-width-1-2@s uk-child-width-1-3@m uk-margin-large-top uk-grid-match" data-uk-grid>
-
-      <div>
-        <div class="uk-card uk-card-small uk-card-border">
-          <div class="uk-card-media-top uk-position-relative uk-light">
-            <img src="https://via.placeholder.com/640x400" alt="Course Title">
-            <div class="uk-position-cover uk-overlay-xlight"></div>
-            <div class="uk-position-top-left">
-              <span class="uk-text-bold uk-text-price uk-text-small">$27.00</span>
-            </div>
-            <div class="uk-position-top-right">
-              <a href="#" class="uk-icon-button uk-like uk-position-z-index uk-position-relative" data-uk-icon="heart"></a>
-            </div>
-          </div>
-          <div class="uk-card-body">
-            <h3 class="uk-card-title uk-margin-small-bottom">Business Presentation Course</h3>
-            <div class="uk-text-muted uk-text-small">Thomas Haller</div>
-            <div class="uk-text-muted uk-text-small uk-rating uk-margin-small-top">
-              <span class="uk-rating-filled" data-uk-icon="icon: star; ratio: 0.75"></span>
-              <span class="uk-rating-filled" data-uk-icon="icon: star; ratio: 0.75"></span>
-              <span class="uk-rating-filled" data-uk-icon="icon: star; ratio: 0.75"></span>
-              <span class="uk-rating-filled" data-uk-icon="icon: star; ratio: 0.75"></span>
-              <span class="uk-rating-filled" data-uk-icon="icon: star; ratio: 0.75"></span>
-              <span class="uk-margin-small-left uk-text-bold">5.0</span>
-              <span>(324)</span>
-            </div>
-          </div>
-          <a  class="uk-position-cover"></a>
-        </div>
+<ng-container>
+  <div id="about" class="uk-section uk-section-muted uk-section-large">
+    <div class="uk-container">
+      <div class="uk-width-4-5@m">
+        <h2 class="uk-heading-small">
+          <mark>Unlimited</mark>
+          access to vocational
+          <mark>courses</mark>
+        </h2>
       </div>
+      <div class="uk-child-width-1-2@s uk-child-width-1-3@m uk-margin-large-top uk-grid-match" data-uk-grid>
+
+        <div *ngFor="let courses of courses?.data" >
+          <div class="uk-card uk-card-small uk-card-border" routerLink="/course-details/{{courses?.slug}}">
+            <div class="uk-card-media-top uk-position-relative uk-light">
+              <img [src]="courses?.preview_image" onerror='this.src="https://via.placeholder.com/640x400"'
+                   alt="Course Title">
+              <div class="uk-position-cover uk-overlay-xlight"></div>
+              <div class="uk-position-top-left">
+              <span class="uk-text-bold uk-text-price uk-text-small">
+                <ng-container *ngIf="courses?.amount !== 0">
+                {{courses?.amount | currency : 'NGN': 'symbol-narrow'}}
+                </ng-container>
+
+                  <ng-container *ngIf="courses?.amount == 0">
+                Free
+                </ng-container>
+
+              </span>
+              </div>
+              <div class="uk-position-top-right">
+                <a class="uk-icon-button uk-like uk-position-z-index uk-position-relative" data-uk-icon="heart"></a>
+              </div>
+            </div>
+            <div class="uk-card-body">
+              <h3 class="uk-card-title uk-margin-small-bottom">{{courses?.name}}</h3>
+              <div class="uk-text-muted uk-text-small">Active Class
+                <span>({{courses?.classes_count == 0 ? 1 : courses?.classes_count}})</span></div>
+              <div class="uk-text-muted uk-text-small uk-rating uk-margin-small-top">
+                <span class="uk-rating-filled" data-uk-icon="icon: star; ratio: 0.75"></span>
+                <span class="uk-rating-filled" data-uk-icon="icon: star; ratio: 0.75"></span>
+                <span class="uk-rating-filled" data-uk-icon="icon: star; ratio: 0.75"></span>
+                <span class="uk-rating-filled" data-uk-icon="icon: star; ratio: 0.75"></span>
+                <span class="uk-rating-filled" data-uk-icon="icon: star; ratio: 0.75"></span>
+                <span class="uk-margin-small-left uk-text-bold">5.0</span>
+
+              </div>
+            </div>
+            <a class="uk-position-cover"></a>
+          </div>
+        </div>
 
 
+      </div>
+      <a routerLink="/courses" class="uk-button uk-button-success-outline uk-button-large uk-margin-medium-top">Explore courses</a>
     </div>
-    <a class="uk-button uk-button-success-outline uk-button-large uk-margin-medium-top">Explore courses</a>
   </div>
-</div>
 </ng-container>
-
 
 
 <div class="uk-section uk-section-large uk-background-cover uk-background-norepeat
@@ -51,7 +65,9 @@
      style="background-image: url(https://via.placeholder.com/;">
   <div class="uk-container uk-container-large">
     <div class="uk-width-1-2@m">
-      <h2 class="uk-heading-small uk-margin-remove">What do you want to <mark>learn today</mark></h2>
+      <h2 class="uk-heading-small uk-margin-remove">What do you want to
+        <mark>learn today</mark>
+      </h2>
     </div>
   </div>
   <div class="uk-container uk-container-large uk-margin-large-top">
@@ -69,12 +85,15 @@
           <div class="uk-position-relative uk-visible-toggle uk-light" tabindex="-1">
             <div class="uk-slider-container">
               <div class="uk-position-absolute uk-slidenav-above">
-                <a class="uk-slidenav-large uk-visible@m uk-text-success uk-margin-right" href="#" data-uk-slidenav-previous data-uk-slider-item="previous"></a>
-                <a class="uk-slidenav-large uk-visible@m uk-text-success" href="#" data-uk-slidenav-next data-uk-slider-item="next"></a>
+                <a class="uk-slidenav-large uk-visible@m uk-text-success uk-margin-right" href="#"
+                   data-uk-slidenav-previous data-uk-slider-item="previous"></a>
+                <a class="uk-slidenav-large uk-visible@m uk-text-success" href="#" data-uk-slidenav-next
+                   data-uk-slider-item="next"></a>
               </div>
               <ul class="uk-slider-items uk-child-width-1-3@s uk-grid-large">
                 <li>
-                  <div class="uk-card uk-border-light-hover uk-card-small uk-height-small uk-inline uk-border-light-xlarge uk-flex uk-flex-column">
+                  <div
+                    class="uk-card uk-border-light-hover uk-card-small uk-height-small uk-inline uk-border-light-xlarge uk-flex uk-flex-column">
                     <div class="uk-card-body uk-margin-auto-top">
                       <h3 class="uk-card-title uk-margin-remove">Business</h3>
                       <p class="uk-text-small uk-text-demi-bold uk-margin-xsmall-top">185 courses</p>
@@ -83,7 +102,8 @@
                   </div>
                 </li>
                 <li>
-                  <div class="uk-card uk-border-light-hover uk-card-small uk-height-small uk-inline uk-border-light-xlarge uk-flex uk-flex-column">
+                  <div
+                    class="uk-card uk-border-light-hover uk-card-small uk-height-small uk-inline uk-border-light-xlarge uk-flex uk-flex-column">
                     <div class="uk-card-body uk-margin-auto-top">
                       <h3 class="uk-card-title uk-margin-remove">Development</h3>
                       <p class="uk-text-small uk-text-demi-bold uk-margin-xsmall-top">79 courses</p>
@@ -92,7 +112,8 @@
                   </div>
                 </li>
                 <li>
-                  <div class="uk-card uk-border-light-hover uk-card-small uk-height-small uk-inline uk-border-light-xlarge uk-flex uk-flex-column">
+                  <div
+                    class="uk-card uk-border-light-hover uk-card-small uk-height-small uk-inline uk-border-light-xlarge uk-flex uk-flex-column">
                     <div class="uk-card-body uk-margin-auto-top">
                       <h3 class="uk-card-title uk-margin-remove">Design</h3>
                       <p class="uk-text-small uk-text-demi-bold uk-margin-xsmall-top">256 courses</p>
@@ -101,7 +122,8 @@
                   </div>
                 </li>
                 <li>
-                  <div class="uk-card uk-border-light-hover uk-card-small uk-height-small uk-inline uk-border-light-xlarge uk-flex uk-flex-column">
+                  <div
+                    class="uk-card uk-border-light-hover uk-card-small uk-height-small uk-inline uk-border-light-xlarge uk-flex uk-flex-column">
                     <div class="uk-card-body uk-margin-auto-top">
                       <h3 class="uk-card-title uk-margin-remove">Finance</h3>
                       <p class="uk-text-small uk-text-demi-bold uk-margin-xsmall-top">214 courses</p>
@@ -110,7 +132,8 @@
                   </div>
                 </li>
                 <li>
-                  <div class="uk-card uk-border-light-hover uk-card-small uk-height-small uk-inline uk-border-light-xlarge uk-flex uk-flex-column">
+                  <div
+                    class="uk-card uk-border-light-hover uk-card-small uk-height-small uk-inline uk-border-light-xlarge uk-flex uk-flex-column">
                     <div class="uk-card-body uk-margin-auto-top">
                       <h3 class="uk-card-title uk-margin-remove">Marketing</h3>
                       <p class="uk-text-small uk-text-demi-bold uk-margin-xsmall-top">79 courses</p>
@@ -120,8 +143,10 @@
                 </li>
               </ul>
             </div>
-            <a class="uk-position-center-left uk-position-small uk-hidden@m" href="#" data-uk-slidenav-previous data-uk-slider-item="previous"></a>
-            <a class="uk-position-center-right uk-position-small uk-hidden@m" href="#" data-uk-slidenav-next data-uk-slider-item="next"></a>
+            <a class="uk-position-center-left uk-position-small uk-hidden@m" href="#" data-uk-slidenav-previous
+               data-uk-slider-item="previous"></a>
+            <a class="uk-position-center-right uk-position-small uk-hidden@m" href="#" data-uk-slidenav-next
+               data-uk-slider-item="next"></a>
           </div>
         </div>
       </div>

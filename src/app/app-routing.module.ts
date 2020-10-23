@@ -59,7 +59,7 @@ const routes: Routes = [
     path: 'courses', component: LandingCoursesComponent, pathMatch: 'full'
   },
   {
-    path: 'course/:id', component: LandingCourseDetailsComponent, pathMatch: 'full'
+    path: 'course-details/:id', component: LandingCourseDetailsComponent, pathMatch: 'full'
   },
   {
     path: 'search', component: LandingSearchComponent, pathMatch: 'full'
